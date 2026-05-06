@@ -44,6 +44,8 @@ public class Quiz {
         this.categorie = categorie;
     }
 
+    
+
     @Override
     public int hashCode() {
         int hash = 3;
