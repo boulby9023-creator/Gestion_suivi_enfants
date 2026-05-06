@@ -1,6 +1,7 @@
 package main.java.Modele;
-import java.util.*;
-public class quiz {
+
+
+public class Quiz {
    private int tempsLimitGlobal;
    private int scoreMax;
    private String titre;
