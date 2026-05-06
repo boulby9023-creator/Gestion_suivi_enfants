@@ -1,5 +1,5 @@
 package main.java.enumeration;
 
-public class TypeJeu {
+public enum TypeJeu {
     EDUCATIF, REFLEXE, MEMOIRE
 }
