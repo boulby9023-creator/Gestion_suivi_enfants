@@ -1,7 +1,8 @@
 package main.java.Modele;
 
-public class Utilisateur {
+public abstract class Utilisateur {
 
+    //attributs
     protected int id;
     protected String nom;
     protected String prenom;
@@ -11,7 +12,8 @@ public class Utilisateur {
     protected String role;
 
     //constructeur
-    public Utilisateur(int id, String nom, String prenom, String tel, String mail, String password, String role ){
+   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String password, String role )
+    {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -66,5 +68,11 @@ public class Utilisateur {
     public void setRole(String role){
         this.role = role;
     }
+
+    public abstract void  creerUtilisateur(Utilisateur moh);
+    public abstract void  modifierUtilisateur(Utilisateur utilisateur);
+    public abstract void  seConnecter(String mail, String password);
+    public abstract void  seDeconnecter();
+
 
 }

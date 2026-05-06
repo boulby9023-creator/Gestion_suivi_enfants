@@ -15,4 +15,17 @@ public class Specialiste extends Utilisateur{
     public void setSpecialite(String specialite) {
         this.specialite = specialite;
     }
+
+    public void  creerUtilisateur(Utilisateur moh){
+        //
+    }
+    public void  modifierUtilisateur(Utilisateur utilisateur){
+
+    }
+    public void  seConnecter(String mail, String password){
+
+    }
+    public void  seDeconnecter(){
+
+    }
 }

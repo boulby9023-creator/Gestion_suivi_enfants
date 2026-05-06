@@ -1,11 +1,10 @@
 package main.java.Modele;
 
-public class Admin extends Utilisateur {
+public class Enseigant  extends Utilisateur{
 
-    public Admin(int id, String nom, String prenom, String tel, String mail, String password, String role){
-        super(id, nom, prenom, tel,mail, password, role );
+    public Enseigant(int id, String nom, String prenom, String tel, String mail, String password, String role){
+        super(id, nom, prenom, tel, mail, password, role);
     }
-
 
     public void  creerUtilisateur(Utilisateur moh){
         //
@@ -19,5 +18,4 @@ public class Admin extends Utilisateur {
     public void  seDeconnecter(){
 
     }
-
 }
