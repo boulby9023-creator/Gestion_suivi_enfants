@@ -1,4 +1,4 @@
-package main.java;
+package main.java.Modele;
 public class Enfant {
     public static void main(String[] args) {
         
