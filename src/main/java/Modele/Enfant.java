@@ -4,18 +4,25 @@ public class Enfant {
         
     }
 
-
+    private int id;
     private String nom;
     private String prenom;
     private int age;
     private String sexe;
 
     public Enfant(String nom, String prenom, int age, String sexe) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
         this.sexe = sexe;
     }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    } 
     public String getNom() {
         return nom;
     }
