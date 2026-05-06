@@ -6,4 +6,18 @@ public class Admin extends Utilisateur {
         super(id, nom, prenom, tel,mail, password, role );
     }
 
+
+    public void  creerUtilisateur(Utilisateur moh){
+        //
+    }
+    public void  modifierUtilisateur(Utilisateur utilisateur){
+
+    }
+    public void  seConnecter(String mail, String password){
+
+    }
+    public void  seDeconnecter(){
+
+    }
+
 }
