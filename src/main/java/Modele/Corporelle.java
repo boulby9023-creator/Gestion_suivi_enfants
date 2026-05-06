@@ -1,4 +1,4 @@
-package main.java;
+package main.java.Modele;
 import java.util.Scanner;
 public class Corporelle {
     private  double poids;
