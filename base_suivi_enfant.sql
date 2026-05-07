@@ -2,28 +2,30 @@ CREATE DATABASE Suivi_enfant;
 USE Suivi_enfant;
 create table corporelles (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    id_enfant INT
     poids float,
     taille float,
     imc float,
     date DATE
+    FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfant) ON DELETE CASCADE
     );
 
 create table utilisateurs(
     id int primary key auto_increment,
-     nom varchar(35),
-    prenom varchar(40),
-    tel varchar(25),
-    mail varchar(45),
-    password varchar(35),
-    role varchar(20)
+    nom varchar(35) not null,
+    prenom varchar(40) not null,
+    tel varchar(25) unique not null,
+    mail varchar(45) unique not null,
+    mot_de_passe varchar(35) not null,
+    roles enum('admin', 'parent', 'specialiste', 'enseignant') not null
     );
 
 CREATE TABLE enfants (
-     id INT PRIMARY KEY AUTO_INCREMENT ,
-     nom VARCHAR(20) NOT NULL,
-     prenom VARCHAR(20) NOT NULL,
-     age INT NOT NULL,
-     sexe ENUM ('garçon', 'fille')
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    date_naissance DATE,
+    sexe ENUM ('garçon', 'fille') NOT NULL
 );
 
 CREATE TABLE admins (
@@ -32,32 +34,35 @@ CREATE TABLE admins (
 
 
 
-CREATE TABLE Questions (
-    id_Q INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS questions (
+
+    id_question INT PRIMARY KEY AUTO_INCREMENT,
     enonce VARCHAR(255) NOT NULL,
-    typeCapacite ENUM('Logique', 'Memoire', 'Attention'),
-    delaiMax INT
+    type_capacite ENUM('Logique', 'Memoire', 'Attention'),
+    delai_max INT
 );
 
-CREATE TABLE Options (
-    id_O INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE options (
+    id_option INT PRIMARY KEY AUTO_INCREMENT,
     texte VARCHAR(255) NOT NULL,
-    estCorrect BOOLEAN,
-    FOREIGN KEY (question_id) REFERENCES Question(id)
-)
+    est_correct BOOLEAN,
 
-CREATE TABLE activites(
+);
+
+CREATE TABLE IF NOT EXISTS activites(
     id_activites INT PRIMARY KEY AUTO_INCREMENT,
     titre VARCHAR(50) NOT NULL,
     descriptions TEXT,
+    age_min INT,
+    age_max INT,
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
     type_activite ENUM("quiz","exercice","jeux") NOT NULL
 );
 CREATE TABLE IF NOT EXISTS quiz(
-    id_activites INT PRIMARY KEY,
+    id_quiz INT PRIMARY KEY,
     temps_limite INT,
     score_max INT,
-    CONSTRAINT FOREIGN KEY(id_activites)REFERENCES activites(id_activites) ON DELETE CASCADE
+    CONSTRAINT FOREIGN KEY(id_quiz)REFERENCES activites(id_activites) ON DELETE CASCADE
 
 );
 CREATE TABLE evaluations(
@@ -76,4 +81,17 @@ CREATE TABLE specialistes(specialite varchar(20));
     description TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
     type VARCHAR(100) NOT NULL
-)
+    id_pr INT,
+FOREIGN KEY (id_pr)
+REFERENCES evaluation(id_pr)
+);
+
+CREATE TABLE question_quiz(
+    id_question INT ,
+    id_quiz INT,
+    primary key(id_question,id_quiz),
+
+    foreign key (id_question) references Question(id_question) on delete cascade,
+    foreign key (id_quiz) references quiz(id_quiz) on delete cascade
+
+);
