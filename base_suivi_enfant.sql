@@ -33,7 +33,7 @@ CREATE TABLE admins (
 
 
 CREATE TABLE Question (
-    id_Q INT PRIMARY KEY AUTO_INCREMENT,
+    id_question INT PRIMARY KEY AUTO_INCREMENT,
     enonce VARCHAR(255) NOT NULL,
     typeCapacite ENUM('Logique', 'Memoire', 'Attention'),
     delaiMax INT
@@ -76,4 +76,14 @@ CREATE TABLE specialiste(specialite varchar(20));
     description TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
     type VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE question_quiz(
+    id_question INT ,
+    id_quiz INT,
+    primary key(id_question,id_quiz),
+    
+    foreign key (id_question) references Question(id_question) on delete cascade,
+    foreign key (id_quiz) references quiz(id_quiz) on delete cascade
+
 );
