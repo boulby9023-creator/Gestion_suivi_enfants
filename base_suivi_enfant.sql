@@ -2,21 +2,30 @@ CREATE DATABASE Suivi_enfant;
 USE Suivi_enfant;
 create table corporelle (
     id INT PRIMARY KEY AUTO_INCREMENT,
+<<<<<<< Maimouna
     poids float NOT NULL,
     taille float NOT NULL,
     imc float NOT NULL,
     date_corp DATE NOT NULL
      FOREIGN KEY (id_enfant) REFERENCES enfant(id)
+=======
+    id_enfant INT
+    poids float,
+    taille float,
+    imc float,
+    date DATE
+    FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfant) ON DELETE CASCADE
+>>>>>>> master
     );
 
 create table utilisateur(
     id int primary key auto_increment,
-     nom varchar(35),
-    prenom varchar(40),
-    tel varchar(25),
-    mail varchar(45),
-    password varchar(35),
-    role varchar(20)
+    nom varchar(35) not null,
+    prenom varchar(40) not null,
+    tel varchar(25) unique not null,
+    mail varchar(45) unique not null,
+    mot_de_passe varchar(35) not null,
+    roles enum('admin', 'parent', 'specialiste', 'enseignant') not null
     );
 
 CREATE TABLE enfants (
@@ -25,6 +34,7 @@ CREATE TABLE enfants (
      prenom VARCHAR(20),
      age INT,
      sexe VARCHAR(15) CHECK (sexe IN ('homme', 'femme'))
+     
 );
 
 CREATE TABLE admins (
@@ -55,10 +65,10 @@ CREATE TABLE activites(
     type_activite ENUM("quiz","exercice","jeux") NOT NULL
 );
 CREATE TABLE IF NOT EXISTS quiz(
-    id_activites INT PRIMARY KEY,
+    id_quiz INT PRIMARY KEY,
     temps_limite INT,
     score_max INT,
-    CONSTRAINT FOREIGN KEY(id_activites)REFERENCES activites(id_activites) ON DELETE CASCADE
+    CONSTRAINT FOREIGN KEY(id_quiz)REFERENCES activites(id_activites) ON DELETE CASCADE
 
 );
 CREATE TABLE evaluation(
@@ -73,8 +83,8 @@ CREATE TABLE client(genre varchar(10));
 CREATE TABLE specialiste(specialite varchar(20));
 
  CREATE TABLE Recommandation (
-    id_re INT AUTO_INCREMENT PRIMARY KEY,
+    id_recommandation INT AUTO_INCREMENT PRIMARY KEY,
     description TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
     type VARCHAR(100) NOT NULL
-)
+);
