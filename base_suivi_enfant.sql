@@ -85,9 +85,9 @@ CREATE TABLE specialistes(
 
  CREATE TABLE recommandations (
     id_recommandation INT AUTO_INCREMENT PRIMARY KEY,
-    description TEXT NOT NULL,
+    descriptions TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
-    type VARCHAR(100) NOT NULL
+    type_capacite ENUM('Logique', 'Memoire', 'Attention'),
     id_eveluation INT,
     FOREIGN KEY (id_eveluation) REFERENCES evaluation(id_eveluation)
 );
