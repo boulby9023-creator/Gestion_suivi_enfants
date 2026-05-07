@@ -35,6 +35,7 @@ CREATE TABLE admins (
 
 
 CREATE TABLE IF NOT EXISTS questions (
+
     id_question INT PRIMARY KEY AUTO_INCREMENT,
     enonce VARCHAR(255) NOT NULL,
     type_capacite ENUM('Logique', 'Memoire', 'Attention'),
@@ -87,4 +88,14 @@ CREATE TABLE specialistes(
     description TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
     type VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE question_quiz(
+    id_question INT ,
+    id_quiz INT,
+    primary key(id_question,id_quiz),
+    
+    foreign key (id_question) references Question(id_question) on delete cascade,
+    foreign key (id_quiz) references quiz(id_quiz) on delete cascade
+
 );
