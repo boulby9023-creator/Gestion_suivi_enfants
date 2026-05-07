@@ -1,6 +1,6 @@
 CREATE DATABASE Suivi_enfant;
 USE Suivi_enfant;
-create table corporelle (
+create table corporelles (
     id INT PRIMARY KEY AUTO_INCREMENT,
     id_enfant INT
     poids float,
@@ -10,7 +10,7 @@ create table corporelle (
     FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfant) ON DELETE CASCADE
     );
 
-create table utilisateur(
+create table utilisateurs(
     id int primary key auto_increment,
     nom varchar(35) not null,
     prenom varchar(40) not null,
@@ -34,7 +34,7 @@ CREATE TABLE admins (
 
 
 
-CREATE TABLE question (
+CREATE TABLE IF NOT EXISTS questions (
     id_question INT PRIMARY KEY AUTO_INCREMENT,
     enonce VARCHAR(255) NOT NULL,
     type_capacite ENUM('Logique', 'Memoire', 'Attention'),
@@ -48,7 +48,7 @@ CREATE TABLE options (
     
 );
 
-CREATE TABLE activites(
+CREATE TABLE IF NOT EXISTS activites(
     id_activites INT PRIMARY KEY AUTO_INCREMENT,
     titre VARCHAR(50) NOT NULL,
     descriptions TEXT,
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS quiz(
     CONSTRAINT FOREIGN KEY(id_quiz)REFERENCES activites(id_activites) ON DELETE CASCADE
 
 );
-CREATE TABLE evaluation(
+CREATE TABLE evaluations(
     id_eveluation INT PRIMARY KEY AUTO_INCREMENT,
     type_ctivite VARCHAR(25) NOT NULL,
     score INT not null,
@@ -82,7 +82,7 @@ CREATE TABLE specialistes(
     specialite varchar(20), 
     ADD CONSTRAINT fk_pr FOREIGN key(id_specialiste) REFERENCES utilisateur(id));
 
- CREATE TABLE Recommandation (
+ CREATE TABLE recommandations (
     id_recommandation INT AUTO_INCREMENT PRIMARY KEY,
     description TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
