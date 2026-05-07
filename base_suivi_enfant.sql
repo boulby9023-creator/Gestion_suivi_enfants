@@ -54,10 +54,10 @@ CREATE TABLE activites(
     type_activite ENUM("quiz","exercice","jeux") NOT NULL
 );
 CREATE TABLE IF NOT EXISTS quiz(
-    id_activites INT PRIMARY KEY,
+    id_quiz INT PRIMARY KEY,
     temps_limite INT,
     score_max INT,
-    CONSTRAINT FOREIGN KEY(id_activites)REFERENCES activites(id_activites) ON DELETE CASCADE
+    CONSTRAINT FOREIGN KEY(id_quiz)REFERENCES activites(id_activites) ON DELETE CASCADE
 
 );
 CREATE TABLE evaluation(
