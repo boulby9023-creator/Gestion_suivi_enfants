@@ -1,4 +1,16 @@
-CREATE DATABASE Suivi_enfant
+CREATE DATABASE Suivi_enfant;
+
+USE Suivi_enfant;
+
+create table utilisateur(
+    id int primary key auto_increment,
+     nom varchar(35),
+    prenom varchar(40),
+    tel varchar(25),
+    mail varchar(45),
+    password varchar(35),
+    role varchar(20)
+    );
 
 CREATE TABLE enfants (
      id INT AUTO_INCREMENT PRIMARY KEY,
@@ -40,4 +52,12 @@ CREATE TABLE IF NOT EXISTS quiz(
     temps_limite INT,
     score_max INT,
     CONSTRAINT FOREIGN KEY(id_activites)REFERENCES activites(id_activites) ON DELETE CASCADE
+
+);
+CREATE TABLE evaluation(
+    id_pr INT PRIMARY KEY AUTO_INCREMENT,
+    typeActivite VARCHAR(25) NOT NULL,
+    score INT,
+    scroreGlobal INT,
+    date_evaluation DATE,
 );
