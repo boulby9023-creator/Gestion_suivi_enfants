@@ -72,8 +72,8 @@ CREATE TABLE client(genre varchar(10));
 CREATE TABLE specialiste(specialite varchar(20));
 
  CREATE TABLE Recommandation (
-    id_re INT AUTO_INCREMENT PRIMARY KEY,
+    id_recommandation INT AUTO_INCREMENT PRIMARY KEY,
     description TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
     type VARCHAR(100) NOT NULL
-)
+);
