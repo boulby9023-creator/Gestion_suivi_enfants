@@ -27,7 +27,10 @@ CREATE TABLE enfants (
     prenom VARCHAR(50) NOT NULL,
     date_naissance DATE,
     sexe ENUM ('garçon', 'fille') NOT NULL,
-    FOREIGN key(id_parent) REFERENCES parents(id_parent) ON DELETE CASCADE
+    id_activites int ,
+    id_parent int,
+    FOREIGN key(id_parent) REFERENCES parents(id_parent) ON DELETE CASCADE,
+    FOREIGN key(id_activites) REFERENCES activites(id_activites) ON DELETE CASCADE
 );
 
 create table corporelles (
