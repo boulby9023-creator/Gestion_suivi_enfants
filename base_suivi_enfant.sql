@@ -1,14 +1,5 @@
 CREATE DATABASE Suivi_enfant;
 USE Suivi_enfant;
-create table corporelles (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    id_enfant INT
-    poids float,
-    taille float,
-    imc float,
-    date DATE
-    FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfant) ON DELETE CASCADE
-    );
 
 create table utilisateurs(
     id int primary key auto_increment,
@@ -27,6 +18,16 @@ CREATE TABLE enfants (
     date_naissance DATE,
     sexe ENUM ('garçon', 'fille') NOT NULL
 );
+
+create table corporelles (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_enfant INT NOT NULL,
+    poids float NOT NULL,
+    taille float NOT NULL,
+    imc float NOT NULL,
+    dates DATE NOT NULL,
+    FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfant) ON DELETE CASCADE
+    );
 
 CREATE TABLE admins (
      id_admin INT PRIMARY KEY, FOREIGN KEY (id_admin) references utilisateur(id);
@@ -85,9 +86,9 @@ CREATE TABLE specialistes(
 
  CREATE TABLE recommandations (
     id_recommandation INT AUTO_INCREMENT PRIMARY KEY,
-    description TEXT NOT NULL,
+    descriptions TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
-    type VARCHAR(100) NOT NULL
+    type_capacite ENUM('Logique', 'Memoire', 'Attention'),
     id_eveluation INT,
     FOREIGN KEY (id_eveluation) REFERENCES evaluation(id_eveluation)
 );
