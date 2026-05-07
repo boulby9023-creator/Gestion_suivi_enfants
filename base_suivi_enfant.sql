@@ -2,12 +2,20 @@ CREATE DATABASE Suivi_enfant;
 USE Suivi_enfant;
 create table corporelle (
     id INT PRIMARY KEY AUTO_INCREMENT,
+<<<<<<< Maimouna
+    poids float NOT NULL,
+    taille float NOT NULL,
+    imc float NOT NULL,
+    date_corp DATE NOT NULL
+     FOREIGN KEY (id_enfant) REFERENCES enfant(id)
+=======
     id_enfant INT
     poids float,
     taille float,
     imc float,
     date DATE
     FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfant) ON DELETE CASCADE
+>>>>>>> master
     );
 
 create table utilisateur(
