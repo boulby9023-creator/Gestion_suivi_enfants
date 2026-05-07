@@ -13,6 +13,7 @@ CREATE TABLE Options (
     texte VARCHAR(255) NOT NULL,
     estCorrect BOOLEAN,
     FOREIGN KEY (question_id) REFERENCES Question(id)
+)
 
 CREATE TABLE activites(
     id_activites INT PRIMARY KEY AUTO_INCREMENT,
