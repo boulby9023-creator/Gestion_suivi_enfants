@@ -24,7 +24,6 @@ CREATE TABLE admins (
      id INT AUTO_INCREMENT PRIMARY KEY,
 );
 
-CREATE DATABASE Suivi_enfant;
 
 
 CREATE TABLE Question (
@@ -39,6 +38,7 @@ CREATE TABLE Options (
     texte VARCHAR(255) NOT NULL,
     estCorrect BOOLEAN,
     FOREIGN KEY (question_id) REFERENCES Question(id)
+)
 
 CREATE TABLE activites(
     id_activites INT PRIMARY KEY AUTO_INCREMENT,
