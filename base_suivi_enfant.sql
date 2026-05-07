@@ -21,11 +21,11 @@ create table utilisateurs(
     );
 
 CREATE TABLE enfants (
-     id INT PRIMARY KEY AUTO_INCREMENT ,
-     nom VARCHAR(20) NOT NULL,
-     prenom VARCHAR(20) NOT NULL,
-     age INT NOT NULL,
-     sexe ENUM ('garçon', 'fille')
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    date_naissance DATE,
+    sexe ENUM ('garçon', 'fille') NOT NULL
 );
 
 CREATE TABLE admins (
