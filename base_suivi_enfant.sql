@@ -1,6 +1,6 @@
 CREATE DATABASE Suivi_enfant;
 USE Suivi_enfant;
-create table corporelle (
+create table corporelles (
     id INT PRIMARY KEY AUTO_INCREMENT,
     poids float,
     taille float,
@@ -8,7 +8,7 @@ create table corporelle (
     date DATE
     );
 
-create table utilisateur(
+create table utilisateurs(
     id int primary key auto_increment,
      nom varchar(35),
     prenom varchar(40),
@@ -32,7 +32,7 @@ CREATE TABLE admins (
 
 
 
-CREATE TABLE Question (
+CREATE TABLE Questions (
     id_Q INT PRIMARY KEY AUTO_INCREMENT,
     enonce VARCHAR(255) NOT NULL,
     typeCapacite ENUM('Logique', 'Memoire', 'Attention'),
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS quiz(
     CONSTRAINT FOREIGN KEY(id_activites)REFERENCES activites(id_activites) ON DELETE CASCADE
 
 );
-CREATE TABLE evaluation(
+CREATE TABLE evaluations(
     id_pr INT PRIMARY KEY AUTO_INCREMENT,
     typeActivite VARCHAR(25) NOT NULL,
     score INT,
@@ -68,10 +68,10 @@ CREATE TABLE evaluation(
     date_evaluation DATE,
 );
 
-CREATE TABLE client(genre varchar(10));
-CREATE TABLE specialiste(specialite varchar(20));
+CREATE TABLE clients(genre varchar(10));
+CREATE TABLE specialistes(specialite varchar(20));
 
- CREATE TABLE Recommandation (
+ CREATE TABLE Recommandations (
     id_re INT AUTO_INCREMENT PRIMARY KEY,
     description TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
