@@ -12,3 +12,17 @@ CREATE TABLE admins (
      id INT AUTO_INCREMENT PRIMARY KEY,
 );
 
+CREATE DATABASE Suivi_enfant;
+CREATE TABLE activites(
+    id_activites INT PRIMARY KEY AUTO_INCREMENT,
+    titre VARCHAR(50) NOT NULL,
+    descriptions TEXT,
+    date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
+    type_activite ENUM("quiz","exercice","jeux") NOT NULL
+);
+CREATE TABLE IF NOT EXISTS quiz(
+    id_activites INT PRIMARY KEY,
+    temps_limite INT,
+    score_max INT,
+    CONSTRAINT FOREIGN KEY(id_activites)REFERENCES activites(id_activites) ON DELETE CASCADE
+);
