@@ -88,6 +88,9 @@ CREATE TABLE specialistes(
     description TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
     type VARCHAR(100) NOT NULL
+    id_pr INT,
+FOREIGN KEY (id_pr)
+REFERENCES evaluation(id_pr)
 );
 
 CREATE TABLE question_quiz(
