@@ -51,6 +51,54 @@ public class Question {
         this.capaciteEnum = capaciteEnum;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id_quest;
+        result = prime * result + ((contenu == null) ? 0 : contenu.hashCode());
+        result = prime * result + point;
+        result = prime * result + ((capaciteEnum == null) ? 0 : capaciteEnum.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Question other = (Question) obj;
+        if (id_quest != other.id_quest)
+            return false;
+        if (contenu == null) {
+            if (other.contenu != null)
+                return false;
+        } else if (!contenu.equals(other.contenu))
+            return false;
+        if (point != other.point)
+            return false;
+        if (capaciteEnum != other.capaciteEnum)
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Question{");
+        sb.append("id_quest=").append(id_quest);
+        sb.append(", contenu=").append(contenu);
+        sb.append(", point=").append(point);
+        sb.append(", capaciteEnum=").append(capaciteEnum);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    
+
     
 
 }

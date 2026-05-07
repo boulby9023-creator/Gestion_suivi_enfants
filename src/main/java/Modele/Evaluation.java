@@ -7,7 +7,7 @@ public class Evaluation{
     private String typeActivite;
     private int score;
     private int scoreGlobal;
-    private Date date_Eval; ert
+    private Date date_Eval;
 
     //constructeur//
     public Evaluation (int id, String typeActivite, int score, int scoreGlobal, Date date_Eval){
