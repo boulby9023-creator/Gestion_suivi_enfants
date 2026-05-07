@@ -12,7 +12,6 @@ CREATE TABLE admins (
      id INT AUTO_INCREMENT PRIMARY KEY,
 );
 
-CREATE DATABASE Suivi_enfant;
 
 
 CREATE TABLE Question (
