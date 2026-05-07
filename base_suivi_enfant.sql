@@ -28,3 +28,10 @@ CREATE TABLE IF NOT EXISTS quiz(
     CONSTRAINT FOREIGN KEY(id_activites)REFERENCES activites(id_activites) ON DELETE CASCADE
 
 );
+CREATE TABLE evaluation(
+    id_pr INT PRIMARY KEY AUTO_INCREMENT,
+    typeActivite VARCHAR(25) NOT NULL,
+    score INT,
+    scroreGlobal INT,
+    date_evaluation DATE,
+);
