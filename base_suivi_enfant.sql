@@ -52,6 +52,8 @@ CREATE TABLE activites(
     id_activites INT PRIMARY KEY AUTO_INCREMENT,
     titre VARCHAR(50) NOT NULL,
     descriptions TEXT,
+    age_min INT,
+    age_max INT,
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
     type_activite ENUM("quiz","exercice","jeux") NOT NULL
 );
@@ -70,8 +72,15 @@ CREATE TABLE evaluation(
     date_evaluation DATE not null,
 );
 
-CREATE TABLE client(genre varchar(10));
-CREATE TABLE specialiste(specialite varchar(20));
+CREATE TABLE parents(
+    id_parent int primary key, 
+    genre varchar(10), 
+    ADD CONSTRAINT fk_pr FOREIGN key(id_parent) REFERENCES utilisateur(id));
+
+CREATE TABLE specialistes(
+    id_specialiste, 
+    specialite varchar(20), 
+    ADD CONSTRAINT fk_pr FOREIGN key(id_specialiste) REFERENCES utilisateur(id));
 
  CREATE TABLE Recommandation (
     id_recommandation INT AUTO_INCREMENT PRIMARY KEY,
