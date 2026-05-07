@@ -61,3 +61,6 @@ CREATE TABLE evaluation(
     scroreGlobal INT,
     date_evaluation DATE,
 );
+
+CREATE TABLE client(genre varchar(10));
+CREATE TABLE specialiste(specialite varchar(20));
