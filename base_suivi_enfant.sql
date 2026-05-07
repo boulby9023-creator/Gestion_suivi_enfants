@@ -80,8 +80,8 @@ CREATE TABLE specialistes(
     ADD CONSTRAINT fk_pr FOREIGN key(id_specialiste) REFERENCES utilisateur(id));
 
  CREATE TABLE Recommandation (
-    id_re INT AUTO_INCREMENT PRIMARY KEY,
+    id_recommandation INT AUTO_INCREMENT PRIMARY KEY,
     description TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
     type VARCHAR(100) NOT NULL
-)
+);
