@@ -1,7 +1,4 @@
-INSERT INTO enfants (nom, prenom, sexe) VALUES 
-('Diallo', 'Moussa', 'garçon'),
-('Traoré', 'Fatoumata', 'fille'),
-('Coulibaly', 'Adama', 'garçon');
+
 INSERT INTO recommandations (id_enfant, description, categorie, priorite) 
 VALUES 
 (1, 'Encourager des jeux de mémoire visuelle (memoire) 15 min par jour.', 'Cognitif', 'Haute'),
