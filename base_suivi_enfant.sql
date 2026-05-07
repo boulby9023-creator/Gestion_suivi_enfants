@@ -1,6 +1,12 @@
 CREATE DATABASE Suivi_enfant;
-
 USE Suivi_enfant;
+create table corporelle (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    poids float,
+    taille float,
+    imc float,
+    date DATE
+    );
 
 create table utilisateur(
     id int primary key auto_increment,
@@ -61,3 +67,13 @@ CREATE TABLE evaluation(
     scroreGlobal INT,
     date_evaluation DATE,
 );
+
+CREATE TABLE client(genre varchar(10));
+CREATE TABLE specialiste(specialite varchar(20));
+
+ CREATE TABLE Recommandation (
+    id_re INT AUTO_INCREMENT PRIMARY KEY,
+    description TEXT NOT NULL,
+    date_recommandation DATE NOT NULL,
+    type VARCHAR(100) NOT NULL
+)
