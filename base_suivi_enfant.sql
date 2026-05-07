@@ -11,12 +11,23 @@ create table utilisateurs(
     roles enum('admin', 'parent', 'specialiste', 'enseignant') not null
     );
 
+CREATE TABLE parents(
+    id_parent int primary key, 
+    genre varchar(10), 
+    FOREIGN key(id_parent) REFERENCES utilisateur(id));
+
+CREATE TABLE specialistes(
+    id_specialiste, 
+    specialite varchar(20), 
+    FOREIGN key(id_specialiste) REFERENCES utilisateur(id));
+
 CREATE TABLE enfants (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
     date_naissance DATE,
-    sexe ENUM ('garçon', 'fille') NOT NULL
+    sexe ENUM ('garçon', 'fille') NOT NULL,
+    FOREIGN key(id_parent) REFERENCES parents(id_parent) ON DELETE CASCADE
 );
 
 create table corporelles (
@@ -47,7 +58,8 @@ CREATE TABLE options (
     id_option INT PRIMARY KEY AUTO_INCREMENT,
     texte VARCHAR(255) NOT NULL,
     est_correct BOOLEAN,
-    
+    id_question int,
+    FOREIGN KEY(id_question)REFERENCES questions(id_question) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS activites(
@@ -74,15 +86,6 @@ CREATE TABLE evaluations(
     date_evaluation DATE not null,
 );
 
-CREATE TABLE parents(
-    id_parent int primary key, 
-    genre varchar(10), 
-    ADD CONSTRAINT fk_pr FOREIGN key(id_parent) REFERENCES utilisateur(id));
-
-CREATE TABLE specialistes(
-    id_specialiste, 
-    specialite varchar(20), 
-    ADD CONSTRAINT fk_pr FOREIGN key(id_specialiste) REFERENCES utilisateur(id));
 
  CREATE TABLE recommandations (
     id_recommandation INT AUTO_INCREMENT PRIMARY KEY,
