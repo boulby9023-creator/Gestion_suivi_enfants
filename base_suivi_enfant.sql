@@ -17,7 +17,7 @@ CREATE TABLE parents(
     FOREIGN key(id_parent) REFERENCES utilisateur(id));
 
 CREATE TABLE specialistes(
-    id_specialiste, 
+    id_specialiste int PRIMARY KEY, 
     specialite varchar(20), 
     FOREIGN key(id_specialiste) REFERENCES utilisateur(id));
 
@@ -44,7 +44,7 @@ create table corporelles (
     );
 
 CREATE TABLE admins (
-     id_admin INT PRIMARY KEY, FOREIGN KEY (id_admin) references utilisateur(id);
+     id_admin INT PRIMARY KEY, FOREIGN KEY (id_admin) references utilisateur(id)
 );
 
 
@@ -86,7 +86,7 @@ CREATE TABLE evaluations(
     type_ctivite VARCHAR(25) NOT NULL,
     score INT not null,
     scrore_global INT not null,
-    date_evaluation DATE not null,
+    date_evaluation DATE not null
 );
 
 
