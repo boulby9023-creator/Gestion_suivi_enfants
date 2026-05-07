@@ -1,5 +1,31 @@
 CREATE DATABASE Suivi_enfant;
 
+USE Suivi_enfant;
+
+create table utilisateur(
+    id int primary key auto_increment,
+     nom varchar(35),
+    prenom varchar(40),
+    tel varchar(25),
+    mail varchar(45),
+    password varchar(35),
+    role varchar(20)
+    );
+
+CREATE TABLE enfants (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     nom VARCHAR(20) NOT NULL,
+     prenom VARCHAR(20),
+     age INT,
+     sexe VARCHAR(15) CHECK (sexe IN ('homme', 'femme'))
+);
+
+CREATE TABLE admins (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+);
+
+CREATE DATABASE Suivi_enfant;
+
 
 CREATE TABLE Question (
     id_Q INT PRIMARY KEY AUTO_INCREMENT,
