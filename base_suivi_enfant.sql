@@ -1,3 +1,17 @@
+CREATE DATABASE Suivi_enfant
+
+CREATE TABLE enfants (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     nom VARCHAR(20) NOT NULL,
+     prenom VARCHAR(20),
+     age INT,
+     sexe VARCHAR(15) CHECK (sexe IN ('homme', 'femme'))
+);
+
+CREATE TABLE admins (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+);
+
 CREATE DATABASE Suivi_enfant;
 
 
@@ -26,5 +40,4 @@ CREATE TABLE IF NOT EXISTS quiz(
     temps_limite INT,
     score_max INT,
     CONSTRAINT FOREIGN KEY(id_activites)REFERENCES activites(id_activites) ON DELETE CASCADE
-
 );
