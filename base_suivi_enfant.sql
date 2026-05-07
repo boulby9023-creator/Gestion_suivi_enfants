@@ -90,4 +90,5 @@ CREATE TABLE specialistes(
     id_pr INT,
 FOREIGN KEY (id_pr)
 REFERENCES evaluation(id_pr)
+
 );
