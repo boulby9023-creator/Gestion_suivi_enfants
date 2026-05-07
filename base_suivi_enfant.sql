@@ -50,7 +50,8 @@ CREATE TABLE activites(
     id_activites INT PRIMARY KEY AUTO_INCREMENT,
     titre VARCHAR(50) NOT NULL,
     descriptions TEXT,
-    tranche_age INT,
+    age_min INT,
+    age_max INT,
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
     type_activite ENUM("quiz","exercice","jeux") NOT NULL
 );
