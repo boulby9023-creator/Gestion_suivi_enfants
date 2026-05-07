@@ -1,5 +1,14 @@
 CREATE DATABASE Suivi_enfant;
 USE Suivi_enfant;
+create table corporelles (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_enfant INT
+    poids float,
+    taille float,
+    imc float,
+    date_enregistrement DATE,
+    FOREIGN KEY (id_enfants) REFERENCES enfants(id_enfants) ON DELETE CASCADE
+    );
 
 create table utilisateurs(
     id int primary key auto_increment,
@@ -22,7 +31,7 @@ CREATE TABLE specialistes(
     FOREIGN key(id_specialiste) REFERENCES utilisateur(id));
 
 CREATE TABLE enfants (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_enfants INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
     date_naissance DATE,
@@ -44,21 +53,21 @@ create table corporelles (
     );
 
 CREATE TABLE admins (
-     id_admin INT PRIMARY KEY, FOREIGN KEY (id_admin) references utilisateur(id)
+     id_admins INT PRIMARY KEY, FOREIGN KEY (id_admins) references utilisateur(id);
 );
 
 
 
 CREATE TABLE IF NOT EXISTS questions (
 
-    id_question INT PRIMARY KEY AUTO_INCREMENT,
+    id_questions INT PRIMARY KEY AUTO_INCREMENT,
     enonce VARCHAR(255) NOT NULL,
     type_capacite ENUM('Logique', 'Memoire', 'Attention'),
     delai_max INT
 );
 
 CREATE TABLE options (
-    id_option INT PRIMARY KEY AUTO_INCREMENT,
+    id_options INT PRIMARY KEY AUTO_INCREMENT,
     texte VARCHAR(255) NOT NULL,
     est_correct BOOLEAN,
     id_question int,
@@ -86,25 +95,33 @@ CREATE TABLE evaluations(
     type_ctivite VARCHAR(25) NOT NULL,
     score INT not null,
     scrore_global INT not null,
-    date_evaluation DATE not null
+    date_evaluations DATE not null,
 );
 
+CREATE TABLE parents(
+    id_parents int primary key, 
+    genre varchar(10), 
+    CONSTRAINT fk_pr FOREIGN key(id_parents) REFERENCES utilisateur(id));
+
+CREATE TABLE specialistes(
+    id_specialistes, 
+    specialite varchar(20), 
+    CONSTRAINT fk_pr FOREIGN key(id_specialistes) REFERENCES utilisateurs(id));
 
  CREATE TABLE recommandations (
-    id_recommandation INT AUTO_INCREMENT PRIMARY KEY,
-    descriptions TEXT NOT NULL,
-    date_recommandation DATE NOT NULL,
-    type_capacite ENUM('Logique', 'Memoire', 'Attention'),
-    id_eveluation INT,
-    FOREIGN KEY (id_eveluation) REFERENCES evaluation(id_eveluation)
+    id_recommandations INT AUTO_INCREMENT PRIMARY KEY,
+    description TEXT NOT NULL,
+    date_recommandations DATE NOT NULL,
+    type_recommandations VARCHAR(100) NOT NULL,
+    id_evaluations INT,
+    FOREIGN KEY (id_evaluations) REFERENCES evaluations(id_evaluations)
 );
 
 CREATE TABLE question_quiz(
-    id_question INT ,
+    id_questions INT,
     id_quiz INT,
-    primary key(id_question,id_quiz),
+    primary key(id_questions,id_quiz),
     
-    foreign key (id_question) references Question(id_question) on delete cascade,
-    foreign key (id_quiz) references quiz(id_quiz) on delete cascade
-
+    foreign key (id_questions) references questions(id_questions),
+    foreign key (id_quiz) references quiz(id_quiz)
 );
