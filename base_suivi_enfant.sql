@@ -32,19 +32,19 @@ CREATE TABLE admins (
 
 
 
-CREATE TABLE Question (
-    id_Q INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE question (
+    id_question INT PRIMARY KEY AUTO_INCREMENT,
     enonce VARCHAR(255) NOT NULL,
-    typeCapacite ENUM('Logique', 'Memoire', 'Attention'),
-    delaiMax INT
+    type_capacite ENUM('Logique', 'Memoire', 'Attention'),
+    delai_max INT
 );
 
-CREATE TABLE Options (
-    id_O INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE options (
+    id_option INT PRIMARY KEY AUTO_INCREMENT,
     texte VARCHAR(255) NOT NULL,
-    estCorrect BOOLEAN,
-    FOREIGN KEY (question_id) REFERENCES Question(id)
-)
+    est_correct BOOLEAN,
+    
+);
 
 CREATE TABLE activites(
     id_activites INT PRIMARY KEY AUTO_INCREMENT,
@@ -61,11 +61,11 @@ CREATE TABLE IF NOT EXISTS quiz(
 
 );
 CREATE TABLE evaluation(
-    id_pr INT PRIMARY KEY AUTO_INCREMENT,
-    typeActivite VARCHAR(25) NOT NULL,
-    score INT,
-    scroreGlobal INT,
-    date_evaluation DATE,
+    id_eveluation INT PRIMARY KEY AUTO_INCREMENT,
+    type_ctivite VARCHAR(25) NOT NULL,
+    score INT not null,
+    scrore_global INT not null,
+    date_evaluation DATE not null,
 );
 
 CREATE TABLE client(genre varchar(10));
