@@ -1,5 +1,5 @@
-CREATE DATABASE Suivi_enfant;
-USE Suivi_enfant;
+CREATE DATABASE suivi_enfant;
+USE suivi_enfant;
 create table corporelles (
     id INT PRIMARY KEY AUTO_INCREMENT,
     poids float NOT NULL,
