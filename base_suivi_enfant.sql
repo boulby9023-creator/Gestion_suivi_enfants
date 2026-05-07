@@ -2,20 +2,22 @@ CREATE DATABASE Suivi_enfant;
 USE Suivi_enfant;
 create table corporelle (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    id_enfant INT
     poids float,
     taille float,
     imc float,
     date DATE
+    FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfant) ON DELETE CASCADE
     );
 
 create table utilisateur(
     id int primary key auto_increment,
-     nom varchar(35),
-    prenom varchar(40),
-    tel varchar(25),
-    mail varchar(45),
-    password varchar(35),
-    role varchar(20)
+    nom varchar(35) not null,
+    prenom varchar(40) not null,
+    tel varchar(25) unique not null,
+    mail varchar(45) unique not null,
+    mot_de_passe varchar(35) not null,
+    roles enum('admin', 'parent', 'specialiste', 'enseignant') not null
     );
 
 CREATE TABLE enfants (
@@ -24,6 +26,7 @@ CREATE TABLE enfants (
      prenom VARCHAR(20),
      age INT,
      sexe VARCHAR(15) CHECK (sexe IN ('homme', 'femme'))
+     
 );
 
 CREATE TABLE admins (
