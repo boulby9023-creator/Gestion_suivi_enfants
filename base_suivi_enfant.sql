@@ -6,7 +6,6 @@ create table corporelle (
     taille float NOT NULL,
     imc float NOT NULL,
     date_corp DATE NOT NULL
-     FOREIGN KEY (id_enfant) REFERENCES enfant(id)
     );
 
 create table utilisateur(
