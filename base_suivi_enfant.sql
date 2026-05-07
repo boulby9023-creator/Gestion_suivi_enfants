@@ -53,7 +53,7 @@ create table corporelles (
     );
 
 CREATE TABLE admins (
-     id_admins INT PRIMARY KEY, FOREIGN KEY (id_admins) references utilisateur(id);
+     id_admins INT PRIMARY KEY, FOREIGN KEY (id_admins) references utilisateur(id)
 );
 
 
@@ -91,11 +91,11 @@ CREATE TABLE IF NOT EXISTS quiz(
 
 );
 CREATE TABLE evaluations(
-    id_eveluation INT PRIMARY KEY AUTO_INCREMENT,
+    id_evaluation INT PRIMARY KEY AUTO_INCREMENT,
     type_ctivite VARCHAR(25) NOT NULL,
     score INT not null,
     scrore_global INT not null,
-    date_evaluations DATE not null,
+    date_evaluations DATE not null
 );
 
 CREATE TABLE parents(
@@ -104,7 +104,7 @@ CREATE TABLE parents(
     CONSTRAINT fk_pr FOREIGN key(id_parents) REFERENCES utilisateur(id));
 
 CREATE TABLE specialistes(
-    id_specialistes, 
+    id_specialistes INT primary key, 
     specialite varchar(20), 
     CONSTRAINT fk_pr FOREIGN key(id_specialistes) REFERENCES utilisateurs(id));
 
