@@ -21,11 +21,11 @@ create table utilisateurs(
     );
 
 CREATE TABLE enfants (
-     id INT PRIMARY KEY AUTO_INCREMENT ,
-     nom VARCHAR(20) NOT NULL,
-     prenom VARCHAR(20) NOT NULL,
-     age INT NOT NULL,
-     sexe ENUM ('garçon', 'fille')
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    date_naissance DATE,
+    sexe ENUM ('garçon', 'fille') NOT NULL
 );
 
 CREATE TABLE admins (
@@ -35,6 +35,7 @@ CREATE TABLE admins (
 
 
 CREATE TABLE IF NOT EXISTS questions (
+
     id_question INT PRIMARY KEY AUTO_INCREMENT,
     enonce VARCHAR(255) NOT NULL,
     type_capacite ENUM('Logique', 'Memoire', 'Attention'),
@@ -87,4 +88,16 @@ CREATE TABLE specialistes(
     description TEXT NOT NULL,
     date_recommandation DATE NOT NULL,
     type VARCHAR(100) NOT NULL
+    id_eveluation INT,
+    FOREIGN KEY (id_eveluation) REFERENCES evaluation(id_eveluation)
+);
+
+CREATE TABLE question_quiz(
+    id_question INT ,
+    id_quiz INT,
+    primary key(id_question,id_quiz),
+    
+    foreign key (id_question) references Question(id_question) on delete cascade,
+    foreign key (id_quiz) references quiz(id_quiz) on delete cascade
+
 );
