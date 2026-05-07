@@ -1,21 +1,27 @@
 package main.java.Modele;
 public class Enfant {
-    public static void main(String[] args) {
-        
-    }
 
-
+    private int id;
     private String nom;
     private String prenom;
     private int age;
     private String sexe;
 
-    public Enfant(String nom, String prenom, int age, String sexe) {
+    public Enfant(int id, String nom, String prenom, int age, String sexe) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
         this.sexe = sexe;
     }
+    public Enfant() {
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    } 
     public String getNom() {
         return nom;
     }
