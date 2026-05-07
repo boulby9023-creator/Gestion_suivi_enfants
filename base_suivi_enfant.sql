@@ -20,13 +20,37 @@ create table utilisateurs(
     roles enum('admin', 'parent', 'specialiste', 'enseignant') not null
     );
 
+CREATE TABLE parents(
+    id_parent int primary key, 
+    genre varchar(10), 
+    FOREIGN key(id_parent) REFERENCES utilisateur(id));
+
+CREATE TABLE specialistes(
+    id_specialiste int PRIMARY KEY, 
+    specialite varchar(20), 
+    FOREIGN key(id_specialiste) REFERENCES utilisateur(id));
+
 CREATE TABLE enfants (
     id_enfants INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
     date_naissance DATE,
-    sexe ENUM ('garçon', 'fille') NOT NULL
+    sexe ENUM ('garçon', 'fille') NOT NULL,
+    id_activites int ,
+    id_parent int,
+    FOREIGN key(id_parent) REFERENCES parents(id_parent) ON DELETE CASCADE,
+    FOREIGN key(id_activites) REFERENCES activites(id_activites) ON DELETE CASCADE
 );
+
+create table corporelles (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_enfant INT NOT NULL,
+    poids float NOT NULL,
+    taille float NOT NULL,
+    imc float NOT NULL,
+    dates DATE NOT NULL,
+    FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfant) ON DELETE CASCADE
+    );
 
 CREATE TABLE admins (
      id_admins INT PRIMARY KEY, FOREIGN KEY (id_admins) references utilisateur(id);
@@ -46,7 +70,8 @@ CREATE TABLE options (
     id_options INT PRIMARY KEY AUTO_INCREMENT,
     texte VARCHAR(255) NOT NULL,
     est_correct BOOLEAN,
-    
+    id_question int,
+    FOREIGN KEY(id_question)REFERENCES questions(id_question) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS activites(
