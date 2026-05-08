@@ -11,7 +11,8 @@ public class main {
     
    public static void main(String[] args) {
       
-   Connection connection = ConnexionDB.getInstance().getconnection();
+   //Connection connection = ConnexionDB.getInstance().getconnection();
+
     Question q = new  Question();
     q.setId_quest(1);
     q.setContenu("bonjour");
@@ -19,19 +20,19 @@ public class main {
     System.out.println(q.toString());
 
 
-     try {
-           
-             if (connection != null) {
-                Statement pont = connection.createStatement();
-                String sql = "INSERT INTO capacite VALUES (NULL, 'Logique')";
-                int n = pont.executeUpdate(sql); 
-                if(n>0){
-                    System.out.println("capacites inserer avec succès");
-                }
-             }
+    try {
+            Connection con = ConnexionDB.getConexion();
+            if (con != null) {
+                Statement pont = con.createStatement();
+                String sql = "INSERT INTO capacite VALUES (NULL, 'Emotionnelle')";
+                int lignesAffectees = pont.executeUpdate(sql);
+
+                System.out.println("Insertion réussie, lignes modifiées : " + lignesAffectees);
+                pont.close();
+                con.close();
+            }
         } catch (SQLException e) {
-            System.err.println("Erreur INSERT capacites : " + e.getMessage());
+            e.printStackTrace();
         }
-       
-   }
+}
 }
