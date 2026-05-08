@@ -28,3 +28,10 @@ VALUES ( 'Mettre en place des exercices courts et dynamiques avec rappels fréqu
         ('Mettre en place un environnement d’apprentissage structuré pour aider à améliorer la concentration de l’enfant.','2026-05-07',  7)
 ;
 
+
+
+INSERT INTO recommandations (descriptions,  date_recommandations, id_capacite) VALUES 
+("Il lui faut des exercices courts et interactifs de 10 à 15 minutes 
+afin d’améliorer sa concentration. Utiliser des jeux éducatifs de mémoire et 
+de logique avec un système d’encouragement après chaque activité réussie."
+, "2026-05-07", 1);
