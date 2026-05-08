@@ -32,4 +32,3 @@ VALUES
 ("Améliorer la mémoire en utilisant des jeux de répétition de séquences (mots ou images) 10 à 15 minutes par jour.','2026-05-07', 1),
 ("Proposer des jeux de groupe pour améliorer la sociabilité et réduire l’isolement social.','2026-05-07', 4),
 ("Limiter le temps d’écran et favoriser les activités physiques pour un meilleur équilibre de santé.','2026-05-07', 6),
-gggggjgfv
