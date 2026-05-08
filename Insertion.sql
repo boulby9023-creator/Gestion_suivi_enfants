@@ -1,15 +1,14 @@
-<<<<<<< HEAD
 INSERT INTO recommendations (description,  date_recommandation, type) VALUES 
 ("Il lui faut des exercices courts et interactifs de 10 à 15 minutes 
 afin d’améliorer sa concentration. Utiliser des jeux éducatifs de mémoire et 
 de logique avec un système d’encouragement après chaque activité réussie."
 , "2026-05-07", "Concentration et motivation") ;
 
-INSERT INTO recommendations (description,  date_recommandation, type) VALUES 
+INSERT INTO recommendations (description,  date_recommandation, id_capacite) VALUES 
 ("Proposez-lui des jeux de stratégie comme les échecs ou des casse-têtes pour muscler sa capacité de planification logique.", 
-"2026-05-07", 
-"Memoire");
-=======
+"2026-05-07",
+1);
+
 INSERT INTO recommandations (descriptions, date_recommandations, type_recommandations, id_evaluations) 
 VALUES 
 ('Encourager des jeux de mémoire visuelle (mémoire) 15 min par jour.', '2026-05-08', 'Memoire', 1),
@@ -24,4 +23,3 @@ INSERT INTO Capacites (type_capacite) VALUES
 ('Émotionnel'),
 ('Mental'),
 ('Corporel');
->>>>>>> 8abe6c2d1fc3f19540a30a9482ce465ab04cc4ad
