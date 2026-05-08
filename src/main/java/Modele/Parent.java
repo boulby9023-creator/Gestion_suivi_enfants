@@ -39,4 +39,35 @@ public class Parent extends Utilisateur{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'seDeconnecter'");
     }
+
+    public void sinscrir(){
+        
+    }
+    public void creerProfilEnfant(){
+
+    }
+    public void consulterProfilEnfant(){
+
+    }
+    public void modifierProfilEnfant(){
+
+    }
+    public void supprimerProfilEnfant(){
+
+    }
+    public void voirRecommandation(){
+
+    }
+    public void consulterConseil(){
+
+    }
+    public void ajouterDonneesCorporelles(){
+
+    }
+    public void voirHistoriqueEnfant(){
+
+    }
+    public void voirSuggestionPedagogique(){
+
+    }
 }
