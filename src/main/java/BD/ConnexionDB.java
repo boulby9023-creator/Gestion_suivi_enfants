@@ -76,22 +76,5 @@ public class ConnexionDB {
         }
     }
 
-    public static void main(String[] args) {
-        try {
-            Connection con = ConnexionDB.getConexion();
-            if (con != null) {
-                Statement pont = con.createStatement();
-                String sql = "INSERT INTO capacite VALUES (NULL, 'Emotionnelle')";
-                int lignesAffectees = pont.executeUpdate(sql);
-
-                System.out.println("Insertion réussie, lignes modifiées : " + lignesAffectees);
-                pont.close();
-                con.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     
 }
