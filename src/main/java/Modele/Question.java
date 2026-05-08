@@ -1,7 +1,6 @@
 package main.java.Modele;
 
 
-import java.util.Objects;
 import main.java.enumeration.CapaciteEnum;
 
 public class Question {
@@ -53,6 +52,40 @@ public class Question {
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id_quest;
+        result = prime * result + ((contenu == null) ? 0 : contenu.hashCode());
+        result = prime * result + point;
+        result = prime * result + ((capaciteEnum == null) ? 0 : capaciteEnum.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Question other = (Question) obj;
+        if (id_quest != other.id_quest)
+            return false;
+        if (contenu == null) {
+            if (other.contenu != null)
+                return false;
+        } else if (!contenu.equals(other.contenu))
+            return false;
+        if (point != other.point)
+            return false;
+        if (capaciteEnum != other.capaciteEnum)
+            return false;
+        return true;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Question{");
@@ -64,41 +97,8 @@ public class Question {
         return sb.toString();
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + this.id_quest;
-        hash = 89 * hash + Objects.hashCode(this.contenu);
-        hash = 89 * hash + this.point;
-        hash = 89 * hash + Objects.hashCode(this.capaciteEnum);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Question other = (Question) obj;
-        if (this.id_quest != other.id_quest) {
-            return false;
-        }
-        if (this.point != other.point) {
-            return false;
-        }
-        if (!Objects.equals(this.contenu, other.contenu)) {
-            return false;
-        }
-        return this.capaciteEnum == other.capaciteEnum;
-    }
-
     
+
     
 
 }
