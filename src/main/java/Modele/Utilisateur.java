@@ -69,10 +69,14 @@ public abstract class Utilisateur {
         this.role = role;
     }
 
+<<<<<<< HEAD
+   
+=======
     public abstract void  creerUtilisateur(Utilisateur moh);
     public abstract void  modifierUtilisateur(Utilisateur utilisateur);
     public abstract void  seConnecter(String mail, String password);
     public abstract void  seDeconnecter();
 
+>>>>>>> cb96cbd43aa6d6b4d2af394d7d34545e417fe172
 
 }

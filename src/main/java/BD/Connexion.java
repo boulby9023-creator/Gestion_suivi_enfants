@@ -2,32 +2,22 @@ package main.java.BD;
 import java.sql.*;
 
 public class Connexion  {
-
-    static {
-        System.out.println("Initialisation faite");
-    }
-    public static Connexion getConnexion() throws Exception {
-
-        return (Connexion) DriverManager.getConnection("jdbc:mysql://localhost:3306/suivi_enfant","root","root");
-    }
-
-    static void main(String[] args) throws Exception{
-        Connection conn= (Connection) Connexion.getConnexion();
-        Statement executeur=conn.createStatement();
-        ResultSet donnees=executeur.executeQuery("INSERT INTO recommandations (id_enfant, description, categorie, priorite) \n" +
-                "VALUES \n" +
-                "(1, 'Encourager des jeux de mémoire visuelle (memoire) 15 min par jour.', 'Cognitif', 'Haute'),");
-    }
-
-    private static final String USER ="root";
-    private static final String PASSWORD = "Obkanadji223";
-    public static void main(String[] args) {
+    private static String url="jdbc:mysql://localhost:3306/suivi_enfant";
+    private static String utilisateur="root";
+    private static String mot_de_passe="root";
+    public static Connection getConexion(){
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Connexion réussie !");
-            connection.close();
-        } catch (SQLException e) {
-            System.out.println("Erreur de connexion : " + e.getMessage());
+            Connection conexion=DriverManager.getConnection(url,utilisateur,mot_de_passe);
+            System.out.println("Connecter à la base de données !");
+            return connexion;
+        } catch (java.lang.Exception e) {
+            System.out.println("Il y'a un problème au niveau de la connection à la base de données.");
+            return "Impossible";
         }
+    }
+    public static void main(String[] args)throws Exception{
+        Connection con=Connexion.getConexion();
+        Statement pont=con.createStatement();
+        pont.executeQuery("insert into capacite values (null,'Emotionnelle')");
     }
 }
