@@ -27,11 +27,8 @@ VALUES ( 'Mettre en place des exercices courts et dynamiques avec rappels fréqu
         ('Proposer des activités de résolution de problèmes pour renforcer les capacités cognitives de l’enfant.','2026-05-07', 1),
         ('Mettre en place un environnement d’apprentissage structuré pour aider à améliorer la concentration de l’enfant.','2026-05-07',  7)
 ;
-
-
-
-INSERT INTO recommandations (descriptions,  date_recommandations, id_capacite) VALUES 
-("Il lui faut des exercices courts et interactifs de 10 à 15 minutes 
-afin d’améliorer sa concentration. Utiliser des jeux éducatifs de mémoire et 
-de logique avec un système d’encouragement après chaque activité réussie."
-, "2026-05-07", 1);
+INSERT INTO recommandations ( description, date_recommandation, id_capacite) 
+VALUES 
+("Améliorer la mémoire en utilisant des jeux de répétition de séquences (mots ou images) 10 à 15 minutes par jour.','2026-05-07', 1),
+("Proposer des jeux de groupe pour améliorer la sociabilité et réduire l’isolement social.','2026-05-07', 4),
+("Limiter le temps d’écran et favoriser les activités physiques pour un meilleur équilibre de santé.','2026-05-07', 6),
