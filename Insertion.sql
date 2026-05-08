@@ -12,6 +12,7 @@ INSERT INTO recommandation(type, description, date) VALUES
 ('Memoire', 'Féliciter l’enfant après chaque activité réussie', '2026-05-07'),
 ('Mémoire', 'Utiliser des jeux de mémoire visuelle deux fois par semaine', '2026-05-07'),
 ('Attention', 'Favoriser les activités de groupe avec d’autres enfants', '2026-05-07');
+
 INSERT INTO recommendations (description,  date_recommandation, type) VALUES
 ("Il lui faut des exercices courts et interactifs de 10 à 15 minutes
 afin d’améliorer sa concentration. Utiliser des jeux éducatifs de mémoire et
