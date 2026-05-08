@@ -1,103 +1,164 @@
-CREATE DATABASE Suivi_enfant;
+CREATE DATABASE IF NOT EXISTS Suivi_enfant;
 USE Suivi_enfant;
-create table corporelles (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    id_enfant INT
-    poids float,
-    taille float,
-    imc float,
-    date DATE
-    FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfant) ON DELETE CASCADE
-    );
 
-create table utilisateurs(
-    id int primary key auto_increment,
-    nom varchar(35) not null,
-    prenom varchar(40) not null,
-    tel varchar(25) unique not null,
-    mail varchar(45) unique not null,
-    mot_de_passe varchar(35) not null,
-    roles enum('admin', 'parent', 'specialiste', 'enseignant') not null
-    );
+-- ==========================================================
+-- 1. TABLES DE RÉFÉRENCE (Indépendantes)
+-- ==========================================================
 
-CREATE TABLE enfants (
+-- Doit être créée en premier car elle est référencée partout
+CREATE TABLE Capacites (
+    id_capacite INT PRIMARY KEY AUTO_INCREMENT,
+    type_capacite VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE utilisateurs (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(50) NOT NULL,
-    prenom VARCHAR(50) NOT NULL,
-    date_naissance DATE,
-    sexe ENUM ('garçon', 'fille') NOT NULL
+    nom VARCHAR(35) NOT NULL,
+    prenom VARCHAR(40) NOT NULL,
+    tel VARCHAR(25) UNIQUE NOT NULL,
+    mail VARCHAR(45) UNIQUE NOT NULL,
+    mot_de_passe VARCHAR(255) NOT NULL,
+    roles ENUM('admin', 'parent', 'specialiste', 'enseignant') NOT NULL
+);
+
+-- ==========================================================
+-- 2. SPÉCIALISATIONS DES UTILISATEURS
+-- ==========================================================
+
+CREATE TABLE parents (
+    id_parent INT PRIMARY KEY, 
+    genre VARCHAR(10), 
+    CONSTRAINT fk_parent_user FOREIGN KEY(id_parent) REFERENCES utilisateurs(id) ON DELETE CASCADE
+);
+
+CREATE TABLE specialistes (
+    id_specialiste INT PRIMARY KEY, 
+    specialite VARCHAR(50), 
+    CONSTRAINT fk_spec_user FOREIGN KEY(id_specialiste) REFERENCES utilisateurs(id) ON DELETE CASCADE
 );
 
 CREATE TABLE admins (
-     id_admin INT PRIMARY KEY, FOREIGN KEY (id_admin) references utilisateur(id);
+     id_admins INT PRIMARY KEY, 
+     CONSTRAINT fk_admin_user FOREIGN KEY (id_admins) REFERENCES utilisateurs(id) ON DELETE CASCADE
 );
 
+-- ==========================================================
+-- 3. ACTIVITÉS ET ENFANTS
+-- ==========================================================
 
-
-CREATE TABLE IF NOT EXISTS questions (
-
-    id_question INT PRIMARY KEY AUTO_INCREMENT,
-    enonce VARCHAR(255) NOT NULL,
-    type_capacite ENUM('Logique', 'Memoire', 'Attention'),
-    delai_max INT
-);
-
-CREATE TABLE options (
-    id_option INT PRIMARY KEY AUTO_INCREMENT,
-    texte VARCHAR(255) NOT NULL,
-    est_correct BOOLEAN,
-    
-);
-
-CREATE TABLE IF NOT EXISTS activites(
+CREATE TABLE activites (
     id_activites INT PRIMARY KEY AUTO_INCREMENT,
     titre VARCHAR(50) NOT NULL,
     descriptions TEXT,
     age_min INT,
     age_max INT,
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
-    type_activite ENUM("quiz","exercice","jeux") NOT NULL
+    id_capacite INT,
+    FOREIGN KEY(id_capacite) REFERENCES Capacites(id_capacite) ON DELETE SET NULL
 );
-CREATE TABLE IF NOT EXISTS quiz(
+
+CREATE TABLE enfants (
+    id_enfants INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    date_naissance DATE,
+    sexe ENUM ('garçon', 'fille') NOT NULL,
+    id_activites INT,
+    id_parent INT,
+    FOREIGN KEY(id_parent) REFERENCES parents(id_parent) ON DELETE CASCADE,
+    FOREIGN KEY(id_activites) REFERENCES activites(id_activites) ON DELETE SET NULL
+);
+
+-- ==========================================================
+-- 4. SUIVI ET EXERCICES (QUIZ / QUESTIONS)
+-- ==========================================================
+
+CREATE TABLE corporelles (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_enfant INT NOT NULL,
+    poids FLOAT NOT NULL,
+    taille FLOAT NOT NULL,
+    imc FLOAT NOT NULL,
+    date_enregistrement DATE NOT NULL,
+    FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfants) ON DELETE CASCADE
+);
+
+CREATE TABLE quiz (
     id_quiz INT PRIMARY KEY,
     temps_limite INT,
     score_max INT,
-    CONSTRAINT FOREIGN KEY(id_quiz)REFERENCES activites(id_activites) ON DELETE CASCADE
-
-);
-CREATE TABLE evaluations(
-    id_eveluation INT PRIMARY KEY AUTO_INCREMENT,
-    type_ctivite VARCHAR(25) NOT NULL,
-    score INT not null,
-    scrore_global INT not null,
-    date_evaluation DATE not null,
+    CONSTRAINT fk_quiz_act FOREIGN KEY(id_quiz) REFERENCES activites(id_activites) ON DELETE CASCADE
 );
 
-CREATE TABLE parents(
-    id_parent int primary key, 
-    genre varchar(10), 
-    ADD CONSTRAINT fk_pr FOREIGN key(id_parent) REFERENCES utilisateur(id));
-
-CREATE TABLE specialistes(
-    id_specialiste, 
-    specialite varchar(20), 
-    ADD CONSTRAINT fk_pr FOREIGN key(id_specialiste) REFERENCES utilisateur(id));
-
- CREATE TABLE recommandations (
-    id_recommandation INT AUTO_INCREMENT PRIMARY KEY,
-    descriptions TEXT NOT NULL,
-    date_recommandation DATE NOT NULL,
-    type_capacite ENUM('Logique', 'Memoire', 'Attention'),
-    id_eveluation INT,
-    FOREIGN KEY (id_eveluation) REFERENCES evaluation(id_eveluation)
+CREATE TABLE questions (
+    id_questions INT PRIMARY KEY AUTO_INCREMENT,
+    enonce VARCHAR(255) NOT NULL,
+    delai_max INT,
+    id_capacite INT,
+    FOREIGN KEY(id_capacite) REFERENCES Capacites(id_capacite) ON DELETE SET NULL
 );
 
-CREATE TABLE question_quiz(
-    id_question INT ,
+CREATE TABLE options (
+    id_options INT PRIMARY KEY AUTO_INCREMENT,
+    texte VARCHAR(255) NOT NULL,
+    est_correct BOOLEAN,
+    id_question INT,
+    FOREIGN KEY(id_question) REFERENCES questions(id_questions) ON DELETE CASCADE
+);
+
+CREATE TABLE question_quiz (
+    id_questions INT,
     id_quiz INT,
-    primary key(id_question,id_quiz),
-    
-    foreign key (id_question) references Question(id_question) on delete cascade,
-    foreign key (id_quiz) references quiz(id_quiz) on delete cascade
+    PRIMARY KEY(id_questions, id_quiz),
+    FOREIGN KEY (id_questions) REFERENCES questions(id_questions) ON DELETE CASCADE,
+    FOREIGN KEY (id_quiz) REFERENCES quiz(id_quiz) ON DELETE CASCADE
+);
 
+-- ==========================================================
+-- 5. ÉVALUATIONS ET RÉSULTATS
+-- ==========================================================
+
+CREATE TABLE evaluations (
+    id_evaluation INT PRIMARY KEY AUTO_INCREMENT,
+    score INT NOT NULL,
+    score_global INT NOT NULL,
+    date_evaluations DATE NOT NULL,
+    id_enfants INT,
+    id_activites INT,
+    FOREIGN KEY (id_enfants) REFERENCES enfants(id_enfants) ON DELETE CASCADE,
+    FOREIGN KEY (id_activites) REFERENCES activites(id_activites) ON DELETE CASCADE
+);
+
+CREATE TABLE recommandations (
+    id_recommandations INT AUTO_INCREMENT PRIMARY KEY,
+    descriptions TEXT NOT NULL,
+    date_recommandations DATE NOT NULL,
+    id_evaluations INT,
+    id_capacite INT,
+    FOREIGN KEY (id_evaluations) REFERENCES evaluations(id_evaluation) ON DELETE CASCADE,
+    FOREIGN KEY(id_capacite) REFERENCES Capacites(id_capacite) ON DELETE SET NULL
+);
+
+-- ==========================================================
+-- 6. TABLES DE LIAISON ET RÉPONSES
+-- ==========================================================
+
+CREATE TABLE enfants_activites (
+    id_enfants INT,
+    id_activites INT,
+    date_participation DATE,
+    PRIMARY KEY(id_enfants, id_activites),
+    FOREIGN KEY (id_enfants) REFERENCES enfants(id_enfants) ON DELETE CASCADE,
+    FOREIGN KEY (id_activites) REFERENCES activites(id_activites) ON DELETE CASCADE
+);
+
+CREATE TABLE reponses_enfants (
+    id_reponse INT PRIMARY KEY AUTO_INCREMENT,
+    id_enfants INT,
+    id_questions INT,
+    id_options INT,
+    date_reponse DATE,
+    FOREIGN KEY (id_enfants) REFERENCES enfants(id_enfants) ON DELETE CASCADE,
+    FOREIGN KEY (id_questions) REFERENCES questions(id_questions) ON DELETE CASCADE,
+    FOREIGN KEY (id_options) REFERENCES options(id_options) ON DELETE CASCADE
 );
