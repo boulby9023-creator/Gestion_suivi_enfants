@@ -34,3 +34,8 @@ INSERT INTO recommendations (descriptions,  date_recommandations, id_capacite) V
 ("Proposez-lui des jeux de stratégie comme les échecs ou des casse-têtes pour muscler sa capacité de planification logique.", 
 "2026-05-07",
 1);
+INSERT INTO recommandations ( description, date_recommandation, id_capacite) 
+VALUES 
+("Améliorer la mémoire en utilisant des jeux de répétition de séquences (mots ou images) 10 à 15 minutes par jour.','2026-05-07', 1),
+("Proposer des jeux de groupe pour améliorer la sociabilité et réduire l’isolement social.','2026-05-07', 4),
+("Limiter le temps d’écran et favoriser les activités physiques pour un meilleur équilibre de santé.','2026-05-07', 6),
