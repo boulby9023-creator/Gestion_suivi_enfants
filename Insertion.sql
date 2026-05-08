@@ -10,7 +10,7 @@ INSERT INTO Capacites (type_capacite) VALUES
 ;
 
 
-INSERT INTO recommandations( description, date_recommandations,  id_capacite )
+INSERT INTO recommandations( descriptions, date_recommandations,  id_capacite )
 VALUES ( 'Mettre en place des exercices courts et dynamiques avec rappels fréquents.', '2026-05-07', 7),
         ('Mettre en place un système de récompense afin de motiver l’enfant à terminer ses activités.','2026-05-07', 8),
         ('Encourager l’enfant à exprimer ses émotions à travers des activités artistiques.','2026-05-07', 4),
