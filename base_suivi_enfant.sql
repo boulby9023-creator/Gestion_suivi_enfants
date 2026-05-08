@@ -1,18 +1,18 @@
 CREATE DATABASE IF NOT EXISTS Suivi_enfant;
 USE Suivi_enfant;
 
--- 1. Table Utilisateurs (Base pour les rôles)
+-- 1. Table Utilisateurs
 CREATE TABLE utilisateurs (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(35) NOT NULL,
     prenom VARCHAR(40) NOT NULL,
     tel VARCHAR(25) UNIQUE NOT NULL,
     mail VARCHAR(45) UNIQUE NOT NULL,
-    mot_de_passe VARCHAR(255) NOT NULL, -- Augmenté pour le hachage
+    mot_de_passe VARCHAR(255) NOT NULL,
     roles ENUM('admin', 'parent', 'specialiste', 'enseignant') NOT NULL
 );
 
--- 2. Tables de spécialisation des utilisateurs
+-- 2. Spécialisations
 CREATE TABLE parents (
     id_parent INT PRIMARY KEY, 
     genre VARCHAR(10), 
@@ -30,7 +30,7 @@ CREATE TABLE admins (
      CONSTRAINT fk_admin_user FOREIGN KEY (id_admins) REFERENCES utilisateurs(id) ON DELETE CASCADE
 );
 
--- 3. Table Activités (Nécessaire pour la table Enfants)
+-- 3. Activités (doit être créée avant 'enfants')
 CREATE TABLE activites (
     id_activites INT PRIMARY KEY AUTO_INCREMENT,
     titre VARCHAR(50) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE activites (
     type_activite ENUM('quiz', 'exercice', 'jeux') NOT NULL
 );
 
--- 4. Table Enfants
+-- 4. Enfants
 CREATE TABLE enfants (
     id_enfants INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE enfants (
     FOREIGN KEY(id_activites) REFERENCES activites(id_activites) ON DELETE SET NULL
 );
 
--- 5. Table Corporelles (Une seule fois suffit !)
+-- 5. Suivi Corporel
 CREATE TABLE corporelles (
     id INT PRIMARY KEY AUTO_INCREMENT,
     id_enfant INT NOT NULL,
@@ -65,7 +65,14 @@ CREATE TABLE corporelles (
     FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfants) ON DELETE CASCADE
 );
 
--- 6. Tables pour les Questions et Quiz
+-- 6. Quiz et Questions
+CREATE TABLE quiz (
+    id_quiz INT PRIMARY KEY,
+    temps_limite INT,
+    score_max INT,
+    CONSTRAINT fk_quiz_act FOREIGN KEY(id_quiz) REFERENCES activites(id_activites) ON DELETE CASCADE
+);
+
 CREATE TABLE questions (
     id_questions INT PRIMARY KEY AUTO_INCREMENT,
     enonce VARCHAR(255) NOT NULL,
@@ -79,13 +86,6 @@ CREATE TABLE options (
     est_correct BOOLEAN,
     id_question INT,
     FOREIGN KEY(id_question) REFERENCES questions(id_questions) ON DELETE CASCADE
-);
-
-CREATE TABLE quiz (
-    id_quiz INT PRIMARY KEY,
-    temps_limite INT,
-    score_max INT,
-    CONSTRAINT fk_quiz_act FOREIGN KEY(id_quiz) REFERENCES activites(id_activites) ON DELETE CASCADE
 );
 
 CREATE TABLE question_quiz (
@@ -102,7 +102,11 @@ CREATE TABLE evaluations (
     type_activite VARCHAR(25) NOT NULL,
     score INT NOT NULL,
     score_global INT NOT NULL,
-    date_evaluations DATE NOT NULL
+    date_evaluations DATE NOT NULL,
+    id_enfants INT,
+    id_activites INT,
+    FOREIGN KEY (id_enfants) REFERENCES enfants(id_enfants) ON DELETE CASCADE,
+    FOREIGN KEY (id_activites) REFERENCES activites(id_activites) ON DELETE CASCADE
 );
 
 CREATE TABLE recommandations (
@@ -112,4 +116,25 @@ CREATE TABLE recommandations (
     type_recommandations VARCHAR(100) NOT NULL,
     id_evaluations INT,
     FOREIGN KEY (id_evaluations) REFERENCES evaluations(id_evaluation) ON DELETE CASCADE
+);
+
+-- 8. Tables de liaison (Relations Many-to-Many)
+CREATE TABLE enfants_activites (
+    id_enfants INT,
+    id_activites INT,
+    date_participation DATE,
+    PRIMARY KEY(id_enfants, id_activites),
+    FOREIGN KEY (id_enfants) REFERENCES enfants(id_enfants) ON DELETE CASCADE,
+    FOREIGN KEY (id_activites) REFERENCES activites(id_activites) ON DELETE CASCADE
+);
+
+CREATE TABLE reponses_enfants (
+    id_reponse int primary key,
+    id_enfants INT,
+    id_questions INT,
+    id_options INT,
+    date_reponse DATE,
+    FOREIGN KEY (id_enfants) REFERENCES enfants(id_enfants) ON DELETE CASCADE,
+    FOREIGN KEY (id_questions) REFERENCES questions(id_questions) ON DELETE CASCADE,
+    FOREIGN KEY (id_options) REFERENCES options(id_options) ON DELETE CASCADE
 );
