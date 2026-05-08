@@ -4,7 +4,7 @@ afin d’améliorer sa concentration. Utiliser des jeux éducatifs de mémoire e
 de logique avec un système d’encouragement après chaque activité réussie."
 , "2026-05-07", "Concentration et motivation") ;
 
-INSERT INTO recommendations (description,  date_recommandation, id_capacite) VALUES 
+INSERT INTO recommendations (descriptions,  date_recommandations, id_capacite) VALUES 
 ("Proposez-lui des jeux de stratégie comme les échecs ou des casse-têtes pour muscler sa capacité de planification logique.", 
 "2026-05-07",
 1);
