@@ -1,14 +1,5 @@
 CREATE DATABASE Suivi_enfant;
 USE Suivi_enfant;
-create table corporelles (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    id_enfant INT
-    poids float,
-    taille float,
-    imc float,
-    date DATE
-    FOREIGN KEY (id_enfant) REFERENCES enfants(id_enfant) ON DELETE CASCADE
-    );
 
 create table utilisateurs(
     id int primary key auto_increment,
