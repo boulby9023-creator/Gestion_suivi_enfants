@@ -38,7 +38,8 @@ CREATE TABLE activites (
     age_min INT,
     age_max INT,
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
-    type_activite ENUM('quiz', 'exercice', 'jeux') NOT NULL
+    id_capacite int,
+    FOREIGN KEY(id_capacite) REFERENCES capacites(id_capacite)
 );
 
 -- 4. Enfants
@@ -76,8 +77,9 @@ CREATE TABLE quiz (
 CREATE TABLE questions (
     id_questions INT PRIMARY KEY AUTO_INCREMENT,
     enonce VARCHAR(255) NOT NULL,
-    type_capacite ENUM('Logique', 'Memoire', 'Attention'),
-    delai_max INT
+    delai_max INT,
+    id_capacite int,
+    FOREIGN KEY(id_capacite) REFERENCES capacites(id_capacite)
 );
 
 CREATE TABLE options (
@@ -99,7 +101,6 @@ CREATE TABLE question_quiz (
 -- 7. Évaluations et Recommandations
 CREATE TABLE evaluations (
     id_evaluation INT PRIMARY KEY AUTO_INCREMENT,
-    type_activite VARCHAR(25) NOT NULL,
     score INT NOT NULL,
     score_global INT NOT NULL,
     date_evaluations DATE NOT NULL,
@@ -113,9 +114,10 @@ CREATE TABLE recommandations (
     id_recommandations INT AUTO_INCREMENT PRIMARY KEY,
     descriptions TEXT NOT NULL,
     date_recommandations DATE NOT NULL,
-    type_recommandations ENUM('Logique', 'Memoire', 'Attention'),
     id_evaluations INT,
-    FOREIGN KEY (id_evaluations) REFERENCES evaluations(id_evaluation) ON DELETE CASCADE
+    id_capacite int,
+    FOREIGN KEY (id_evaluations) REFERENCES evaluations(id_evaluation) ON DELETE CASCADE,
+    FOREIGN KEY(id_capacite) REFERENCES capacites(id_capacite)
 );
 
 -- 8. Tables de liaison (Relations Many-to-Many)
@@ -137,4 +139,8 @@ CREATE TABLE reponses_enfants (
     FOREIGN KEY (id_enfants) REFERENCES enfants(id_enfants) ON DELETE CASCADE,
     FOREIGN KEY (id_questions) REFERENCES questions(id_questions) ON DELETE CASCADE,
     FOREIGN KEY (id_options) REFERENCES options(id_options) ON DELETE CASCADE
+);
+CREATE TABLE Capacites (
+    id_capacite int primary key,
+    type_capacite String,
 );
