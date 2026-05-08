@@ -1,12 +1,22 @@
-INSERT INTO recommendations (descriptions,  date_recommandation, id_capacite) VALUES 
+INSERT INTO recommendations (descriptions,  date_recommandations, id_capacite) VALUES 
 ("Proposez-lui des jeux de stratégie comme les échecs ou des casse-têtes pour muscler sa capacité de planification logique.", 
 "2026-05-07",
 1);
 
 
+INSERT INTO Capacites (type_capacite) VALUES 
+('Cognitif'),
+('Intellectuel'),
+('Créativité'),
+('Émotionnel'),
+('Mental'),
+('Corporel'),
+('Attention'),
+('Motivation')
+;
 
 
-INSERT INTO recommandations( descriptions, date_recommandations,  id_capacite )
+INSERT INTO recommandations( description, date_recommandations,  id_capacite )
 VALUES ( 'Mettre en place des exercices courts et dynamiques avec rappels fréquents.', '2026-05-07', 7),
         ('Mettre en place un système de récompense afin de motiver l’enfant à terminer ses activités.','2026-05-07', 8),
         ('Encourager l’enfant à exprimer ses émotions à travers des activités artistiques.','2026-05-07', 4),
@@ -20,13 +30,8 @@ VALUES ( 'Mettre en place des exercices courts et dynamiques avec rappels fréqu
 
 
 
-INSERT INTO Capacites (type_capacite) VALUES 
-('Cognitif'),
-('Intellectuel'),
-('Créativité'),
-('Émotionnel'),
-('Mental'),
-('Corporel'),
-('Attention'),
-('Motivation')
-;
+INSERT INTO recommandations (descriptions,  date_recommandations, id_capacite) VALUES 
+("Il lui faut des exercices courts et interactifs de 10 à 15 minutes 
+afin d’améliorer sa concentration. Utiliser des jeux éducatifs de mémoire et 
+de logique avec un système d’encouragement après chaque activité réussie."
+, "2026-05-07", 1);
