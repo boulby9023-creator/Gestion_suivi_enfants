@@ -1,9 +1,3 @@
-INSERT INTO recommendations (descriptions,  date_recommandations, id_capacite) VALUES 
-("Proposez-lui des jeux de stratégie comme les échecs ou des casse-têtes pour muscler sa capacité de planification logique.", 
-"2026-05-07",
-1);
-
-
 INSERT INTO Capacites (type_capacite) VALUES 
 ('Cognitif'),
 ('Intellectuel'),
@@ -35,3 +29,8 @@ INSERT INTO recommandations (descriptions,  date_recommandations, id_capacite) V
 afin d’améliorer sa concentration. Utiliser des jeux éducatifs de mémoire et 
 de logique avec un système d’encouragement après chaque activité réussie."
 , "2026-05-07", 1);
+
+INSERT INTO recommendations (descriptions,  date_recommandations, id_capacite) VALUES 
+("Proposez-lui des jeux de stratégie comme les échecs ou des casse-têtes pour muscler sa capacité de planification logique.", 
+"2026-05-07",
+1);
