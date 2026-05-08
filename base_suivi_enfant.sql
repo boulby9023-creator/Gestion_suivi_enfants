@@ -111,9 +111,9 @@ CREATE TABLE evaluations (
 
 CREATE TABLE recommandations (
     id_recommandations INT AUTO_INCREMENT PRIMARY KEY,
-    description TEXT NOT NULL,
+    descriptions TEXT NOT NULL,
     date_recommandations DATE NOT NULL,
-    type_recommandations VARCHAR(100) NOT NULL,
+    type_recommandations ENUM('Logique', 'Memoire', 'Attention'),
     id_evaluations INT,
     FOREIGN KEY (id_evaluations) REFERENCES evaluations(id_evaluation) ON DELETE CASCADE
 );
