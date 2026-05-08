@@ -23,3 +23,19 @@ INSERT INTO Capacites (type_capacite) VALUES
 ('Émotionnel'),
 ('Mental'),
 ('Corporel');
+
+
+
+INSERT INTO recommendations (description, date_recommandation, id_capacite) VALUES 
+
+('Proposez des jeux de mémoire, de logique et des casse-têtes afin de renforcer les capacités de raisonnement et d’analyse.','2026-05-07',1),
+
+('Encouragez la lecture quotidienne et les exercices de compréhension pour améliorer les capacités intellectuelles et scolaires.','2026-05-07', 2),
+
+('Favorisez les activités artistiques comme le dessin, la peinture ou la construction pour stimuler la créativité.','2026-05-07', 3),
+
+('Mettre en place un environnement rassurant avec des échanges positifs afin de réduire le stress et améliorer la gestion des émotions.','2026-05-07', 4),
+
+('Introduire des exercices de concentration et de relaxation pour améliorer l’attention et la stabilité mentale.','2026-05-07', 5),
+
+('Encourager les activités physiques régulières et une alimentation équilibrée pour soutenir le développement corporel.','2026-05-07', 6);
