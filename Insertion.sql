@@ -1,6 +1,6 @@
 
-INSERT INTO recommandations (id_enfant, description, categorie, priorite) 
-VALUES 
+INSERT INTO recommandations (id_enfant, description, categorie, priorite)
+VALUES
 (1, 'Encourager des jeux de mémoire visuelle (memoire) 15 min par jour.', 'Cognitif', 'Haute'),
 (1, 'Pratiquer la lecture à voix haute pour améliorer la compréhension.', 'Intellectuel', 'Moyenne'),
 (2, 'Proposer des activités de dessin pour stimuler la gestion des émotions.', 'Émotionnel', 'Basse'),
@@ -13,8 +13,10 @@ INSERT INTO recommandation(type, description, date) VALUES
 ('Mémoire', 'Utiliser des jeux de mémoire visuelle deux fois par semaine', '2026-05-07'),
 ('Attention', 'Favoriser les activités de groupe avec d’autres enfants', '2026-05-07');
 
-INSERT INTO recommendations (description,  date_recommandation, type) VALUES
-("Il lui faut des exercices courts et interactifs de 10 à 15 minutes
-afin d’améliorer sa concentration. Utiliser des jeux éducatifs de mémoire et
-de logique avec un système d’encouragement après chaque activité réussie."
-, "2026-05-07", "Concentration et motivation") ;
+INSERT INTO Capacites (type_capacite) VALUES
+('Cognitif'),
+('Intellectuel'),
+('Créativité'),
+('Émotionnel'),
+('Mental'),
+('Corporel');
