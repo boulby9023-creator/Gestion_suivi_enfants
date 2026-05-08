@@ -19,4 +19,15 @@ public class Connexion  {
                 "(1, 'Encourager des jeux de mémoire visuelle (memoire) 15 min par jour.', 'Cognitif', 'Haute'),");
     }
 
+    private static final String USER ="root";
+    private static final String PASSWORD = "Obkanadji223";
+    public static void main(String[] args) {
+        try {
+            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Connexion réussie !");
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("Erreur de connexion : " + e.getMessage());
+        }
+    }
 }
