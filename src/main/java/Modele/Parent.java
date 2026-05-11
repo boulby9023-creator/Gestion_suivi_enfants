@@ -16,29 +16,6 @@ public class Parent extends Utilisateur{
         this.genre = genre;
     }
 
-    @Override
-    public void creerUtilisateur(Utilisateur moh) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'creerUtilisateur'");
-    }
-
-    @Override
-    public void modifierUtilisateur(Utilisateur utilisateur) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modifierUtilisateur'");
-    }
-
-    @Override
-    public void seConnecter(String mail, String password) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'seConnecter'");
-    }
-
-    @Override
-    public void seDeconnecter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'seDeconnecter'");
-    }
 
     public void sinscrir(){
         
