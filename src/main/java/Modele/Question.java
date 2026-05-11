@@ -1,22 +1,23 @@
 package main.java.Modele;
 
 
-import main.java.enumeration.CapaciteEnum;
+
 
 public class Question {
     private int id_questions   ;
     private String enonce;
-    private  CapaciteEnum type_capacite;
     private int delai_max;
+    private int id_capacite;    
+
 
     public Question() {
     }
 
-    public Question(CapaciteEnum type_capacite, String enonce, int id_questions, int delai_max) {
-        this.type_capacite = type_capacite;
+    public Question(String enonce, int id_questions, int delai_max, int id_capacite) {
         this.enonce = enonce;
         this.id_questions = id_questions;
         this.delai_max = delai_max;
+        this.id_capacite = id_capacite;
     }
 
     public int getId_questions() {
@@ -43,12 +44,12 @@ public class Question {
         this.delai_max = delai_max;
     }
 
-    public CapaciteEnum gettype_capacite() {
-        return type_capacite;
+    public int getId_capacite() {
+        return id_capacite;
     }
 
-    public void settype_capacite(CapaciteEnum type_capacite) {
-        this.type_capacite = type_capacite;
+    public void setId_capacite(int id_capacite) {
+        this.id_capacite = id_capacite;
     }
 
     @Override
@@ -58,7 +59,7 @@ public class Question {
         result = prime * result + id_questions;
         result = prime * result + ((enonce == null) ? 0 : enonce.hashCode());
         result = prime * result + delai_max;
-        result = prime * result + ((type_capacite == null) ? 0 : type_capacite.hashCode());
+
         return result;
     }
 
@@ -80,8 +81,6 @@ public class Question {
             return false;
         if (delai_max != other.delai_max)
             return false;
-        if (type_capacite != other.type_capacite)
-            return false;
         return true;
     }
 
@@ -92,13 +91,9 @@ public class Question {
         sb.append("id_questions=").append(id_questions);
         sb.append(", enonce=").append(enonce);
         sb.append(", delai_max=").append(delai_max);
-        sb.append(", type_capacite=").append(type_capacite);
-        sb.append('}');
         return sb.toString();
     }
-
     
 
-    
 
 }
