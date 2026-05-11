@@ -1,9 +1,9 @@
 package main.java.DAO;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 
 import main.java.BD.ConnexionDB;
@@ -16,33 +16,31 @@ public class ImplRecommandationDao implements Repository<Recommandation, Integer
 
         Connection con = ConnexionDB.getConexion();
 
-        String sql = "INSERT INTO recommandation(description, date_recomm, idEvaluation, idCapacite) VALUES (?,?,?,?)";
-
+        String sql = "INSERT INTO recommandation(description, date_recomm, idEvaluation, idCapacite) VALUES (?,?,?,?,?)";
         try (PreparedStatement pont = con.prepareStatement(sql)) {
-
-            pont.setString(1, entity.getDescription());
-
-            pont.setDate(2, (Date) entity.getDate_Recomm());
-
-            pont.setInt(3, entity.getIdEvaluation());
-
-            pont.setInt(4, entity.getIdCapacite());
-
-            int lignes = pont.executeUpdate();
-
-            if (b) {
-                System.out.println("Recommandation insérée avec succès");
-            }
+            
+            pont.setNull(1, Types.INTEGER);
+            pont.setString(2, entity.getDescription());
+            pont.setDate(3, (Date) entity.getDate_Recomm());
+            pont.setInt(4, entity.getIdEvaluation());
+            pont.setInt(5, entity.getIdCapacite());
+            
+              int b =pont.executeUpdate();
+                    if(b > 0){
+                        System.out.println("Recommandation ajouter avec succès");
+                    }
             con.close();
 
         } catch (SQLException e) {
-
-            System.out.println("Il y a un problème avec l'insertion");
+            System.out.println("Il y'a un problème avec l'insertion");
             e.printStackTrace();
         }
     }
-}
      
+    private int sqlType() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'sqlType'");
+    }
 
     public ImplRecommandationDao() {
     }
