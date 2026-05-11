@@ -14,16 +14,10 @@ public class ImplAdmin implements Repository <Admin , Integer> {
 
     @Override
     public void save(Admin admin) {
-        String sql = "INSERT INTO admins VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO admins VALUES (?)";
         try (PreparedStatement pont = con.prepareStatement(sql)) {
             pont.setNull(1, admin.getId());
-            pont.setString(2, admin.getNom());
-            pont.setString(3, admin.getPrenom());
-            pont.setString(4, admin.getTel());
-            pont.setString(5, admin.getMail());
-            pont.setString(6, admin.getPassword());
-            pont.setString(7, admin.getRole());
-
+           
             int b =pont.executeUpdate();
             if(b > 0){
                 System.err.println("Admin inserer avec succès");
