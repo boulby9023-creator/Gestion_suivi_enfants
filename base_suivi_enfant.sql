@@ -84,7 +84,7 @@ CREATE TABLE corporelles (
 );
 
 CREATE TABLE quiz (
-    id_quiz INT PRIMARY KEY,
+    id_quiz INT PRIMARY KEY AUTO_INCREMENT,
     temps_limite INT,
     score_max INT,
     CONSTRAINT fk_quiz_act FOREIGN KEY(id_quiz) REFERENCES activites(id_activites) ON DELETE CASCADE
