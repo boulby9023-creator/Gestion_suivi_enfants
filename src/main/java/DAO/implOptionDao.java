@@ -6,7 +6,7 @@ import java.util.List;
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Option;
 
-public class OptionDao implements Repository<Option, Integer> {
+public class implOptionDao implements Repository<Option, Integer> {
 
 @Override
 public void save(Option entity) {
