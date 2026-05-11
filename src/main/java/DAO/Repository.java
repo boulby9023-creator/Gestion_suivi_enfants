@@ -7,4 +7,6 @@ public interface Repository<T, ID> {
     T findById(ID id);
     List<T> findAll();
     void delete(ID id);
+     void updtae(ID id, T entity);
+
 }

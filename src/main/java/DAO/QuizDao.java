@@ -1,0 +1,96 @@
+package main.java.DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import main.java.BD.Connexion;
+import main.java.Modele.Quiz;
+
+public class QuizDao implements Repository<Quiz,Integer> {
+    Connection con = Connexion.getConnexion();
+
+    @Override
+    public void save(Quiz entity) {
+        String  sql = "INSERT INTO quiz(temps_limite,score_max) VALUES (?,?)";
+        try (PreparedStatement prepare = con.prepareStatement(sql)) {
+                    prepare.setInt(1, entity.getTempsLimitGlobal());
+                    prepare.setInt(2, entity.getScoreMax());
+
+                   int row =  prepare.executeUpdate();
+                   if(row == 1) {
+                    System.out.println("Insertions reussie");
+                   }else{
+                    System.out.println("Il y'a un probleme");
+                   }      
+
+        } catch (SQLException e) {
+            System.out.println("Erreur au niveau de SQL " + e.getMessage());
+        }
+
+
+    }
+
+    @Override
+    public Quiz findById(Integer id) {
+        String  sql = "SELECT * FROM quiz WHERE id_quiz = ?";
+        try(PreparedStatement prepare = con.prepareStatement(sql)) {
+            prepare.setInt(1, id);
+            try(ResultSet rs = prepare.executeQuery()) {
+                
+            if (rs.next()) {
+                
+                Quiz quiz = new Quiz();
+                quiz.setTempsLimitGlobal(rs.getInt("temps_limite"));
+                quiz.setScoreMax(rs.getInt("score_max"));
+                return quiz;
+            } else {
+                System.out.println("Aucun quiz trouvé avec l'id " + id);
+                return null;
+            }
+            }
+        } catch (SQLException e) {
+               System.out.println("Erreur au niveau de SQL " + e.getMessage());
+                return null ;
+        }
+    }
+    
+
+    @Override
+    public List<Quiz> findAll() {
+              String  sql = "SELECT * FROM quiz ";
+              List<Quiz> Quizs = new ArrayList<Quiz>();
+        try(PreparedStatement prepare = con.prepareStatement(sql)) {
+            ResultSet rs = prepare.executeQuery();
+            while (rs.next()) {
+                 Quiz quiz = new Quiz();
+                quiz.setId_quiz(rs.getInt("id_quiz"));
+                quiz.setTempsLimitGlobal(rs.getInt("temps_limite"));
+                quiz.setScoreMax(rs.getInt("score_max"));
+                Quizs.add(quiz);
+            }
+            
+            
+        } catch (SQLException e) {
+               System.out.println("Erreur au niveau de SQL " + e.getMessage());
+                return null ;
+        }
+        return Quizs ;
+    }
+
+    @Override
+    public void delete(Integer id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public void updtae(Integer id, Quiz entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updtae'");
+    }
+    
+}
