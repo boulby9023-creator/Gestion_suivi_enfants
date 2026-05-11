@@ -1,0 +1,57 @@
+package main.java.DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import main.java.BD.ConnexionDB;
+import main.java.Modele.Admin;
+
+public class ImplAdmin implements Repository <Admin , Integer> {
+    
+    Connection con = ConnexionDB.getConexion();
+
+    @Override
+    public void save(Admin admin) {
+        String sql = "INSERT INTO admins VALUES (?,?,?,?,?,?,?)";
+        try (PreparedStatement pont = con.prepareStatement(sql)) {
+            pont.setNull(1, admin.getId());
+            pont.setString(2, admin.getNom());
+            pont.setString(3, admin.getPrenom());
+            pont.setString(4, admin.getTel());
+            pont.setString(5, admin.getMail());
+            pont.setString(6, admin.getPassword());
+            pont.setString(7, admin.getRole());
+
+            int b =pont.executeUpdate();
+            if(b > 0){
+                System.err.println("Admin inserer avec succès");
+            }
+            con.close();
+        
+        } catch (SQLException e) {
+           System.err.println("Erreur lors de l'insertion de l'admin");
+        }
+        
+    }  
+    
+    @Override
+    public Admin findById(Integer id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
+
+    @Override
+    public List<Admin> findAll() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    }
+
+    @Override
+    public void delete(Integer id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+    
+}
