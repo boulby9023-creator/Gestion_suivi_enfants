@@ -22,12 +22,13 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
             prepare.setString(4, entity.getTel());
             prepare.setString(5, entity.getMail());
             prepare.setString(6, entity.getMotDePasse());
-            prepare.setString(7, "parent");
+            prepare.setString(7, entity.getRole());
 
             int test = prepare.executeUpdate();
             if (test >0 ){
                 System.out.println("Utilisateur ajouter avec sucess!!!" + test);
             }
+            con.close();
         } catch (SQLException e) {
             System.out.println( "Un probleme est survenu lors de l'insertion  " + e.getMessage());
 
