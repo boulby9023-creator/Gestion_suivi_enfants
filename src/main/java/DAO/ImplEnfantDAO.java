@@ -8,7 +8,7 @@ import java.util.List;
 import main.java.BD.Connexion;
 import main.java.Modele.Enfant;
 
-public class ImplEnfantDAO implements Repository<Enfant, Integer> {
+public class ImplEnfantDao implements Repository<Enfant, Integer> {
 
     @Override
     public void save(Enfant entity) {
@@ -48,6 +48,12 @@ public class ImplEnfantDAO implements Repository<Enfant, Integer> {
     public void delete(Integer id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public void updtae(Integer id, Enfant entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updtae'");
     }
     
 }
