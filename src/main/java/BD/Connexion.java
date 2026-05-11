@@ -1,10 +1,13 @@
 package main.java.BD;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Connexion {
     private static String url = "jdbc:mysql://localhost:3306/suivi_enfant";
     private static String utilisateur = "root";
-    private static String mot_de_passe = "Patience@2026";
+    private static String mot_de_passe = "hamathx999!";
 
     public static Connection getConexion() {
         try {
@@ -16,6 +19,7 @@ public class Connexion {
             return null;
         }
     }
+
     public static void main(String[] args) {
         try {
             Connection con = Connexion.getConexion();
@@ -23,6 +27,7 @@ public class Connexion {
                 Statement pont = con.createStatement();
                 String sql = "INSERT INTO capacites VALUES (NULL, 'Emotionnelle')";
                 int lignesAffectees = pont.executeUpdate(sql);
+
                 System.out.println("Insertion réussie, lignes modifiées : " + lignesAffectees);
                 pont.close();
                 con.close();
