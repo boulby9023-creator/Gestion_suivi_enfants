@@ -8,25 +8,29 @@ import java.util.List;
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Evaluation;
 
-public class implEvaluationDao implements Repository<Evaluation, Integer> {
+public class ImplEvaluationDao implements Repository<Evaluation, Integer> {
+     Connection con = ConnexionDB.getConexion();
 
     @Override
     public void save(Evaluation entity) {
-        Connection con = ConnexionDB.getConexion();
-        String sql = "INSERT INTO evaluation VALUES (?,?,?,?,?)";
-                try (PreparedStatement pont = con.prepareStatement(sql)) {
-                    pont.setInt(1, entity.getScore());
-                    pont.setInt(2, entity.getScoreglobal());
-                    pont.setDate(3, (Date)entity.getDateEval());
-                    pont.setInt(4, entity.getIdEnfant());
-                    pont.setInt(5, entity.getIdActivite());
+        String sql = "INSERT INTO evaluation VALUES (?,?,?,?,?,?)";
+        try (PreparedStatement pont = con.prepareStatement(sql)) {
+            pont.setNull(1, 0);
+            pont.setInt(2, entity.getScore());
+            pont.setInt(3, entity.getScoreglobal());
+            pont.setDate(4, (Date)entity.getDateEval());
+            pont.setInt(5, entity.getIdEnfant());
+            pont.setInt(6, entity.getIdActivite());
 
-                    boolean b =pont.execute();
-                    if(b){
+            int b =pont.executeUpdate();
+            if(b>0){
                         System.err.println("Evaluation inserer avec succès");
-                    }
+            }
+            con.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Probleme d'insertion d'evaluation");
+            System.err.println("Erreur sql: "+e.getSQLState());
+            System.err.println("Erreur message: "+e.getMessage());
         }
     }
 
@@ -46,6 +50,12 @@ public class implEvaluationDao implements Repository<Evaluation, Integer> {
     public void delete(Integer id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public void updtae(Integer id, Evaluation entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updtae'");
     }
     
 }
