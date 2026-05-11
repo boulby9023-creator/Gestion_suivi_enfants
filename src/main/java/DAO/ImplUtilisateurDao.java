@@ -1,12 +1,11 @@
 package main.java.DAO;
 
-import main.java.BD.ConnexionDB;
-import main.java.Modele.Utilisateur;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import main.java.BD.ConnexionDB;
+import main.java.Modele.Utilisateur;
 
 public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
     Connection con = ConnexionDB.getConexion();
@@ -48,6 +47,12 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
 
     @Override
     public void delete(Integer integer) {
+    }
+
+    @Override
+    public void updtae(Integer id, Utilisateur entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updtae'");
     }
 
 
