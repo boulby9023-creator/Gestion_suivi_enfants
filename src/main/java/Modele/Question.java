@@ -4,61 +4,61 @@ package main.java.Modele;
 import main.java.enumeration.CapaciteEnum;
 
 public class Question {
-    private int id_quest;
-    private String contenu;
-    private int point;
-    private  CapaciteEnum capaciteEnum;
+    private int id_questions   ;
+    private String enonce;
+    private  CapaciteEnum type_capacite;
+    private int delai_max;
 
     public Question() {
     }
 
-    public Question(CapaciteEnum capaciteEnum, String contenu, int id_quest, int point) {
-        this.capaciteEnum = capaciteEnum;
-        this.contenu = contenu;
-        this.id_quest = id_quest;
-        this.point = point;
+    public Question(CapaciteEnum type_capacite, String enonce, int id_questions, int delai_max) {
+        this.type_capacite = type_capacite;
+        this.enonce = enonce;
+        this.id_questions = id_questions;
+        this.delai_max = delai_max;
     }
 
-    public int getId_quest() {
-        return id_quest;
+    public int getId_questions() {
+        return id_questions;
     }
 
-    public void setId_quest(int id_quest) {
-        this.id_quest = id_quest;
+    public void setId_questions(int id_questions) {
+        this.id_questions = id_questions;
     }
 
-    public String getContenu() {
-        return contenu;
+    public String getEnonce() {
+        return enonce;
     }
 
-    public void setContenu(String contenu) {
-        this.contenu = contenu;
+    public void setEnonce(String enonce) {
+        this.enonce = enonce;
     }
 
-    public int getPoint() {
-        return point;
+    public int getDelai_max() {
+        return delai_max;
     }
 
-    public void setPoint(int point) {
-        this.point = point;
+    public void setDelai_max(int delai_max) {
+        this.delai_max = delai_max;
     }
 
-    public CapaciteEnum getCapaciteEnum() {
-        return capaciteEnum;
+    public CapaciteEnum gettype_capacite() {
+        return type_capacite;
     }
 
-    public void setCapaciteEnum(CapaciteEnum capaciteEnum) {
-        this.capaciteEnum = capaciteEnum;
+    public void settype_capacite(CapaciteEnum type_capacite) {
+        this.type_capacite = type_capacite;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id_quest;
-        result = prime * result + ((contenu == null) ? 0 : contenu.hashCode());
-        result = prime * result + point;
-        result = prime * result + ((capaciteEnum == null) ? 0 : capaciteEnum.hashCode());
+        result = prime * result + id_questions;
+        result = prime * result + ((enonce == null) ? 0 : enonce.hashCode());
+        result = prime * result + delai_max;
+        result = prime * result + ((type_capacite == null) ? 0 : type_capacite.hashCode());
         return result;
     }
 
@@ -71,16 +71,16 @@ public class Question {
         if (getClass() != obj.getClass())
             return false;
         Question other = (Question) obj;
-        if (id_quest != other.id_quest)
+        if (id_questions != other.id_questions)
             return false;
-        if (contenu == null) {
-            if (other.contenu != null)
+        if (enonce == null) {
+            if (other.enonce != null)
                 return false;
-        } else if (!contenu.equals(other.contenu))
+        } else if (!enonce.equals(other.enonce))
             return false;
-        if (point != other.point)
+        if (delai_max != other.delai_max)
             return false;
-        if (capaciteEnum != other.capaciteEnum)
+        if (type_capacite != other.type_capacite)
             return false;
         return true;
     }
@@ -89,10 +89,10 @@ public class Question {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Question{");
-        sb.append("id_quest=").append(id_quest);
-        sb.append(", contenu=").append(contenu);
-        sb.append(", point=").append(point);
-        sb.append(", capaciteEnum=").append(capaciteEnum);
+        sb.append("id_questions=").append(id_questions);
+        sb.append(", enonce=").append(enonce);
+        sb.append(", delai_max=").append(delai_max);
+        sb.append(", type_capacite=").append(type_capacite);
         sb.append('}');
         return sb.toString();
     }
