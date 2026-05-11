@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Admin;
 
@@ -46,6 +45,11 @@ public class ImplAdmin implements Repository <Admin , Integer> {
     public void delete(Integer id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public void updtae(Integer id, Admin entity) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

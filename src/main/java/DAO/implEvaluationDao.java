@@ -8,12 +8,12 @@ import java.util.List;
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Evaluation;
 
-public class implEvaluationDao implements Repository<Evaluation, Integer> {
+public class ImplEvaluationDao implements Repository<Evaluation, Integer> {
      Connection con = ConnexionDB.getConexion();
 
     @Override
     public void save(Evaluation entity) {
-        String sql = "INSERT INTO evaluation VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO evaluation VALUES (?,?,?,?,?,?)";
         try (PreparedStatement pont = con.prepareStatement(sql)) {
             pont.setNull(1, 0);
             pont.setInt(2, entity.getScore());
@@ -22,8 +22,8 @@ public class implEvaluationDao implements Repository<Evaluation, Integer> {
             pont.setInt(5, entity.getIdEnfant());
             pont.setInt(6, entity.getIdActivite());
 
-            boolean b =pont.execute();
-            if(!b){
+            int b =pont.executeUpdate();
+            if(b>0){
                         System.err.println("Evaluation inserer avec succès");
             }
             con.close();
