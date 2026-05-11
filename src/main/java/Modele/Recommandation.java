@@ -40,4 +40,12 @@ public class Recommandation{
     public void setDateRecomm(Date date_Recomm) {
         this.date_Recomm = date_Recomm;
     }
+    public int getIdEvaluation() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getIdEvaluation'");
+    }
+    public int getIdCapacite() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getIdCapacite'");
+    }
 }

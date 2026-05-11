@@ -63,7 +63,7 @@ public class ConnexionDB {
 
     private static String url = "jdbc:mysql://localhost:3306/suivi_enfant";
     private static String utilisateur = "root";
-    private static String mot_de_passe = "root";
+    private static String mot_de_passe = "Patience@2026";
 
     public static Connection getConexion() {
         try {
