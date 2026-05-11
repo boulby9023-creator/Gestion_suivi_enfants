@@ -16,7 +16,7 @@ public class ImplAdmin implements Repository <Admin , Integer> {
     public void save(Admin admin) {
         String sql = "INSERT INTO admins VALUES (?)";
         try (PreparedStatement pont = con.prepareStatement(sql)) {
-            pont.setNull(1, admin.getId());
+            pont.setInt(1, admin.getId());
            
             int b =pont.executeUpdate();
             if(b > 0){
