@@ -1,16 +1,50 @@
 package main.java;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import main.java.BD.ConnexionDB;
+import main.java.DAO.ImplUtilisateurDao;
 import main.java.Modele.Question;
+import main.java.Modele.Utilisateur;
 import main.java.enumeration.CapaciteEnum;
+import main.java.enumeration.RoleEnum;
 
 public class main {
-    
+
    public static void main(String[] args) {
-    Question q = new  Question();
-    q.setId_quest(1);
-    q.setContenu("bonjour");
-    q.setCapaciteEnum(CapaciteEnum.ATTENTION);
-    System.out.println(q.toString());
-       
-   }
+
+   //Connection connection = ConnexionDB.getInstance().getconnection();
+
+       /* ImplUtilisateurDao utilisateurDao =  new ImplUtilisateurDao();
+       Utilisateur utl = new Utilisateur();
+
+
+       utl.setNom("MED");
+       utl.setPrenom("Big noss");
+       utl.setTel("82");
+       utl.setMotDePasse("0DH0");
+       utl.setMail("D@zDyya");
+       utl.setRole(String.valueOf(RoleEnum.PARENT).toLowerCase());
+
+       System.out.println(utl.toString());
+
+
+        utilisateurDao.save(utl); */
+
+    /*try {
+            Connection con = ConnexionDB.getConexion();
+            if (con != null) {
+                Statement pont = con.createStatement();
+                String sql = "INSERT INTO capacite VALUES (NULL, 'Emotionnelle')";
+                int lignesAffectees = pont.executeUpdate(sql);
+
+                System.out.println("Insertion réussie, lignes modifiées : " + lignesAffectees);
+                pont.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+}
 }
