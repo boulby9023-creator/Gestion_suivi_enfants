@@ -83,14 +83,42 @@ public class QuizDao implements Repository<Quiz,Integer> {
 
     @Override
     public void delete(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+       String sql = "DELETE FROM QUIZ WHERE id_quiz = ?";
+       try (PreparedStatement prepare = con.prepareStatement(sql)) {
+            prepare.setInt(1,id );
+
+            int row = prepare.executeUpdate();
+             if(row == 1) {
+                    System.out.println("Suppresion reussie");
+                   }else{
+                    System.out.println("Il y'a un probleme");
+                   }   
+        
+       } catch (SQLException e) {
+            System.out.println("Erreur au niveau de SQL " + e.getMessage());
+       }
     }
 
     @Override
     public void updtae(Integer id, Quiz entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updtae'");
+        String sql = "Update QUIZ SET temps_limite = ?,score_max = ?  WHERE id_quiz = ?";
+       try (PreparedStatement prepare = con.prepareStatement(sql)) {
+            prepare.setInt(1, entity.getTempsLimitGlobal());
+            prepare.setInt(2, entity.getScoreMax());
+            prepare.setInt(3, id);
+
+            int row = prepare.executeUpdate();
+             if(row == 1) {
+                    System.out.println("Modification reussie");
+             }else{
+
+                  System.out.println("Il y'a un probleme" );
+
+                   }   
+        
+       } catch (SQLException e) {
+            System.out.println("Erreur au niveau de SQL " + e.getMessage());
+       }
     }
     
 }

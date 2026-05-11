@@ -14,14 +14,19 @@ public class main {
    public static void main(String[] args) {
 
      QuizDao q = new QuizDao();
-    // Quiz q1 = new Quiz();
+     Quiz q1 = new Quiz();
 
     // q1.setScoreMax(30);
     // q1.setTempsLimitGlobal(50);
     // q.save(q1);
 
+    q1.setScoreMax(10);
+    q1.setTempsLimitGlobal(80);
+    q.updtae(2,q1);
+
     //  System.out.println(q.findById(1));
-     System.out.println(q.findAll());
+    //  q.delete(1);
+    //  System.out.println(q.findAll());
 
 
  
