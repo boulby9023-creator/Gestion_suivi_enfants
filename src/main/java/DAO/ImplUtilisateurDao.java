@@ -107,7 +107,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
     }
 
     @Override
-    public void updtae(Integer id, Utilisateur entity) {
+    public void update(Integer id, Utilisateur entity) {
         String sql = "UPDATE utilisateurs " +
                      "SET nom = ?, prenom = ?, tel = ?, mail = ?, mot_de_passe = ?, roles = ?" +
                      "WHERE id = ?";
