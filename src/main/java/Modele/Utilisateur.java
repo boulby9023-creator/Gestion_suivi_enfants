@@ -1,5 +1,7 @@
 package main.java.Modele;
 
+import main.java.enumeration.RoleEnum;
+
 public class Utilisateur {
 
     //attributs
@@ -8,18 +10,26 @@ public class Utilisateur {
     protected String prenom;
     protected String tel;
     protected String mail;
+<<<<<<< HEAD
     protected String motDePasse;
+    protected RoleEnum role;
+
+    //constructeur
+   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String motDePasse, RoleEnum role )
+=======
+    protected String mot_de_passe;
     protected String role;
 
     //constructeur
-   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String motDePasse, String role )
+   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String mot_de_passe, String role )
+>>>>>>> c2ca633850a1bf0ffe617298ca340b10bc47aebd
     {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
         this.mail = mail;
-        this.motDePasse = motDePasse;
+        this.mot_de_passe = mot_de_passe;
         this.role = role;
     }
 
@@ -35,7 +45,7 @@ public class Utilisateur {
                 ", prenom='" + prenom + '\'' +
                 ", tel='" + tel + '\'' +
                 ", mail='" + mail + '\'' +
-                ", motDePasse='" + motDePasse + '\'' +
+                ", mot_de_passe='" + mot_de_passe + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }
@@ -74,15 +84,15 @@ public class Utilisateur {
     }
 
     public String getMotDePasse(){
-        return this.motDePasse;
+        return this.mot_de_passe;
     }
-    public void setMotDePasse(String motDePasse){
-        this.motDePasse = motDePasse;
+    public void setMotDePasse(String mot_de_passe){
+        this.mot_de_passe = mot_de_passe    ;
     }
-    public String getRole(){
+    public RoleEnum getRole(){
         return this.role;
     }
-    public void setRole(String role){
+    public void setRole(RoleEnum role){
         this.role = role;
     }
 

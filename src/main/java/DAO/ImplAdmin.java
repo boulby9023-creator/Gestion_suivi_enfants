@@ -5,14 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import main.java.BD.ConnexionDB;
-import main.java.Modele.Admin;
+import main.java.Modele.Admins;
 
-public class ImplAdmin implements Repository <Admin , Integer> {
+public class ImplAdmin implements Repository <Admins , Integer> {
     
     Connection con = ConnexionDB.getConexion();
 
     @Override
-    public void save(Admin admin) {
+    public void save(Admins admin) {
         String sql = "INSERT INTO admins VALUES (?)";
         try (PreparedStatement pont = con.prepareStatement(sql)) {
             pont.setInt(1, admin.getId());
@@ -30,13 +30,13 @@ public class ImplAdmin implements Repository <Admin , Integer> {
     }  
     
     @Override
-    public Admin findById(Integer id) {
+    public Admins findById(Integer id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 
     @Override
-    public List<Admin> findAll() {
+    public List<Admins> findAll() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
@@ -48,7 +48,7 @@ public class ImplAdmin implements Repository <Admin , Integer> {
     }
 
     @Override
-    public void updtae(Integer id, Admin entity) {
+    public void updtae(Integer id, Admins entity) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

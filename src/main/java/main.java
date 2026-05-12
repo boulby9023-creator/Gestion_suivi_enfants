@@ -1,36 +1,29 @@
 package main.java;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import main.java.BD.ConnexionDB;
-import main.java.DAO.ImplUtilisateurDao;
-import main.java.Modele.Question;
-import main.java.Modele.Utilisateur;
-import main.java.enumeration.CapaciteEnum;
+import main.java.Modele.Admins;
+import main.java.Service.UtilisateurImplService;
+import main.java.Service.interfaces.UtilisateurInService;
 import main.java.enumeration.RoleEnum;
 
 public class main {
 
    public static void main(String[] args) {
-
-   //Connection connection = ConnexionDB.getInstance().getconnection();
-
-       /* ImplUtilisateurDao utilisateurDao =  new ImplUtilisateurDao();
-       Utilisateur utl = new Utilisateur();
+    UtilisateurInService utilisateurInService = new  UtilisateurImplService();
+       Admins utl = new Admins();
 
 
        utl.setNom("MED");
        utl.setPrenom("Big noss");
-       utl.setTel("82");
+       utl.setTel("82000");
        utl.setMotDePasse("0DH0");
-       utl.setMail("D@zDyya");
-       utl.setRole(String.valueOf(RoleEnum.PARENT).toLowerCase());
+       utl.setMail("D@zDyyaY");
+       utl.setRole(RoleEnum.PARENT);
+
+       utilisateurInService.inscriptionAdmin(utl);
 
        System.out.println(utl.toString());
 
 
-        utilisateurDao.save(utl); */
 
     /*try {
             Connection con = ConnexionDB.getConexion();
