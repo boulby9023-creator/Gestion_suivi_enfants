@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
-
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Recommandation;
 
@@ -22,8 +21,8 @@ public class ImplRecommandationDao implements Repository<Recommandation, Integer
             pont.setNull(1, Types.INTEGER);
             pont.setString(2, entity.getDescription());
             pont.setDate(3, (Date) entity.getDate_Recomm());
-            pont.setInt(4, entity.getIdEvaluation());
-            pont.setInt(5, entity.getIdCapacite());
+            pont.setInt(4, entity.getId_evaluation());
+            pont.setInt(5, entity.getId_capacite());
             
               int b =pont.executeUpdate();
                     if(b > 0){
@@ -37,10 +36,8 @@ public class ImplRecommandationDao implements Repository<Recommandation, Integer
         }
     }
      
-    private int sqlType() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sqlType'");
-    }
+  
+    
 
     public ImplRecommandationDao() {
     }
@@ -60,5 +57,10 @@ public class ImplRecommandationDao implements Repository<Recommandation, Integer
     public void delete(Integer id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public void updtae(Integer id, Recommandation entity) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
