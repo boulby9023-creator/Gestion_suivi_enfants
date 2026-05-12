@@ -6,10 +6,12 @@ import java.util.Scanner;
 import main.java.DAO.ImplEnfantDAO;
 import main.java.Modele.Enfant;
 import main.java.Service.interfaces.EnfantService;
+import main.java.variableGlobeaux.variable;
 
 public class EnfantImplService implements EnfantService {
     private final Scanner scanner = new Scanner(System.in);
     private final ImplEnfantDAO enfantDAO = new ImplEnfantDAO();
+    private final variable variable = new variable();
     
 
 
@@ -39,7 +41,7 @@ public class EnfantImplService implements EnfantService {
 
         enfant.setDate_naissance(localDate);
         enfant.setSexe(sexe);
-        enfant.setParent(1);
+        enfant.setParent(variable.id_parent);
 
         enfantDAO.save(enfant);
 
