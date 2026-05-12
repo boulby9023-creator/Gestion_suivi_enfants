@@ -52,10 +52,10 @@ public class ImplEvaluationDao implements Repository<Evaluation, Integer> {
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
+
     @Override
-    public void updtae(Integer id, Evaluation entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updtae'");
+    public void update(Integer id, Evaluation entity) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
