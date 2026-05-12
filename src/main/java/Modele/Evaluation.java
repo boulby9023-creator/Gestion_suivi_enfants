@@ -13,7 +13,7 @@ public class Evaluation{
 
     //constructeur//
     
-    public int getId() {
+    public int getId() { 
         return id;
     }
     public Evaluation(int id, String typeActivite, int score, int scoreGlobal, Date dateEval, int idEnfant,
