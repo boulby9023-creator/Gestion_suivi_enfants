@@ -8,18 +8,18 @@ public class Utilisateur {
     protected String prenom;
     protected String tel;
     protected String mail;
-    protected String motDePasse;
+    protected String mot_de_passe;
     protected String role;
 
     //constructeur
-   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String motDePasse, String role )
+   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String mot_de_passe, String role )
     {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
         this.mail = mail;
-        this.motDePasse = motDePasse;
+        this.mot_de_passe = mot_de_passe;
         this.role = role;
     }
 
@@ -35,7 +35,7 @@ public class Utilisateur {
                 ", prenom='" + prenom + '\'' +
                 ", tel='" + tel + '\'' +
                 ", mail='" + mail + '\'' +
-                ", motDePasse='" + motDePasse + '\'' +
+                ", mot_de_passe='" + mot_de_passe + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }
@@ -74,10 +74,10 @@ public class Utilisateur {
     }
 
     public String getMotDePasse(){
-        return this.motDePasse;
+        return this.mot_de_passe;
     }
-    public void setMotDePasse(String motDePasse){
-        this.motDePasse = motDePasse;
+    public void setMotDePasse(String mot_de_passe){
+        this.mot_de_passe = mot_de_passe    ;
     }
     public String getRole(){
         return this.role;
