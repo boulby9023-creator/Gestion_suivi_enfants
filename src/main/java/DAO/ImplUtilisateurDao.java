@@ -79,7 +79,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
                 utilisateur.setRole(result.getString("roles"));
 
                 utilisateurs.add(utilisateur);
-                utilisateur = new Utilisateur();
+                utilisateur = null;
             }
             return utilisateurs;
         } catch (SQLException e) {
