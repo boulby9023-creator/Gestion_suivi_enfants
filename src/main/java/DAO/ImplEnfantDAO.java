@@ -1,23 +1,18 @@
 package main.java.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import static java.sql.Types.INTEGER;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import main.java.BD.Connexion;
-import main.java.BD.ConnexionDB;
 import main.java.Modele.Enfant;
 
-public class ImplEnfantDao implements Repository<Enfant, Integer> {
+public class ImplEnfantDAO implements Repository<Enfant, Integer> {
 
     @Override
     public void save(Enfant entity) {
         try{
-        Connection con = Connexion.getConexion();
+        Connection con = ConnexionDB.getConexion();
         String sql = "INSERT INTO Enfant(id_enfants, nom, prenom, date_naissance, sexe, id_activites, id_parent) Values (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stm1 = con.prepareStatement(sql);
         stm1.setNull(1, INTEGER);

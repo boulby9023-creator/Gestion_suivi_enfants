@@ -54,19 +54,19 @@ public class Enfant {
         this.sexe = sexe;
     }
 
-    public int getIdActivite(){
+    public int id_acttivite(){
         return id_activite;
     }
 
-    public void setActivite(int id_activite){
+    public void activite(int id_activite){
         this.id_activite = id_activite;
     }
 
-    public int getIdParent(){
+    public int getid_parent(){
         return id_parent;
     }
 
-    public void setIdParent(int id_parent){
+    public void setParent(int id_parent){
         this.id_parent = id_parent;
 
     }
