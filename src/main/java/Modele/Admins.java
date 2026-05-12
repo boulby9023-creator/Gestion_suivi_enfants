@@ -7,12 +7,27 @@ public class Admins extends Utilisateur {
 
     public Admins(int id, String nom, String prenom, String tel, String mail, String password, RoleEnum role, int idAdmin){
         this.idAdmin=idAdmin;
-        super(id, nom, prenom, tel,mail, password, role );
+        super(id, nom, prenom, tel,mail, mot_de_passe, role );
     }
 
+<<<<<<< HEAD:src/main/java/Modele/Admins.java
     public Admins(){}
 
     
+=======
+    public Admin(){
+
+    }
+    
+ 
+    public int getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
+    }
+>>>>>>> c2ca633850a1bf0ffe617298ca340b10bc47aebd:src/main/java/Modele/Admin.java
 
     public void  creerUtilisateur(Utilisateur moh){
         //
@@ -27,6 +42,7 @@ public class Admins extends Utilisateur {
 
     }
 
+<<<<<<< HEAD:src/main/java/Modele/Admins.java
     public int getIdAdmin() {
         return idAdmin;
     }
@@ -34,5 +50,7 @@ public class Admins extends Utilisateur {
     public void setIdAdmin(int idAdmin) {
         this.idAdmin = idAdmin;
     }
+=======
+>>>>>>> c2ca633850a1bf0ffe617298ca340b10bc47aebd:src/main/java/Modele/Admin.java
 
 }
