@@ -50,7 +50,6 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
 
     @Override
     public void updtae(Integer id, Utilisateur entity) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updtae'");
     }
 
