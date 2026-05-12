@@ -48,8 +48,10 @@ public class ImplAdmin implements Repository <Admins , Integer> {
     }
 
     @Override
-    public void updtae(Integer id, Admins entity) {
+    public void update(Integer id, Admins entity) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+ 
     
 }

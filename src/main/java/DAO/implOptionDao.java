@@ -79,7 +79,7 @@ public void save(Option entity) {
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
     @Override
-    public void updtae(Integer id, Option entity) {
+    public void update(Integer id, Option entity) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updtae'");
     }

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Admins;
-import main.java.Modele.Utilisateur;
 import main.java.enumeration.RoleEnum;
 
 public class ImplAdminDao implements Repository <Admins , Integer> {
@@ -125,8 +124,9 @@ public class ImplAdminDao implements Repository <Admins , Integer> {
 }
 
     @Override
-    public void updtae(Integer id, Admins entity) {
+    public void update(Integer id, Admins entity) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
+
 }

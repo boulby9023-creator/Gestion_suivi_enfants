@@ -42,8 +42,8 @@ public class Enfant {
     public LocalDate getDate_naissance() {
         return date_naissance;
     }
-    public void setDate_naissance(LocalDate age) {
-        this.date_naissance = age;
+    public void setDate_naissance(LocalDate date_naissance2) {
+        this.date_naissance = date_naissance2;
     }
     public String getSexe() {
         return sexe;
@@ -62,4 +62,6 @@ public class Enfant {
         this.id_parent = id_parent;
 
     }
+
+    
 }
