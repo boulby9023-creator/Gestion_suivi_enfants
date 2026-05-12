@@ -6,21 +6,23 @@ import java.util.List;
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Option;
 
-public class OptionDao implements Repository<Option, Integer> {
+public class implOptionDao implements Repository<Option, Integer> {
 
 @Override
 public void save(Option entity) {
     Connection con = ConnexionDB.getConexion();
-    String sql = "INSERT INTO option (id, texte, estCorrecte) VALUES (?,?,?)";
+    String sql = "INSERT INTO option (id, texte, estCorrecte) VALUES (?,?,?,?)";
     try (PreparedStatement pont = con.prepareStatement(sql)) {
         pont.setInt(1, entity.getId());
         pont.setString(2, entity.getTexte());
         pont.setBoolean(3, entity.isEstCorrecte());
+        pont.setInt(4, entity.getId_question());
 
         int rows = pont.executeUpdate();
         if (rows > 0) {
             System.out.println("Option insérée avec succès");
         }
+        con.close();
     } catch (SQLException e) {
         e.printStackTrace();
     }
