@@ -6,16 +6,20 @@ public class Recommandation{
     private int id;
     private String description;
     private Date date_Recomm;
-    private String type_Recomm;
+    private int id_evaluation;
+    private int id_capacite;
 
     //constructeur//
-    public Recommandation (int id, String description, Date date_Recomm, String type_Recomm){
-        this.id=id;
+    
+    public Recommandation(int id, String description, Date date_Recomm, int id_evaluation,
+            int id_capacite) {
+        this.id = id;
         this.description = description;
         this.date_Recomm = date_Recomm;
-        this.type_Recomm = type_Recomm;
-
+        this.id_evaluation = id_evaluation;
+        this.id_capacite = id_capacite;
     }
+
     public int getId() {
         return id;
     }
@@ -28,24 +32,29 @@ public class Recommandation{
     public void setDescription(String description) {
         this.description = description;
     }
-    public String getTypeRecomm() {
-        return type_Recomm;
-    }
-    public void setTypeRecomm(String description) {
-        this.type_Recomm = type_Recomm;
-    }
      public Date getDate_Recomm() {
         return date_Recomm;
     }
     public void setDateRecomm(Date date_Recomm) {
         this.date_Recomm = date_Recomm;
     }
-    public int getIdEvaluation() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getIdEvaluation'");
+
+    public int getId_evaluation() {
+        return id_evaluation;
     }
-    public int getIdCapacite() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getIdCapacite'");
+
+    public void setId_evaluation(int id_evaluation) {
+        this.id_evaluation = id_evaluation;
     }
+
+    public int getId_capacite() {
+        return id_capacite;
+    }
+
+    public void setId_capacite(int id_capacite) {
+        this.id_capacite = id_capacite;
+    }
+
+
+   
 }

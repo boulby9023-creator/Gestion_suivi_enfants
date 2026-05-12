@@ -1,7 +1,14 @@
 package main.java.DAO;
 
+<<<<<<< HEAD
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+=======
 import java.sql.*;
 import java.util.ArrayList;
+>>>>>>> c2ca633850a1bf0ffe617298ca340b10bc47aebd
 import java.util.List;
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Utilisateur;
@@ -28,7 +35,9 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
             }
             con.close();
         } catch (SQLException e) {
-            System.out.println( "Un probleme est survenu lors de l'insertion  " + e.getMessage());
+            System.err.println("Un probleme est survenu lors de l'insertion");
+            System.err.println("Erreur sql: "+e.getSQLState());
+            System.err.println("Erreur message: "+e.getMessage());
 
         }
 
@@ -127,6 +136,30 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
             throw new RuntimeException(e);
         }
 
+    }
+
+    public Utilisateur findByMail(String mail){
+        String sql = "SELECT * FROM utilisateurs WHERE mail = ?";
+        try (PreparedStatement pont = con.prepareStatement(sql)) {
+            pont.setString(1, mail);
+            ResultSet rs = pont.executeQuery();
+            if (rs.next()) {
+                Utilisateur utilisateur = new Utilisateur();
+                utilisateur.setId(rs.getInt("id"));
+                utilisateur.setNom(rs.getString("nom"));
+                utilisateur.setPrenom(rs.getString("prenom"));
+                utilisateur.setRole(null);
+                utilisateur.setMail(rs.getString("mail"));
+                utilisateur.setTel(rs.getString("tel"));
+                utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+                return utilisateur;
+            }
+        } catch (SQLException e) {
+            System.err.println("Probleme de recuperation d'utilisateur");
+            System.err.println("Erreur sql: "+e.getSQLState());
+            System.err.println("Erreur message: "+e.getMessage());
+        }
+        return null;
     }
 
 

@@ -3,10 +3,7 @@ package main.java.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Corporelle;
 
@@ -52,5 +49,10 @@ public class ImplcorporelleDao implements Repository<Corporelle, Integer> {
     public void delete(Integer id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public void updtae(Integer id, Corporelle entity) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     }

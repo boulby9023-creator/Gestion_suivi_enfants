@@ -1,9 +1,11 @@
 package main.java.Modele;
 
+import main.java.enumeration.RoleEnum;
+
 public class Specialiste extends Utilisateur{
     private String specialite;
 
-    public Specialiste(int id, String nom, String prenom, String tel, String mail, String password, String role, String specialite){
+    public Specialiste(int id, String nom, String prenom, String tel, String mail, String password, RoleEnum role, String specialite){
         super(id, nom, prenom, tel,mail, password, role );
         this.specialite = specialite;
     }
