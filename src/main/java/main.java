@@ -1,18 +1,10 @@
 package main.java;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import main.java.BD.ConnexionDB;
-import main.java.DAO.ImplUtilisateurDao;
-import main.java.Modele.Question;
-import main.java.Modele.Utilisateur;
-import main.java.enumeration.CapaciteEnum;
-import main.java.enumeration.RoleEnum;
-
 public class main {
 
    public static void main(String[] args) {
+
+      
 
    //Connection connection = ConnexionDB.getInstance().getconnection();
 
