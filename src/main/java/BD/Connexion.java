@@ -1,11 +1,13 @@
 package main.java.BD;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Connexion {
     private static String url = "jdbc:mysql://localhost:3306/suivi_enfant?useSSL=false&serverTimezone=UTC";
     private static String utilisateur = "root";
-    private static String mot_de_passe = "Ibecoul2027";
-
+    private static String mot_de_passe = "coulib@ly16";
 
     public static Connection getConexion() {
         try {

@@ -1,4 +1,5 @@
 package main.java.DAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -6,10 +7,10 @@ import java.util.List;
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Corporelle;
 
-public class ImplcorporelleDao implements Repository< Corporelle, Integer> {
+public class ImplcorporelleDao implements Repository<Corporelle, Integer> {
 
     @Override
-    public void save(Corporelle entity) {
+    public void save( Corporelle entity) {
         Connection con = ConnexionDB.getConexion();
         String sql = "INSERT INTO corporelles VALUES (?,?,?,?,?,?)";
                 try (PreparedStatement pont = con.prepareStatement(sql)) {
