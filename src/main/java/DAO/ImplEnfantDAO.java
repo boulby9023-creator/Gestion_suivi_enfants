@@ -1,10 +1,15 @@
 package main.java.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import static java.sql.Types.INTEGER;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import main.java.BD.Connexion;
+import main.java.BD.ConnexionDB;
 import main.java.Modele.Enfant;
 
 public class ImplEnfantDAO implements Repository<Enfant, Integer> {
@@ -21,7 +26,7 @@ public class ImplEnfantDAO implements Repository<Enfant, Integer> {
         stm1.setDate(4, java.sql.Date.valueOf(entity.getDate_naissance())); 
         stm1.setString(5, entity.getSexe());
         stm1.setInt(6, entity.getId());
-        stm1.setInt(7, entity.getIdParent());
+        stm1.setInt(7, entity.getid_parent());
 
         stm1.execute();
         con.close();
@@ -93,13 +98,15 @@ public class ImplEnfantDAO implements Repository<Enfant, Integer> {
             id_parent=resultat.getInt("id_parent");
             Enfant en = new Enfant();
 
+            LocalDate localDate = LocalDate.parse(date_naissance.toString());
+
+
             en.setId(id_enfants);
             en.setNom(nom);
             en.setPrenom(prenom);
-            en.setDate_naissance(date_naissance);
+            en.setDate_naissance(localDate);
             en.setSexe(sexe);
-            en.setIdParent(id_parent);
-            en.setActivite(id_activite);
+            en.setParent(id_parent);
             enfants.add(en);
 
         }  
@@ -131,14 +138,13 @@ public class ImplEnfantDAO implements Repository<Enfant, Integer> {
     }
 
     @Override
-    public void updtae(Integer id, Enfant entity) {
+    public void update(Integer id, Enfant entity) {
 
         int id_enfants = entity.getId();
         String nom = entity.getNom();
         String prenom = entity.getPrenom();
-        Date date_naissance = entity.getDate_naissance();
-        int id_activite = entity.getIdActivite();
-        int id_parent = entity.getIdParent();
+        LocalDate date_naissance = entity.getDate_naissance();
+        int id_parent = entity.getid_parent();
 
         try {
             Connection con = ConnexionDB.getConexion();
@@ -147,18 +153,19 @@ public class ImplEnfantDAO implements Repository<Enfant, Integer> {
             stm5.setInt(1, id_enfants);
             stm5.setString(2, nom);
             stm5.setString(3, prenom);
-            stm5.setDate(4, java.sql.Date.valueOf(date_naissance.toString()));
-            stm5.setInt(5, id_activite);
+            stm5.setDate(4, java.sql.Date.valueOf(date_naissance));
             stm5.setInt(6, id_parent);
             int result=stm5.executeUpdate();
             if (result>0) {
                 System.out.println("ligne modifiée avec succèss !");
             }
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("une erreur est survenue lors de la modif !!!");
         
     }
 }
+
+   
 
 }
