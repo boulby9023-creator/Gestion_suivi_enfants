@@ -12,7 +12,7 @@ public class ImplParentDAO implements Repository<Parent, Integer> {
     Connection con = ConnexionDB.getConexion();
     @Override
     public void save(Parent entity) {
-        String sql = "INSERT INTO parent VALUES (?,?)";
+        String sql = "INSERT INTO parents VALUES (?,?)";
         try (PreparedStatement pont = con.prepareStatement(sql)) {
             pont.setInt(1, entity.getId_parent());
             pont.setString(2, entity.getGenre());

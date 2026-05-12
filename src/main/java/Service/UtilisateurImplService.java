@@ -2,6 +2,7 @@ package main.java.Service;
 
 import java.util.Scanner;
 import main.java.DAO.ImplAdmin;
+import main.java.DAO.ImplParentDAO;
 import main.java.DAO.ImplUtilisateurDao;
 import main.java.Modele.Admins;
 import main.java.Modele.Parent;
@@ -11,12 +12,27 @@ import main.java.enumeration.RoleEnum;
 
 public class UtilisateurImplService implements UtilisateurInService {
     private final  ImplUtilisateurDao implUtilisateurDao;
+    private final ImplParentDAO implParentDAO ;
     private  final  ImplAdmin adminImpl;
+    private final MenuParent menuParent;
     private final  Scanner scanner = new Scanner(System.in);
+
+    private int id_parent;
+    
+
+    public int getId_parent() {
+        return id_parent;
+    }
+
+    public void setId_parent(int id_parent) {
+        this.id_parent = id_parent;
+    }
 
     public UtilisateurImplService() {
         this.implUtilisateurDao = new ImplUtilisateurDao();
         this.adminImpl = new ImplAdmin();
+        this.implParentDAO= new  ImplParentDAO();
+        this.menuParent= new MenuParent();
     }
 
     @Override
@@ -103,6 +119,13 @@ public class UtilisateurImplService implements UtilisateurInService {
         Parent p = new  Parent();
         p.setGenre(genre);
         p.setId_parent(utilisateur.getId());
+
+        implParentDAO.save(p);
+
+        id_parent=utilisateur.getId();
+
+        menuParent.menu();
+
 
 
     }
