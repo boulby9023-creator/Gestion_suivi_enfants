@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import main.java.BD.Connexion;
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Enfant;
 
@@ -17,7 +16,7 @@ public class ImplEnfantDAO implements Repository<Enfant, Integer> {
     @Override
     public void save(Enfant entity) {
         try{
-        Connection con = Connexion.getConexion();
+        Connection con = ConnexionDB.getConexion();
         String sql = "INSERT INTO enfants(id_enfants, nom, prenom, date_naissance, sexe, id_activites, id_parent) Values (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stm1 = con.prepareStatement(sql);
         stm1.setNull(1, INTEGER);
@@ -29,7 +28,6 @@ public class ImplEnfantDAO implements Repository<Enfant, Integer> {
         stm1.setInt(7, entity.getid_parent());
 
         stm1.execute();
-        con.close();
         }
         catch(SQLException e){
              System.err.println("Probleme d'insertion d'enfant");
