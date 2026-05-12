@@ -1,0 +1,99 @@
+package main.java.DAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+import main.java.BD.ConnexionDB;
+import main.java.Modele.Option;
+
+public class implOptionDao implements Repository<Option, Integer> {
+
+@Override
+public void save(Option entity) {
+    Connection con = ConnexionDB.getConexion();
+    String sql = "INSERT INTO option (id, texte, estCorrecte) VALUES (?,?,?,?)";
+    try (PreparedStatement pont = con.prepareStatement(sql)) {
+        pont.setInt(1, entity.getId());
+        pont.setString(2, entity.getTexte());
+        pont.setBoolean(3, entity.isEstCorrecte());
+        pont.setInt(4, entity.getId_question());
+
+        int rows = pont.executeUpdate();
+        if (rows > 0) {
+            System.out.println("Option insérée avec succès");
+        }
+        con.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+//     @Override
+//     public Option findById(Integer id) {
+//         Connection con = ConnexionDB.getConexion();
+//         String sql = "SELECT * FROM option WHERE id = ?";
+//         try (PreparedStatement pont = con.prepareStatement(sql)) {
+//             pont.setInt(1, id);
+//             ResultSet rs = pont.executeQuery();
+//             if (rs.next()) {
+//                 Option option = new Option();
+//                 option.setId(rs.getInt("id"));
+//                 option.setTexte(rs.getString("texte"));
+//                 option.setEstCorrecte(rs.getBoolean("estCorrecte"));
+//                 return option;
+//             }
+//         } catch (SQLException e) {
+//             e.printStackTrace();
+//         }
+//         return null;
+//     }
+
+//     @Override
+//     public List<Option> findAll() {
+//         Connection con = ConnexionDB.getConexion();
+//         String sql = "SELECT * FROM option";
+//         List<Option> options = new ArrayList<>();
+//         try (PreparedStatement pont = con.prepareStatement(sql)) {
+//             ResultSet rs = pont.executeQuery();
+//             while (rs.next()) {
+//                 Option option = new Option();
+//     }catch (SQLException e) {
+//             e.printStackTrace();
+//         }
+//         return options;
+//     }
+
+
+//     @Override
+//     public void delete(Integer id) {
+//         Connection con = ConnexionDB.getConexion();
+//         String sql = "DELETE FROM option WHERE id = ?";
+//  }
+
+//     @Override
+//     public void updtae(Integer id, Option entity)
+//         throw new UnsupportedOperationException("Unimplemented method 'updtae'");
+//     }
+    @Override
+    public void delete(Integer id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+    @Override
+    public void updtae(Integer id, Option entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updtae'");
+    }
+
+    @Override
+    public Option findById(Integer id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
+
+    @Override
+    public List<Option> findAll() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    }
+
+}

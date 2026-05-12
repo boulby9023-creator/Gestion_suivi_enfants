@@ -4,10 +4,24 @@ public class Option {
     private int id;
     private String texte;
     private boolean estCorrecte;
+    private int id_question;
 
+    
 
     public Option() {
     }
+
+    
+
+
+    public Option(int id, String texte, boolean estCorrecte, int id_question) {
+        this.id = id;
+        this.texte = texte;
+        this.estCorrecte = estCorrecte;
+        this.id_question = id_question;
+    }
+
+
 
 
     public int getId() {
@@ -76,6 +90,16 @@ public class Option {
     @Override
     public String toString() {
         return "Option [id=" + id + ", texte=" + texte + ", estCorrecte=" + estCorrecte + "]";
+    }
+
+
+    public int getId_question() {
+        return id_question;
+    }
+
+
+    public void setId_question(int id_question) {
+        this.id_question = id_question;
     }
 
     
