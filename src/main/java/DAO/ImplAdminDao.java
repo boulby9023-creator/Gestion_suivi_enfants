@@ -58,7 +58,7 @@ public class ImplAdminDao implements Repository <Admin , Integer> {
 
     } catch (SQLException e) {
 
-       System.err.println("Erreur lors de la recherche de l'admin");
+       System.out.println("Erreur lors de la recherche de l'admin");
     }
 
     return null;
@@ -74,10 +74,10 @@ public class ImplAdminDao implements Repository <Admin , Integer> {
     try (PreparedStatement pont = con.prepareStatement(sql)) {
 
         ResultSet rs = pont.executeQuery();
-        Admin admin = new Admin();
+       
 
         while (rs.next()) {
-
+             Admin admin = new Admin();
             admin.setIdAdmin(rs.getInt("idAdmin"));
             admin.setNom(rs.getString("nom"));
             admin.setPrenom(rs.getString("prenom"));
