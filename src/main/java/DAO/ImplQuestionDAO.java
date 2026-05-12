@@ -90,5 +90,10 @@ public class ImplQuestionDAO implements Repository<Question, Integer> {
             e.printStackTrace();
         }
     }
-    
+
+    @Override
+    public void updtae(Integer integer, Question entity) {
+
+    }
+
 }

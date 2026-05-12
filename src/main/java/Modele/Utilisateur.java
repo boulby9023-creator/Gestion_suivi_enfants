@@ -10,32 +10,26 @@ public class Utilisateur {
     protected String prenom;
     protected String tel;
     protected String mail;
-<<<<<<< HEAD
     protected String motDePasse;
     protected RoleEnum role;
 
-    //constructeur
-   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String motDePasse, RoleEnum role )
-=======
-    protected String mot_de_passe;
-    protected String role;
+
 
     //constructeur
-   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String mot_de_passe, String role )
->>>>>>> c2ca633850a1bf0ffe617298ca340b10bc47aebd
-    {
+   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String motDePasse, RoleEnum role ) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
         this.mail = mail;
-        this.mot_de_passe = mot_de_passe;
+        this.motDePasse = motDePasse;
         this.role = role;
     }
 
     public Utilisateur(){
 
     }
+
 
     @Override
     public String toString() {
@@ -45,7 +39,7 @@ public class Utilisateur {
                 ", prenom='" + prenom + '\'' +
                 ", tel='" + tel + '\'' +
                 ", mail='" + mail + '\'' +
-                ", mot_de_passe='" + mot_de_passe + '\'' +
+                ", motDePasse='" + motDePasse + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }
@@ -84,10 +78,10 @@ public class Utilisateur {
     }
 
     public String getMotDePasse(){
-        return this.mot_de_passe;
+        return this.motDePasse;
     }
     public void setMotDePasse(String mot_de_passe){
-        this.mot_de_passe = mot_de_passe    ;
+        this.motDePasse = mot_de_passe    ;
     }
     public RoleEnum getRole(){
         return this.role;

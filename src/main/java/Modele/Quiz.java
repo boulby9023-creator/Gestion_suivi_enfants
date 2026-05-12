@@ -4,12 +4,21 @@ import java.util.Objects;
 
 
 public class Quiz {
+    private int id_quiz;
    private int tempsLimitGlobal;
    private int scoreMax;
    private String titre;
    private String categorie; 
 
     public Quiz() {
+    }
+
+    public int getId_quiz() {
+        return id_quiz;
+    }
+
+    public void setId_quiz(int id_quiz) {
+        this.id_quiz = id_quiz;
     }
 
     public int getTempsLimitGlobal() {
