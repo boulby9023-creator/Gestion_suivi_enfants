@@ -1,12 +1,15 @@
 package main.java.Modele;
 
 public class Parent extends Utilisateur{
-    String genre;
+    private int idParent;
+    private String genre;
 
-    public Parent(int id, String nom, String prenom, String tel, String mail, String password, String role, String genre){
-        super(id, nom, prenom, tel, mail, password, role);
+    public Parent(int idParent, String nom, String prenom, String tel, String mail, String password, String role, String genre){
+        super(idParent, nom, prenom, tel, mail, password, role);
+        this.idParent = idParent;
         this.genre = genre;
     }
+
 
     public String getGenre(){
         return genre;
@@ -46,5 +49,37 @@ public class Parent extends Utilisateur{
     }
     public void voirSuggestionPedagogique(){
 
+    }
+
+
+    public int getIdParent() {
+        return idParent;
+    }
+
+
+    public void setIdParent(int idParent) {
+        this.idParent = idParent;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 17 * hash + this.idParent;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Parent other = (Parent) obj;
+        return this.idParent == other.idParent;
     }
 }
