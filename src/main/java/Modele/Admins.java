@@ -1,15 +1,18 @@
 package main.java.Modele;
 
-public class Admin extends Utilisateur {
+import main.java.enumeration.RoleEnum;
+
+public class Admins extends Utilisateur {
     private int idAdmin;
 
-    public Admin(int id, String nom, String prenom, String tel, String mail, String password, String role, int idAdmin){
+    public Admins(int id, String nom, String prenom, String tel, String mail, String password, RoleEnum role, int idAdmin){
         this.idAdmin=idAdmin;
         super(id, nom, prenom, tel,mail, password, role );
     }
 
-    public Admin(){}
+    public Admins(){}
 
+    
 
     public void  creerUtilisateur(Utilisateur moh){
         //
@@ -22,6 +25,14 @@ public class Admin extends Utilisateur {
     }
     public void  seDeconnecter(){
 
+    }
+
+    public int getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
 }

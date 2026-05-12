@@ -4,11 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import static java.sql.Types.INTEGER;
 import java.util.List;
-
 import main.java.BD.Connexion;
 import main.java.Modele.Enfant;
 
-public class ImplEnfantDao implements Repository<Enfant, Integer> {
+public class ImplEnfantDAO implements Repository<Enfant, Integer> {
 
     @Override
     public void save(Enfant entity) {

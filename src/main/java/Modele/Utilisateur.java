@@ -1,5 +1,7 @@
 package main.java.Modele;
 
+import main.java.enumeration.RoleEnum;
+
 public class Utilisateur {
 
     //attributs
@@ -9,10 +11,10 @@ public class Utilisateur {
     protected String tel;
     protected String mail;
     protected String motDePasse;
-    protected String role;
+    protected RoleEnum role;
 
     //constructeur
-   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String motDePasse, String role )
+   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String motDePasse, RoleEnum role )
     {
         this.id = id;
         this.nom = nom;
@@ -79,10 +81,10 @@ public class Utilisateur {
     public void setMotDePasse(String motDePasse){
         this.motDePasse = motDePasse;
     }
-    public String getRole(){
+    public RoleEnum getRole(){
         return this.role;
     }
-    public void setRole(String role){
+    public void setRole(RoleEnum role){
         this.role = role;
     }
 
