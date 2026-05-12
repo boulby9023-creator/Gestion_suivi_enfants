@@ -4,11 +4,8 @@ import java.sql.*;
 public class Connexion {
     private static String url = "jdbc:mysql://localhost:3306/suivi_enfant?useSSL=false&serverTimezone=UTC";
     private static String utilisateur = "root";
-<<<<<<< HEAD
-    private static String mot_de_passe = "ad648258";
-=======
-    private static String mot_de_passe = "coulib@ly16";
->>>>>>> 30bc00d6b73335b751c17cb073a2443cae103f23
+    private static String mot_de_passe = "Ibecoul2027";
+
 
     public static Connection getConexion() {
         try {
