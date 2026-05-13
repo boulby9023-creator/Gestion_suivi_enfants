@@ -1,17 +1,16 @@
 package main.java.DAO;
 
-<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-=======
 import java.sql.*;
 import java.util.ArrayList;
->>>>>>> c2ca633850a1bf0ffe617298ca340b10bc47aebd
+
 import java.util.List;
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Utilisateur;
+import main.java.enumeration.RoleEnum;
 
 public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
     Connection con = ConnexionDB.getConexion();
@@ -31,7 +30,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
 
             int test = prepare.executeUpdate();
             if (test >0 ){
-                System.out.println("Utilisateur ajouter avec sucess!!!" + test);
+                System.out.println("Utilisateur ajouter avec sucess!!!");
             }
             con.close();
         } catch (SQLException e) {
@@ -110,6 +109,11 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void update(Integer integer, Utilisateur entity) {
+
     }
 
     @Override

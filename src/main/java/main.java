@@ -9,7 +9,7 @@ public class main {
 
    public static void main(String[] args) {
     UtilisateurInService utilisateurInService = new  UtilisateurImplService();
-       Admins utl = new Admins();
+    /*   Admins utl = new Admins();
 
 
        utl.setNom("MED");
@@ -23,7 +23,7 @@ public class main {
 
        System.out.println(utl.toString());
 
-
+*/
 
     /*try {
             Connection con = ConnexionDB.getConexion();
