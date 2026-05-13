@@ -8,14 +8,15 @@ public class Quiz {
    private int tempsLimitGlobal;
    private int scoreMax;
 
+    public Quiz() {
+    }
+
     public int getId_quiz() {
-            return id_quiz;
+        return id_quiz;
     }
 
     public void setId_quiz(int id_quiz) {
-            this.id_quiz = id_quiz;
-    }
-    public Quiz() {
+        this.id_quiz = id_quiz;
     }
 
     public int getTempsLimitGlobal() {

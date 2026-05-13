@@ -29,7 +29,6 @@ public class ImplcorporelleDao implements Repository<Corporelle, Integer> {
                     con.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -52,7 +51,9 @@ public class ImplcorporelleDao implements Repository<Corporelle, Integer> {
     }
 
     @Override
-    public void updtae(Integer id, Corporelle entity) {
+    public void update(Integer id, Corporelle entity) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+
     }

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Question;
 
@@ -90,5 +89,12 @@ public class ImplQuestionDAO implements Repository<Question, Integer> {
             e.printStackTrace();
         }
     }
+
     
+
+    @Override
+    public void update(Integer id, Question entity) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

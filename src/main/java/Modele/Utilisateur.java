@@ -10,23 +10,24 @@ public class Utilisateur {
     protected String prenom;
     protected String tel;
     protected String mail;
-    protected String mot_de_passe;
-    protected String role;
+    protected String motDePasse;
+    protected RoleEnum role;
+
     //constructeur
-   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String mot_de_passe, String role )
-    {
+   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String motDePasse, RoleEnum role ) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
         this.mail = mail;
-        this.mot_de_passe = mot_de_passe;
+        this.motDePasse = motDePasse;
         this.role = role;
     }
 
     public Utilisateur(){
 
     }
+
 
     @Override
     public String toString() {
@@ -36,7 +37,7 @@ public class Utilisateur {
                 ", prenom='" + prenom + '\'' +
                 ", tel='" + tel + '\'' +
                 ", mail='" + mail + '\'' +
-                ", mot_de_passe='" + mot_de_passe + '\'' +
+                ", motDePasse='" + motDePasse + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }
@@ -75,10 +76,10 @@ public class Utilisateur {
     }
 
     public String getMotDePasse(){
-        return this.mot_de_passe;
+        return this.motDePasse;
     }
     public void setMotDePasse(String mot_de_passe){
-        this.mot_de_passe = mot_de_passe    ;
+        this.motDePasse = mot_de_passe    ;
     }
     public RoleEnum getRole(){
         return this.role;
@@ -88,12 +89,5 @@ public class Utilisateur {
     }
 
 
-<<<<<<< HEAD
-    public abstract void  creerUtilisateur(Utilisateur moh);
-    public abstract void  modifierUtilisateur(Utilisateur utilisateur);
-    public abstract void  seConnecter(String mail, String password);
-    public abstract void  seDeconnecter();
 
-=======
->>>>>>> 1b539c949dcc00fe8a3dfb7ec7808aa4bdb0b5b8
 }
