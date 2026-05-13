@@ -1,10 +1,9 @@
 package main.java.Service;
 
-import main.java.Modele.Quiz;
-import main.java.Service.interfaces.QuizService;
-
 import java.util.List;
 import java.util.Scanner;
+import main.java.Modele.Quiz;
+import main.java.Service.interfaces.QuizService;
 
 public class OptionQuiz {
     private final Scanner scanner = new Scanner(System.in);
@@ -19,6 +18,8 @@ public class OptionQuiz {
                 System.out.println(quiz.getId_quiz() +" "+ quiz.getTitre());
             }
             int choix = scanner.nextInt();
+
+            
 
 
         }

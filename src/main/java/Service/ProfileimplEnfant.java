@@ -1,20 +1,24 @@
 package main.java.Service;
 
-import main.java.Modele.Enfant;
-import main.java.Service.interfaces.ProfileEnfant;
-
+import java.time.LocalDate;
 import java.util.Scanner;
+import main.java.Modele.Enfant;
+import main.java.Service.interfaces.EnfantService;
+import main.java.Service.interfaces.ProfileEnfant;
+import main.java.variableGlobeaux.variableIdEnfant;
 
 public class ProfileimplEnfant implements ProfileEnfant {
     OptionQuiz OptionQuiz = new OptionQuiz();
     private final Scanner scanner = new Scanner(System.in);
+    private final  EnfantService enfantService = new EnfantImplService();
+    private final variableIdEnfant variable = variableIdEnfant.getInstance();
 
     @Override
     public void menu() {
         boolean runing = true;
         while (runing) {
-            System.out.println("===== Menu Parent ======");
-            System.out.println("1   Details enfants");
+            System.out.println("===== Profile de l'enfant ======");
+            System.out.println("1 Details enfants");
             System.out.println("2 Quiz");
             System.out.println("3 Jeux");
             System.out.println("4 Evaluation");
@@ -22,7 +26,18 @@ public class ProfileimplEnfant implements ProfileEnfant {
             int choix = scanner.nextInt();
 
             switch (choix) {
-                case 1 -> DetailsEnfant();
+                case 1 -> {
+                    Enfant enfant = DetailsEnfant(variable.getId_enfant());
+                    if (enfant != null) {
+                        System.out.println("ID: " + enfant.getId());
+                        System.out.println("Nom: " + enfant.getNom());
+                        System.out.println("Prénom: " + enfant.getPrenom());
+                        System.out.println("Âge: " + CalculAge(enfant.getDate_naissance()));
+                    } else {
+                        System.out.println("Aucun enfant trouvé avec cet ID.");
+                    }
+                }
+                    
                 case 2 -> OptionQuiz.menu();
                 default -> System.out.println("Vous n'avez rien choisi");
 
@@ -31,7 +46,12 @@ public class ProfileimplEnfant implements ProfileEnfant {
     }
 
     @Override
-    public Enfant DetailsEnfant() {
-        return null;
+    public Enfant DetailsEnfant(int id) {
+        return enfantService.findEnfantById(id);
+    }
+
+    public int CalculAge(LocalDate date_naissance) {
+        LocalDate currentDate = LocalDate.now();
+        return currentDate.getYear() - date_naissance.getYear();
     }
 }

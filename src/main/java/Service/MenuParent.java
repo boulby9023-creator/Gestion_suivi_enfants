@@ -6,6 +6,7 @@ import main.java.Service.interfaces.EnfantService;
 public class MenuParent {
     private final  Scanner scanner = new Scanner(System.in);
     private final EnfantService enfantService = new EnfantImplService();
+    private final ListeEnfants listeEnfants = new ListeEnfants();
     boolean runing = true;
 
     
@@ -20,7 +21,7 @@ public class MenuParent {
 
             switch (choix) {
                 case 1 -> enfantService.ajouter();
-                case 2 -> enfantService.ListeEnfant();
+                case 2 -> listeEnfants.menu();
                 default -> System.out.println("Vous n'avez rien choisi");
                     
             }

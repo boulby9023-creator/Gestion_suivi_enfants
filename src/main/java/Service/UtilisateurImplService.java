@@ -9,7 +9,7 @@ import main.java.Modele.Parent;
 import main.java.Modele.Utilisateur;
 import main.java.Service.interfaces.UtilisateurInService;
 import main.java.enumeration.RoleEnum;
-import main.java.variableGlobeaux.variable;
+import main.java.variableGlobeaux.Variable;
 
 public class UtilisateurImplService implements UtilisateurInService {
     private final  ImplUtilisateurDao implUtilisateurDao;
@@ -17,7 +17,7 @@ public class UtilisateurImplService implements UtilisateurInService {
     private  final  ImplAdmin adminImpl;
     private final MenuParent menuParent;
     private final  Scanner scanner = new Scanner(System.in);
-    private final variable variable = new variable();
+    private final Variable variable = Variable.getInstance();
 
     private int id_parent;
     
@@ -43,7 +43,7 @@ public class UtilisateurImplService implements UtilisateurInService {
         while (runing) { 
             System.out.println("===== Inscription ======");
             System.out.println("1 Parent");
-            System.out.println("2 specialité");
+            System.out.println("2 spécialiste");
             System.out.println("3 Retour");
             int choix = scanner.nextInt();
 
@@ -124,9 +124,8 @@ public class UtilisateurImplService implements UtilisateurInService {
 
         implParentDAO.save(p);
 
-        variable.id_parent=utilisateur.getId();
+        variable.setId_parent(utilisateur.getId());
 
-        System.err.println("====================="+variable.id_parent);
         menuParent.menu();
 
 

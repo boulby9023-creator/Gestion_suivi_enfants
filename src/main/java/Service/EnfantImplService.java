@@ -6,12 +6,12 @@ import java.util.Scanner;
 import main.java.DAO.ImplEnfantDAO;
 import main.java.Modele.Enfant;
 import main.java.Service.interfaces.EnfantService;
-import main.java.variableGlobeaux.variable;
+import main.java.variableGlobeaux.Variable;
 
 public class EnfantImplService implements EnfantService {
     private final Scanner scanner = new Scanner(System.in);
     private final ImplEnfantDAO enfantDAO = new ImplEnfantDAO();
-    private final variable variable = new variable();
+    private final Variable variable = Variable.getInstance();
     
 
 
@@ -35,13 +35,15 @@ public class EnfantImplService implements EnfantService {
 
         Enfant enfant = new Enfant();
 
+        System.out.println("========================"+ variable.getId_parent());
+
         enfant.setNom(nom);
         enfant.setPrenom(prenom);
         LocalDate localDate = LocalDate.parse(dateDeNaissance);
 
         enfant.setDate_naissance(localDate);
         enfant.setSexe(sexe);
-        enfant.setParent(variable.id_parent);
+        enfant.setParent(variable.getId_parent());
 
         enfantDAO.save(enfant);
 
@@ -51,7 +53,12 @@ public class EnfantImplService implements EnfantService {
 
     @Override
     public List<Enfant> ListeEnfant() {
-        return enfantDAO.findAll();
+        return enfantDAO.findAllByIdParent(variable.getId_parent());
+    }
+
+    @Override
+    public Enfant findEnfantById(int id) {
+        return enfantDAO.findById(id);
     }
 
     
