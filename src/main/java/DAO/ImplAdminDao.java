@@ -7,15 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import main.java.BD.ConnexionDB;
-import main.java.Modele.Admin;
-import main.java.Modele.Utilisateur;
+import main.java.Modele.Admins;
+import main.java.enumeration.RoleEnum;
 
-public class ImplAdminDao implements Repository <Admin , Integer> {
+public class ImplAdminDao implements Repository <Admins , Integer> {
     
     Connection con = ConnexionDB.getConexion();
 
     @Override
-    public void save(Admin admin) {
+    public void save(Admins admin) {
         String sql = "INSERT INTO admins VALUES (?)";
         try (PreparedStatement pont = con.prepareStatement(sql)) {
             pont.setInt(1, admin.getId());
@@ -33,7 +33,7 @@ public class ImplAdminDao implements Repository <Admin , Integer> {
     }  
     
     @Override
-    public Admin findById(Integer id) {
+    public Admins findById(Integer id) {
         String sql = " SELECT * FROM admins a JOIN utilisateurs u ON a.idAdmin = u.id WHERE a.idAdmin = ? ";
 
     try (PreparedStatement pont = con.prepareStatement(sql)) {
@@ -41,7 +41,7 @@ public class ImplAdminDao implements Repository <Admin , Integer> {
         pont.setInt(1, id);
 
         ResultSet rs = pont.executeQuery();
-        Admin admin = new Admin();
+        Admins admin = new Admins();
 
         if (rs.next()) {
 
@@ -51,7 +51,7 @@ public class ImplAdminDao implements Repository <Admin , Integer> {
             admin.setTel(rs.getString("tel"));
             admin.setMail(rs.getString("mail"));
             admin.setMotDePasse(rs.getString("mot_de_passe"));
-            admin.setRole(rs.getString("role"));
+            admin.setRole(RoleEnum.valueOf(rs.getString("role")));
 
             return admin;
         }
@@ -66,8 +66,8 @@ public class ImplAdminDao implements Repository <Admin , Integer> {
     
 
     @Override
-    public List<Admin> findAll() {
-        List<Admin> liste = new ArrayList<>();
+    public List<Admins> findAll() {
+        List<Admins> liste = new ArrayList<>();
 
     String sql = " SELECT * FROM admins a JOIN utilisateurs u ON a.idAdmin = u.id";
 
@@ -77,14 +77,14 @@ public class ImplAdminDao implements Repository <Admin , Integer> {
        
 
         while (rs.next()) {
-             Admin admin = new Admin();
+             Admins admin = new Admins();
             admin.setIdAdmin(rs.getInt("idAdmin"));
             admin.setNom(rs.getString("nom"));
             admin.setPrenom(rs.getString("prenom"));
             admin.setTel(rs.getString("tel"));
             admin.setMail(rs.getString("mail"));
             admin.setMotDePasse(rs.getString("mot_de_passe"));
-            admin.setRole(rs.getString("role"));
+            admin.setRole(RoleEnum.valueOf(rs.getString("role")));
 
             liste.add(admin);
         }
@@ -113,7 +113,7 @@ public class ImplAdminDao implements Repository <Admin , Integer> {
         int b = pont.executeUpdate();
 
         if (b > 0) {
-            System.out.println("Admin supprimé");
+            System.out.println("Admins supprimé");
         }
 
     } catch (SQLException e) {
@@ -124,8 +124,9 @@ public class ImplAdminDao implements Repository <Admin , Integer> {
 }
 
     @Override
-    public void updtae(Integer id, Admin entity) {
+    public void update(Integer id, Admins entity) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
+
 }

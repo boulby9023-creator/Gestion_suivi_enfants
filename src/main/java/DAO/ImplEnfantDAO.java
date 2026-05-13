@@ -1,58 +1,144 @@
 package main.java.DAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import static java.sql.Types.INTEGER;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import main.java.BD.Connexion;
+import main.java.BD.ConnexionDB;
 import main.java.Modele.Enfant;
 
 public class ImplEnfantDAO implements Repository<Enfant, Integer> {
 
     @Override
     public void save(Enfant entity) {
-        try{
-        Connection con = Connexion.getConexion();
-        String sql = "INSERT INTO Enfant(id_enfants, nom, prenom, date_naissance, sexe, id_activites, id_parent) Values (?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement stm1 = con.prepareStatement(sql);
-        stm1.setNull(1, INTEGER);
-        stm1.setString(2, entity.getNom());
-        stm1.setString(3, entity.getPrenom());
-        stm1.setDate(4, java.sql.Date.valueOf(String.valueOf(entity.getDate_naissance()))); 
-        stm1.setString(5, entity.getSexe());
-        stm1.setInt(6, entity.getId());
-        stm1.setInt(7, entity.getid_parent());
-
-        stm1.execute();
-        con.close();
-        }
-        catch(SQLException e){
-            System.out.println("Une erreur est survenue lors de l'insertion !");
+        try {
+            Connection con = ConnexionDB.getConexion();
+            String sql = "INSERT INTO enfants (nom, prenom, date_naissance, sexe, id_parent) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, entity.getNom());
+            stm.setString(2, entity.getPrenom());
+            stm.setDate(3, java.sql.Date.valueOf(entity.getDate_naissance()));
+            stm.setString(4, entity.getSexe());
+            stm.setInt(5, entity.getid_parent());
+            stm.execute();
+            System.out.println("Enfant ajouté avec succès !");
+        } catch (SQLException e) {
+            System.err.println("Problème d'insertion d'enfant");
+            System.err.println("Erreur sql: " + e.getSQLState());
+            System.err.println("Erreur message: " + e.getMessage());
         }
     }
 
     @Override
-    public Enfant findById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    public Enfant findById(Integer id_enfants) {
+        try {
+            Connection con = ConnexionDB.getConexion();
+            String sql = "SELECT * FROM enfants WHERE id_enfants = ?";
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setInt(1, id_enfants);
+            ResultSet result = stm.executeQuery();
+
+            if (result.next()) {
+                Enfant en = new Enfant();
+                en.setId(result.getInt("id_enfants"));
+                en.setNom(result.getString("nom"));
+                en.setPrenom(result.getString("prenom"));
+                en.setDate_naissance(LocalDate.parse(result.getDate("date_naissance").toString()));
+                en.setSexe(result.getString("sexe"));
+                en.setParent(result.getInt("id_parent"));
+                return en;
+            }
+        } catch (SQLException e) {
+            System.err.println("Enfant non trouvé : " + e.getMessage());
+        }
+        return null;
     }
 
     @Override
     public List<Enfant> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        List<Enfant> enfants = new ArrayList<>();
+        try {
+            Connection con = ConnexionDB.getConexion();
+            String sql = "SELECT * FROM enfants";  // ✅ nom correct
+            java.sql.Statement stm = con.createStatement();
+            ResultSet resultat = stm.executeQuery(sql);
+
+            while (resultat.next()) {
+                Enfant en = new Enfant();
+                en.setId(resultat.getInt("id_enfants"));
+                en.setNom(resultat.getString("nom"));
+                en.setPrenom(resultat.getString("prenom"));
+                en.setDate_naissance(LocalDate.parse(resultat.getDate("date_naissance").toString()));
+                en.setSexe(resultat.getString("sexe"));
+                en.setParent(resultat.getInt("id_parent")); // ✅ plus d'id_activite
+                enfants.add(en);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la récupération des enfants : " + e.getMessage());
+        }
+        return enfants;
     }
 
     @Override
     public void delete(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        try {
+            Connection con = ConnexionDB.getConexion();
+            String sql = "DELETE FROM enfants WHERE id_enfants = ?";
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setInt(1, id);
+            stm.executeUpdate();
+            System.out.println("Enfant supprimé avec succès !");
+        } catch (SQLException e) {
+            System.err.println("Erreur suppression : " + e.getMessage());
+        }
     }
 
     @Override
-    public void updtae(Integer id, Enfant entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updtae'");
+    public void update(Integer id, Enfant entity) {
+        try {
+            Connection con = ConnexionDB.getConexion();
+            // ✅ "UPDATE" sans "table", nom de table correct
+            String sql = "UPDATE enfants SET nom = ?, prenom = ?, date_naissance = ?, id_parent = ? WHERE id_enfants = ?";
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, entity.getNom());
+            stm.setString(2, entity.getPrenom());
+            stm.setDate(3, java.sql.Date.valueOf(entity.getDate_naissance()));
+            stm.setInt(4, entity.getid_parent());
+            stm.setInt(5, id); // ✅ paramètre "id" reçu en argument
+            int result = stm.executeUpdate();
+            if (result > 0) {
+                System.out.println("Enfant modifié avec succès !");
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur modification : " + e.getMessage());
+        }
     }
-    
+
+
+     public List<Enfant> findAllByIdParent(int id_parent) {
+        List<Enfant> enfants = new ArrayList<>();
+        try {
+            Connection con = ConnexionDB.getConexion();
+            String sql = "SELECT * FROM enfants WHERE id_parent = ?";
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setInt(1, id_parent);
+            ResultSet resultat = stm.executeQuery();
+            while (resultat.next()) {
+                Enfant en = new Enfant();
+                en.setId(resultat.getInt("id_enfants"));
+                en.setNom(resultat.getString("nom"));
+                en.setPrenom(resultat.getString("prenom"));
+                en.setDate_naissance(LocalDate.parse(resultat.getDate("date_naissance").toString()));
+                en.setSexe(resultat.getString("sexe"));
+                en.setParent(resultat.getInt("id_parent")); // ✅ plus d'id_activite
+                enfants.add(en);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la récupération des enfants : " + e.getMessage());
+        }
+        return enfants;
+    }
 }

@@ -59,8 +59,10 @@ public class ImplRecommandationDao implements Repository<Recommandation, Integer
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
+  
+
     @Override
-    public void updtae(Integer id, Recommandation entity) {
+    public void update(Integer id, Recommandation entity) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.*;
 import java.util.ArrayList;
 
+
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Utilisateur;
@@ -26,13 +29,12 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
             prepare.setString(4, entity.getTel());
             prepare.setString(5, entity.getMail());
             prepare.setString(6, entity.getMotDePasse());
-            prepare.setString(7, entity.getRole());
+            prepare.setString(7, entity.getRole().toString());
 
             int test = prepare.executeUpdate();
             if (test >0 ){
                 System.out.println("Utilisateur ajouter avec sucess!!!");
             }
-            con.close();
         } catch (SQLException e) {
             System.err.println("Un probleme est survenu lors de l'insertion");
             System.err.println("Erreur sql: "+e.getSQLState());
@@ -57,7 +59,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
                 utilisateur.setTel(result.getString("tel"));
                 utilisateur.setMail(result.getString("mail"));
                 utilisateur.setMotDePasse(result.getString("mot_de_passe"));
-                utilisateur.setRole(result.getString("roles"));
+                utilisateur.setRole(RoleEnum.valueOf(result.getString("role")));
 
                 return utilisateur;
             }
@@ -84,7 +86,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
                 utilisateur.setTel(result.getString("tel"));
                 utilisateur.setMail(result.getString("mail"));
                 utilisateur.setMotDePasse(result.getString("mot_de_passe"));
-                utilisateur.setRole(result.getString("roles"));
+                utilisateur.setRole(RoleEnum.valueOf(result.getString("role")));
 
                 utilisateurs.add(utilisateur);
                 utilisateur = null;
@@ -112,12 +114,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
     }
 
     @Override
-    public void update(Integer integer, Utilisateur entity) {
-
-    }
-
-    @Override
-    public void updtae(Integer id, Utilisateur entity) {
+    public void update(Integer id, Utilisateur entity) {
         String sql = "UPDATE utilisateurs " +
                      "SET nom = ?, prenom = ?, tel = ?, mail = ?, mot_de_passe = ?, roles = ?" +
                      "WHERE id = ?";
@@ -129,7 +126,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
             prepare.setString(3, entity.getTel());
             prepare.setString(4, entity.getMail());
             prepare.setString(5, entity.getMotDePasse());
-            prepare.setString(6, entity.getRole());
+            prepare.setString(6, entity.getRole().toString());
             prepare.setInt(7, id);
             int resultat = prepare.executeUpdate();
             if (resultat >0){
