@@ -50,7 +50,7 @@ public class ProfileimplEnfant implements ProfileEnfant {
         return enfantService.findEnfantById(id);
     }
 
-    public int CalculAge(LocalDate date_naissance) {
+    public static int CalculAge(LocalDate date_naissance) {
         LocalDate currentDate = LocalDate.now();
         return currentDate.getYear() - date_naissance.getYear();
     }
