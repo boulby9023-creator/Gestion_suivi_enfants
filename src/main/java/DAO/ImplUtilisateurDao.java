@@ -1,13 +1,5 @@
 package main.java.DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.*;
-import java.util.ArrayList;
-
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -163,7 +155,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
         return null;
     }
 
-    public static boolean seConnecter(String mail, String motDePasse){
+    public  boolean seConnecter(String mail, String motDePasse){
         Connection con = ConnexionDB.getConexion();
         String sql = "SELECT * FROM utilisateurs WHERE mail = ? AND mot_de_passe = ?";
         try {
