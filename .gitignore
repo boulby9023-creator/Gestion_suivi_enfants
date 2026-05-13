@@ -1,3 +1,5 @@
 .idea
 .vscode
 .out
+.src/main/java/BD/ConnexionDB.java
+.src/main/java/BD/Connexion.java
