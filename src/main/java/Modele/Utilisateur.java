@@ -1,6 +1,8 @@
 package main.java.Modele;
 
-public abstract class Utilisateur {
+import main.java.enumeration.RoleEnum;
+
+public class Utilisateur {
 
     //attributs
     protected int id;
@@ -8,19 +10,35 @@ public abstract class Utilisateur {
     protected String prenom;
     protected String tel;
     protected String mail;
-    protected String password;
+    protected String mot_de_passe;
     protected String role;
-
     //constructeur
-   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String password, String role )
+   public Utilisateur(int id, String nom, String prenom, String tel, String mail, String mot_de_passe, String role )
     {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
         this.mail = mail;
-        this.password = password;
+        this.mot_de_passe = mot_de_passe;
         this.role = role;
+    }
+
+    public Utilisateur(){
+
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", tel='" + tel + '\'' +
+                ", mail='" + mail + '\'' +
+                ", mot_de_passe='" + mot_de_passe + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 
     //Setter and Getter
@@ -56,23 +74,26 @@ public abstract class Utilisateur {
         this.mail = mail;
     }
 
-    public String getPassword(){
-        return this.password;
+    public String getMotDePasse(){
+        return this.mot_de_passe;
     }
-    public void setPassword(String password){
-        this.password = password;
+    public void setMotDePasse(String mot_de_passe){
+        this.mot_de_passe = mot_de_passe    ;
     }
-    public String getRole(){
+    public RoleEnum getRole(){
         return this.role;
     }
-    public void setRole(String role){
+    public void setRole(RoleEnum role){
         this.role = role;
     }
 
 
+<<<<<<< HEAD
     public abstract void  creerUtilisateur(Utilisateur moh);
     public abstract void  modifierUtilisateur(Utilisateur utilisateur);
     public abstract void  seConnecter(String mail, String password);
     public abstract void  seDeconnecter();
 
+=======
+>>>>>>> 1b539c949dcc00fe8a3dfb7ec7808aa4bdb0b5b8
 }

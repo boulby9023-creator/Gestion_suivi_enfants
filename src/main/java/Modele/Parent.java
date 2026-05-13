@@ -1,12 +1,23 @@
 package main.java.Modele;
 
-public class Parent extends Utilisateur{
-    String genre;
+import main.java.enumeration.RoleEnum;
 
-    public Parent(int id, String nom, String prenom, String tel, String mail, String password, String role, String genre){
-        super(id, nom, prenom, tel, mail, password, role);
+public class Parent extends Utilisateur{
+    private int id_parent;
+    private String genre;
+
+    public Parent(String genre, int id_parent) {
         this.genre = genre;
+        this.id_parent = id_parent;
     }
+
+    public Parent(String genre, int id_parent, int id, String nom, String prenom, String tel, String mail, String motDePasse, RoleEnum role) {
+        super(id, nom, prenom, tel, mail, motDePasse, role);
+        this.genre = genre;
+        this.id_parent = id_parent;
+    }
+
+    public Parent(){}
 
     public String getGenre(){
         return genre;
@@ -16,29 +27,6 @@ public class Parent extends Utilisateur{
         this.genre = genre;
     }
 
-    @Override
-    public void creerUtilisateur(Utilisateur moh) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'creerUtilisateur'");
-    }
-
-    @Override
-    public void modifierUtilisateur(Utilisateur utilisateur) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modifierUtilisateur'");
-    }
-
-    @Override
-    public void seConnecter(String mail, String password) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'seConnecter'");
-    }
-
-    @Override
-    public void seDeconnecter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'seDeconnecter'");
-    }
 
     public void sinscrir(){
         
@@ -69,5 +57,13 @@ public class Parent extends Utilisateur{
     }
     public void voirSuggestionPedagogique(){
 
+    }
+
+    public int getId_parent() {
+        return id_parent;
+    }
+
+    public void setId_parent(int id_parent) {
+        this.id_parent = id_parent;
     }
 }

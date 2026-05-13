@@ -1,62 +1,45 @@
 package main.java;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import main.java.BD.ConnexionDB;
-import main.java.DAO.QuizDao;
-import main.java.Modele.Question;
-import main.java.Modele.Quiz;
-import main.java.enumeration.CapaciteEnum;
+
+import main.java.Modele.Admins;
+import main.java.Service.UtilisateurImplService;
+import main.java.Service.interfaces.UtilisateurInService;
+import main.java.enumeration.RoleEnum;
 
 public class main {
-    
+
    public static void main(String[] args) {
 
-     QuizDao q = new QuizDao();
-     Quiz q1 = new Quiz();
-
-    // q1.setScoreMax(30);
-    // q1.setTempsLimitGlobal(50);
-    // q.save(q1);
-
-    q1.setScoreMax(10);
-    q1.setTempsLimitGlobal(80);
-    q.updtae(2,q1);
-
-    //  System.out.println(q.findById(1));
-    //  q.delete(1);
-    //  System.out.println(q.findAll());
+    UtilisateurInService utilisateurInService = new  UtilisateurImplService();
+       Admins utl = new Admins();
 
 
- 
+       utl.setNom("MED");
+       utl.setPrenom("Big noss");
+       utl.setTel("82000");
+       utl.setMotDePasse("0DH0");
+       utl.setMail("D@zDyyaY");
+       utl.setRole(RoleEnum.PARENT);
+
+       utilisateurInService.inscriptionAdmin(utl);
+
+       System.out.println(utl.toString());
 
 
 
-    
-      
-   //Connection connection = ConnexionDB.getInstance().getconnection();
+    /*try {
+            Connection con = ConnexionDB.getConexion();
+            if (con != null) {
+                Statement pont = con.createStatement();
+                String sql = "INSERT INTO capacite VALUES (NULL, 'Emotionnelle')";
+                int lignesAffectees = pont.executeUpdate(sql);
 
-//     Question q = new  Question();
-//     q.setId_quest(1);
-//     q.setContenu("bonjour");
-//     q.setCapaciteEnum(CapaciteEnum.ATTENTION);
-//     System.out.println(q.toString());
-
-
-//     try {
-//             Connection con = ConnexionDB.getConexion();
-//             if (con != null) {
-//                 Statement pont = con.createStatement();
-//                 String sql = "INSERT INTO capacite VALUES (NULL, 'Emotionnelle')";
-//                 int lignesAffectees = pont.executeUpdate(sql);
-
-//                 System.out.println("Insertion réussie, lignes modifiées : " + lignesAffectees);
-//                 pont.close();
-//                 con.close();
-//             }
-//         } catch (SQLException e) {
-//             e.printStackTrace();
-//         }
- }
+                System.out.println("Insertion réussie, lignes modifiées : " + lignesAffectees);
+                pont.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+}
 }

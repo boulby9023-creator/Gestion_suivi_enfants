@@ -100,7 +100,7 @@ public class QuizDao implements Repository<Quiz,Integer> {
     }
 
     @Override
-    public void updtae(Integer id, Quiz entity) {
+    public void update(Integer id, Quiz entity) {
         String sql = "Update QUIZ SET temps_limite = ?,score_max = ?  WHERE id_quiz = ?";
        try (PreparedStatement prepare = con.prepareStatement(sql)) {
             prepare.setInt(1, entity.getTempsLimitGlobal());
