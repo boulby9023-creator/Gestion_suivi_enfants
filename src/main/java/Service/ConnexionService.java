@@ -1,14 +1,13 @@
 package main.java.Service;
 
+import java.util.Scanner;
 import main.java.DAO.ImplUtilisateurDao;
 import main.java.Service.interfaces.ConnexionInService;
-
-import java.util.Scanner;
 
 public class ConnexionService implements  ConnexionInService{
     private final Scanner scanner = new Scanner(System.in);
     boolean runing = true;
-    UtilisateurImplService user = new UtilisateurImplService();
+     private final MenuParent menuParent = new MenuParent();
 
     @Override
     public void menu() {
@@ -37,7 +36,7 @@ public class ConnexionService implements  ConnexionInService{
         boolean estConnecter = ImplUtilisateurDao.seConnecter(mail, motDePasse);
         if (estConnecter){
             System.out.println("*******Connection reussi!!! Vous etes connecter*******");
-            user.menu();
+             menuParent.menu();
 
         } else {
             System.out.println("******L'email ou mot de passe est incorrecte*******");
