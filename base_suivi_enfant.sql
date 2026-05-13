@@ -62,7 +62,7 @@ CREATE TABLE enfants (
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
     date_naissance DATE,
-    sexe ENUM ('garçon', 'fille') NOT NULL,
+    sexe Varchar(10) default 'garçoon',
     id_activites INT,
     id_parent INT,
     FOREIGN KEY(id_parent) REFERENCES parents(id_parent) ON DELETE CASCADE,
