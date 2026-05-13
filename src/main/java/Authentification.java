@@ -17,11 +17,13 @@ public class Authentification {
             System.out.println("===== Authentification ======");
             System.out.println("1 Inscription");
             System.out.println("2 connexion");
+            System.out.println("3 Quitter");
             int choix = scanner.nextInt();
 
             switch (choix) {
                 case 1: utilisateurInService.menu(); break;
                 case 2: connexionInService.connexion();break;
+                case 3: runing = false;break;
                 default: 
                     
             }
