@@ -1,7 +1,5 @@
 package main.java.DAO;
 
-import main.java.Modele.Utilisateur;
-
 import java.util.List;
 
 public interface Repository<T, ID> {
@@ -11,5 +9,5 @@ public interface Repository<T, ID> {
     void delete(ID id);
     void update(ID id, T entity);
 
-    void updtae(Integer id, Utilisateur entity);
+    void update(Integer id, T entity);
 }

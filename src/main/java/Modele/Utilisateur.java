@@ -83,10 +83,10 @@ public class Utilisateur {
     public void setMotDePasse(String mot_de_passe){
         this.motDePasse = mot_de_passe    ;
     }
-    public String getRole(){
+    public RoleEnum getRole(){
         return this.role;
     }
-    public void setRole(String role){
+    public void setRole(RoleEnum role){
         this.role = role;
     }
 
