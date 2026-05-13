@@ -1,5 +1,12 @@
 package main.java.DAO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,7 +33,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
 
             int test = prepare.executeUpdate();
             if (test >0 ){
-                System.out.println("Utilisateur ajouter avec sucess!!!" + test);
+                System.out.println("Utilisateur ajouter avec sucess!!!");
             }
         } catch (SQLException e) {
             System.err.println("Un probleme est survenu lors de l'insertion");
@@ -82,7 +89,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
                 utilisateur.setRole(RoleEnum.valueOf(result.getString("role")));
 
                 utilisateurs.add(utilisateur);
-                utilisateur = new Utilisateur();
+                utilisateur = null;
             }
             return utilisateurs;
         } catch (SQLException e) {
