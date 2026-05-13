@@ -5,13 +5,13 @@ import java.util.Scanner;
 import main.java.Modele.Enfant;
 import main.java.Service.interfaces.EnfantService;
 import main.java.Service.interfaces.ProfileEnfant;
-import main.java.variableGlobeaux.variableIdEnfant;
+import main.java.variableGlobeaux.VariableIdEnfant;
 
 public class ProfileimplEnfant implements ProfileEnfant {
     OptionQuiz OptionQuiz = new OptionQuiz();
     private final Scanner scanner = new Scanner(System.in);
     private final  EnfantService enfantService = new EnfantImplService();
-    private final variableIdEnfant variable = variableIdEnfant.getInstance();
+    private final VariableIdEnfant variable = VariableIdEnfant.getInstance();
 
     @Override
     public void menu() {
