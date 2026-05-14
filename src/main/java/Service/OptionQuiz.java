@@ -3,6 +3,7 @@ package main.java.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
+import main.java.Modele.Activite;
 import main.java.Modele.Enfant;
 import main.java.Modele.Quiz;
 import main.java.Service.interfaces.QuizService;
@@ -23,9 +24,9 @@ public class OptionQuiz {
 
             Enfant enfant= enfantService.findEnfantById(variableIdEnfant.getId_enfant());
             int ageEnfant = calculerAgeEnfant(enfant.getDate_naissance()) ;
-            List<Quiz> quizList = quizService.findQuizByAgeEnfant(ageEnfant);
-            for (Quiz quiz: quizList){
-                System.out.println(quiz.getId_quiz() +" "+ quiz.getTitre());
+            List<Activite> quizList = quizService.findQuizByAgeEnfant(ageEnfant);
+            for (Activite quiz: quizList){
+                System.out.println("{ id : "+quiz.getIdActivite() +", titre : "+ quiz.getTitre()+" type activité : "+ quiz.getTypeActivites() +", age : "+ quiz.getAgeMin() + " - "+ quiz.getAgeMax() + " }");
             }
 
             if(quizList.isEmpty()){
