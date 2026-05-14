@@ -63,7 +63,7 @@ public class ConnexionDB {
 
     private static String url = "jdbc:mysql://localhost:3306/Suivi_enfant?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8";
     private static String utilisateur = "root";
-    private static String mot_de_passe = "624045";
+    private static String mot_de_passe = "Ibecoul90230647@";
 
     public static Connection getConexion() {
         try {
