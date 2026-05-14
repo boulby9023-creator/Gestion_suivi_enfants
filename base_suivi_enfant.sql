@@ -55,6 +55,7 @@ CREATE TABLE activites (
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
     id_capacite INT,
     FOREIGN KEY(id_capacite) REFERENCES Capacites(id_capacite) ON DELETE SET NULL
+
 );
 
 CREATE TABLE enfants (
@@ -135,7 +136,7 @@ CREATE TABLE recommandations (
     date_recommandations DATE NOT NULL,
     id_evaluations INT,
     id_capacite INT,
-    FOREIGN KEY (id_evaluations) REFERENCES evaluations(id_evaluation) ON DELETE CASCADE,
+    FOREIGN KEY (id_evaluations) REFERENCES evalsrc src/main src/main/java src/main/java/BD src/main/java/BD/Connexion.java src/main/java/BD/ConnexionDB.java src/main/java/DAO src/main/java/DAO/ImplAdmin.java src/main/java/DAO/ImplAdminDao.java src/main/java/DAO/ImplcorporelleDao.java src/main/java/DAO/ImplEnfantDAO.java src/main/java/DAO/ImplEvaluationDao.java src/main/java/DAO/ImplOptionDao.java src/main/java/DAO/ImplParentDAO.java src/main/java/DAO/ImplQuestionDAO.java src/main/java/DAO/ImplRecommandationDao.java src/main/java/DAO/ImplUtilisateurDao.java src/main/java/DAO/Repository.java src/main/java/enumeration src/main/java/enumeration/CapaciteEnum.java src/main/java/enumeration/RoleEnum.java src/main/java/enumeration/TypeCapacitesEnum.java src/main/java/enumeration/TypeExercice.java src/main/java/enumeration/TypeJeu.java src/main/java/Modele src/main/java/Modele/Activite.java src/main/java/Modele/Admins.java src/main/java/Modele/Capacites.java src/main/java/Modele/Corporelle.java src/main/java/Modele/Enfant.java src/main/java/Modele/EnfantActivite.java src/main/java/Modele/Enseigant.java src/main/java/Modele/Enseignant.java src/main/java/Modele/Evaluation.java src/main/java/Modele/Option.java src/main/java/Modele/Parent.java src/main/java/Modele/Question.java src/main/java/Modele/Questionquiz.java src/main/java/Modele/Quiz.java src/main/java/Modele/Recommandation.java src/main/java/Modele/ReponseEnfant.java src/main/java/Modele/Specialiste.java src/main/java/Modele/Test.java src/main/java/Modele/Utilisateur.java src/main/java/Service src/main/java/Service/interfaces src/main/java/Service/interfaces/ConnexionInService.java src/main/java/Service/interfaces/EnfantService.java src/main/java/Service/interfaces/ProfileEnfant.java src/main/java/Service/interfaces/QuizService.java src/main/java/Service/interfaces/UtilisateurInService.java src/main/java/Service/ConnexionService.java src/main/java/Service/EnfantImplService.java src/main/java/Service/ListeEnfants.java src/main/java/Service/MenuParent.java src/main/java/Service/OptionQuestion.java src/main/java/Service/OptionQuiz.java src/main/java/Service/ProfileimplEnfant.java src/main/java/Service/QuizImplService.java src/main/java/Service/UtilisateurImplService.java src/main/java/variableGlobeaux src/main/java/variableGlobeaux/Variable.java src/main/java/variableGlobeaux/VariableIdEnfant.java src/main/java/Authentification.java src/main/java/main.java src/main/java/MainApp.javauations(id_evaluation) ON DELETE CASCADE,
     FOREIGN KEY(id_capacite) REFERENCES Capacites(id_capacite) ON DELETE SET NULL
 );
 
@@ -162,3 +163,5 @@ CREATE TABLE reponses_enfants (
     FOREIGN KEY (id_questions) REFERENCES questions(id_questions) ON DELETE CASCADE,
     FOREIGN KEY (id_options) REFERENCES options(id_options) ON DELETE CASCADE
 );
+
+ALTER TABLE activites ADD type_activites ENUM("Cognitif", "Intellectuel") NOT NULL;

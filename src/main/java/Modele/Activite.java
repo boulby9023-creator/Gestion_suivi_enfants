@@ -1,5 +1,6 @@
 package main.java.Modele;
 
+import main.java.enumeration.TypeActivitesEnum;
 
 public class Activite{
     protected int id;
@@ -7,15 +8,20 @@ public class Activite{
     protected String description;
     protected int ageCible;
     protected int id_capacite;
+    protected TypeActivitesEnum activitesEnum;
 
     //constructeur//
-   public Activite(int id, String titre, String description, int ageCible, int id_capacite) {
-        this.id = id;
-        this.titre = titre;
-        this.description = description;
-        this.ageCible = ageCible;
-        this.id_capacite = id_capacite;
-    }
+  
+
+    public Activite(int id, String titre, String description, int ageCible, int id_capacite,
+        TypeActivitesEnum activitesEnum) {
+    this.id = id;
+    this.titre = titre;
+    this.description = description;
+    this.ageCible = ageCible;
+    this.id_capacite = id_capacite;
+    this.activitesEnum = activitesEnum;
+}
 
     public int getId() {
         return id;
@@ -55,6 +61,16 @@ public class Activite{
 
     public void setId_capacite(int id_capacite) {
         this.id_capacite = id_capacite;
+    }
+
+    
+
+    public TypeActivitesEnum getActivitesEnum() {
+        return activitesEnum;
+    }
+
+    public void setActivitesEnum(TypeActivitesEnum activitesEnum) {
+        this.activitesEnum = activitesEnum;
     }
 
     @Override
