@@ -2,6 +2,7 @@ package main.java.Service;
 
 import java.util.List;
 import main.java.DAO.ImplQuizDao;
+import main.java.Modele.Activite;
 import main.java.Modele.Quiz;
 import main.java.Service.interfaces.QuizService;
 
@@ -24,7 +25,7 @@ public class QuizImplService implements QuizService {
     }
 
     @Override
-    public List<Quiz> findQuizByAgeEnfant(int ageEnfant) {
+    public List<Activite> findQuizByAgeEnfant(int ageEnfant) {
         return quizDao.findByAge(ageEnfant);
     }
 

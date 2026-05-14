@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import main.java.BD.ConnexionDB;
+import main.java.Modele.Activite;
 import main.java.Modele.Quiz;
+import main.java.enumeration.TypeActivitesEnum;
 
 public class ImplQuizDao implements Repository<Quiz,Integer> {
     Connection con = ConnexionDB.getConexion();
@@ -67,7 +68,7 @@ public class ImplQuizDao implements Repository<Quiz,Integer> {
             ResultSet rs = prepare.executeQuery();
             while (rs.next()) {
                  Quiz quiz = new Quiz();
-                quiz.setId_quiz(rs.getInt("id_quiz"));
+                quiz.setIdQuiz(rs.getInt("id_quiz"));
                 quiz.setTempsLimitGlobal(rs.getInt("temps_limite"));
                 quiz.setScoreMax(rs.getInt("score_max"));
                 Quizs.add(quiz);
@@ -122,24 +123,89 @@ public class ImplQuizDao implements Repository<Quiz,Integer> {
     }
 
 
-    public List<Quiz> findByAge(int age) {
-        String sql = "SELECT * FROM quiz WHERE age_min <= ? AND age_max >= ?";
-        List<Quiz> quizs = new ArrayList<>();
-        try (PreparedStatement prepare = con.prepareStatement(sql)) {
-            prepare.setInt(1, age);
-            prepare.setInt(2, age);
-            try (ResultSet rs = prepare.executeQuery()) {
-                while (rs.next()) {
-                    Quiz quiz = new Quiz();
-                    quiz.setId_quiz(rs.getInt("id_quiz"));
-                    quiz.setTempsLimitGlobal(rs.getInt("temps_limite"));
-                    quiz.setScoreMax(rs.getInt("score_max"));
-                    quizs.add(quiz);
-                }
+    public List<Activite> findByAge(int age) {
+
+    String sql = """
+        SELECT 
+            q.id_quiz,
+            q.temps_limite,
+            q.score_max,
+
+            a.id_activites,
+            a.titre,
+            a.descriptions,
+            a.age_min,
+            a.age_max,
+            a.id_capacite,
+            a.type_activites
+
+        FROM activites a
+
+        INNER JOIN quiz q
+        ON q.id_quiz = a.id_activites
+
+        WHERE a.age_min <= ? 
+        AND a.age_max >= ?
+        """;
+
+    List<Activite> quizs = new ArrayList<>();
+
+    try (PreparedStatement prepare = con.prepareStatement(sql)) {
+
+        prepare.setInt(1, age);
+        prepare.setInt(2, age);
+
+        try (ResultSet rs = prepare.executeQuery()) {
+
+            while (rs.next()) {
+
+                Quiz quiz = new Quiz();
+
+                // =====================
+                // Partie Activite
+                // =====================
+
+                quiz.setIdActivite(rs.getInt("id_activites"));
+
+                quiz.setTitre(rs.getString("titre"));
+
+                quiz.setDescriptions(rs.getString("descriptions"));
+
+                quiz.setAgeMin(rs.getInt("age_min"));
+
+                quiz.setAgeMax(rs.getInt("age_max"));
+
+                quiz.setIdCapacite(rs.getInt("id_capacite"));
+
+                quiz.setTypeActivites(
+                        TypeActivitesEnum.valueOf(
+                                rs.getString("type_activites").toUpperCase()
+                        )
+                );
+
+                // =====================
+                // Partie Quiz
+                // =====================
+
+                quiz.setIdQuiz(rs.getInt("id_quiz"));
+
+                quiz.setTempsLimitGlobal(
+                        rs.getInt("temps_limite")
+                );
+
+                quiz.setScoreMax(
+                        rs.getInt("score_max")
+                );
+
+                quizs.add(quiz);
             }
-        } catch (SQLException e) {
-            System.out.println("Erreur au niveau de SQL " + e.getMessage());
         }
-        return quizs;
+
+    } catch (SQLException e) {
+
+        System.out.println("Erreur SQL : " + e.getMessage());
     }
+
+    return quizs;
+}
 }

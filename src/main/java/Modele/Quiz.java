@@ -1,22 +1,80 @@
 package main.java.Modele;
 
 
+import java.time.LocalDateTime;
+import java.util.Objects;
+import main.java.enumeration.TypeActivitesEnum;
 
-public class Quiz {
-  
-   private int id_quiz;
-   private int tempsLimitGlobal;
-   private int scoreMax;
+public class Quiz extends Activite {
+
+
+    private int idQuiz;
+
+    private int tempsLimitGlobal;
+
+    private int scoreMax;
+
+    // =========================
+    // Constructeur vide
+    // =========================
 
     public Quiz() {
+        super();
     }
 
-    public int getId_quiz() {
-        return id_quiz;
+    // =========================
+    // Constructeur simple
+    // =========================
+
+    public Quiz(int tempsLimitGlobal, int scoreMax) {
+
+        this.tempsLimitGlobal = tempsLimitGlobal;
+        this.scoreMax = scoreMax;
     }
 
-    public void setId_quiz(int id_quiz) {
-        this.id_quiz = id_quiz;
+    // =========================
+    // Constructeur complet
+    // =========================
+
+    public Quiz(
+            int idQuiz,
+            int tempsLimitGlobal,
+            int scoreMax,
+
+            int idActivite,
+            String titre,
+            String descriptions,
+            int ageMin,
+            int ageMax,
+            LocalDateTime dateCreation,
+            int idCapacite,
+            TypeActivitesEnum typeActivites) {
+
+        super(
+                idActivite,
+                titre,
+                descriptions,
+                ageMin,
+                ageMax,
+                dateCreation,
+                idCapacite,
+                typeActivites);
+
+        this.idQuiz = idQuiz;
+        this.tempsLimitGlobal = tempsLimitGlobal;
+        this.scoreMax = scoreMax;
+    }
+
+    // =========================
+    // GETTERS & SETTERS
+    // =========================
+
+    public int getIdQuiz() {
+        return idQuiz;
+    }
+
+    public void setIdQuiz(int idQuiz) {
+        this.idQuiz = idQuiz;
     }
 
     public int getTempsLimitGlobal() {
@@ -35,18 +93,53 @@ public class Quiz {
         this.scoreMax = scoreMax;
     }
 
+
+    // =========================
+    // hashCode()
+    // =========================
+
     @Override
-    public String toString() {
-        return "Quiz [id_quiz=" + id_quiz + ", tempsLimitGlobal=" + tempsLimitGlobal + ", scoreMax=" + scoreMax + "]";
+    public int hashCode() {
+        return Objects.hash(idQuiz, tempsLimitGlobal, scoreMax);
     }
 
- 
+    // =========================
+    // equals()
+    // =========================
 
-   
+    @Override
+    public boolean equals(Object obj) {
 
-   
+        if (this == obj) {
+            return true;
+        }
 
-    
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
-    
+        Quiz other = (Quiz) obj;
+
+        return idQuiz == other.idQuiz
+                && tempsLimitGlobal == other.tempsLimitGlobal
+                && scoreMax == other.scoreMax;
+    }
+
+    // =========================
+    // toString()
+    // =========================
+
+    @Override
+    public String toString() {
+
+        return "Quiz{" +
+                "idQuiz=" + idQuiz +
+                ", titre='" + getTitre() + '\'' +
+                ", tempsLimitGlobal=" + tempsLimitGlobal +
+                ", scoreMax=" + scoreMax +
+                ", ageMin=" + getAgeMin() +
+                ", ageMax=" + getAgeMax() +
+                ", typeActivites=" + getTypeActivites() +
+                '}';
+    }
 }
