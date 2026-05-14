@@ -126,26 +126,22 @@ public class ImplQuizDao implements Repository<Quiz,Integer> {
     public List<Activite> findByAge(int age) {
 
     String sql = """
-        SELECT 
-            q.id_quiz,
-            q.temps_limite,
-            q.score_max,
-
-            a.id_activites,
-            a.titre,
-            a.descriptions,
-            a.age_min,
-            a.age_max,
-            a.id_capacite,
-            a.type_activites
-
-        FROM activites a
-
-        INNER JOIN quiz q
+            SELECT
+        q.id_quiz,
+        q.temps_limite,
+        q.score_max,
+        a.id_activites,
+        a.titre,
+        a.descriptions,
+        a.age_min,
+        a.age_max,
+        a.id_capacite,
+        a.type_activites
+    FROM activites a
+    INNER JOIN quiz q
         ON q.id_quiz = a.id_activites
-
-        WHERE a.age_min <= ? 
-        AND a.age_max >= ?
+    WHERE a.age_min <= ?
+    AND a.age_max >= ?;
         """;
 
     List<Activite> quizs = new ArrayList<>();
