@@ -23,6 +23,7 @@ public class ProfileimplEnfant implements ProfileEnfant {
             System.out.println("3 Jeux");
             System.out.println("4 Evaluation");
             System.out.println("5 Historique");
+            System.out.println("6 retour");
             int choix = scanner.nextInt();
 
             switch (choix) {
@@ -39,6 +40,7 @@ public class ProfileimplEnfant implements ProfileEnfant {
                 }
                     
                 case 2 -> OptionQuiz.menu();
+                case 6 -> runing = false;
                 default -> System.out.println("Vous n'avez rien choisi");
 
             }
