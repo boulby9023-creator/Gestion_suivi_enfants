@@ -1,11 +1,13 @@
 package main.java.Service;
 
+import java.util.List;
+import main.java.DAO.ImplQuizDao;
 import main.java.Modele.Quiz;
 import main.java.Service.interfaces.QuizService;
 
-import java.util.List;
-
 public class QuizImplService implements QuizService {
+    private final ImplQuizDao quizDao = new ImplQuizDao();
+
     @Override
     public void menu() {
 
@@ -16,5 +18,17 @@ public class QuizImplService implements QuizService {
         return List.of();
     }
 
+    @Override
+    public Quiz findById(int id) {
+        return quizDao.findById(id);
+    }
 
-}
+    @Override
+    public List<Quiz> findQuizByAgeEnfant(int ageEnfant) {
+        return quizDao.findByAge(ageEnfant);
+    }
+
+}  
+    
+
+
