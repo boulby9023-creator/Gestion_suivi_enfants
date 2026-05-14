@@ -96,5 +96,28 @@ public class ImplQuestionDAO implements Repository<Question, Integer> {
     public void update(Integer id, Question entity) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    public List <Question> recuperationQuestionsByIdQuiz(Integer id){
+        
+        String sql = " SELECT Q.id_questions, Q.enonce, Q.delai_max, Q.id_capacite FROM questions Q JOIN question_quiz QZ ON Q.id_questions = QZ.id_questions WHERE QZ.id_quiz = ? ";
+        List<Question> Questions = new  ArrayList<Question>();
+        try(PreparedStatement pont = con.prepareStatement(sql)){
+            pont.setInt(1, id);
+             ResultSet rs = pont.executeQuery();
+            while (rs.next()) {
+                Question  question = new Question();
+                question.setDelai_max(rs.getInt("delai_max"));
+                question.setEnonce(rs.getString("enonce"));
+                question.setId_capacite(rs.getInt("id_capacite"));
+                question.setId_questions(rs.getInt("id_questions"));
+                Questions.add(question);
+            }
+
+
+        }catch(SQLException e){
+            System.out.println("Erreur au niveau de sql "+ e.getMessage());
+        } 
+        return Questions;
+    }
+    
 
 }
