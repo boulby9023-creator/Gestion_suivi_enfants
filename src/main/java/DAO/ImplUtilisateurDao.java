@@ -1,6 +1,5 @@
 package main.java.DAO;
 
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
 
             int test = prepare.executeUpdate();
             if (test >0 ){
-                System.out.println("Utilisateur ajouter avec sucess!!!" + test);
+                System.out.println("Utilisateur ajouter avec sucess!!!");
             }
         } catch (SQLException e) {
             System.err.println("Un probleme est survenu lors de l'insertion");
@@ -82,7 +81,7 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
                 utilisateur.setRole(RoleEnum.valueOf(result.getString("role")));
 
                 utilisateurs.add(utilisateur);
-                utilisateur = new Utilisateur();
+                utilisateur = null;
             }
             return utilisateurs;
         } catch (SQLException e) {
@@ -154,6 +153,24 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
             System.err.println("Erreur message: "+e.getMessage());
         }
         return null;
+    }
+
+    public  boolean seConnecter(String mail, String motDePasse){
+        Connection con = ConnexionDB.getConexion();
+        String sql = "SELECT * FROM utilisateurs WHERE mail = ? AND mot_de_passe = ?";
+        try {
+            PreparedStatement prepare = con.prepareStatement(sql);
+            prepare.setString(1, mail);
+            prepare.setString(2, motDePasse);
+
+             ResultSet result = prepare.executeQuery();
+            if (result.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 
 

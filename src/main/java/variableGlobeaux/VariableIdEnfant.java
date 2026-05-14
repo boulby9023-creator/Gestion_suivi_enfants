@@ -1,16 +1,16 @@
 package main.java.variableGlobeaux;
 
-public class variableIdEnfant {
-    private static variableIdEnfant instance;
+public class VariableIdEnfant {
+    private static VariableIdEnfant instance;
     private int id_enfant;
 
-    private variableIdEnfant() {
+    private VariableIdEnfant() {
         this.id_enfant = 0;
     }
 
-    public static variableIdEnfant getInstance() {
+    public static VariableIdEnfant getInstance() {
         if (instance == null) {
-            instance = new variableIdEnfant();
+            instance = new VariableIdEnfant();
         }
         return instance;
     }

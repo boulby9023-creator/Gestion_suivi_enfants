@@ -47,6 +47,7 @@ public class ImplAdmin implements Repository <Admins , Integer> {
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
+
     @Override
     public void update(Integer id, Admins entity) {
         throw new UnsupportedOperationException("Not supported yet.");

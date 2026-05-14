@@ -10,4 +10,5 @@ public interface Repository<T, ID> {
 
     void update(ID id, T entity);
 
+    void update(Integer id, T entity);
 }
