@@ -18,10 +18,11 @@ public class MenuParent {
             System.out.println("1 Ajouter Enfant");
             System.out.println("2 Listes enfant");
             int choix = scanner.nextInt();
-
+          
             switch (choix) {
                 case 1 -> enfantService.ajouter();
                 case 2 -> listeEnfants.menu();
+
                 default -> System.out.println("Vous n'avez rien choisi");
                     
             }

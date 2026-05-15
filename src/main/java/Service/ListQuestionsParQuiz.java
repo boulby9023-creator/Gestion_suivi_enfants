@@ -4,12 +4,14 @@ import java.util.List;
 
 import main.java.DAO.ImplQuestionDAO;
 import main.java.Modele.Question;
+import main.java.variableGlobeaux.VariableQuiz;
 
 public class ListQuestionsParQuiz {
-    private ImplQuestionDAO implQuestionDAO;
+    VariableQuiz IdQuiz = VariableQuiz.getInstance();
+    private ImplQuestionDAO implQuestionDAO = new ImplQuestionDAO();
     public void menu() {
         System.out.println("===== La liste des questions du quiz choisi ======");
-        questions(2);
+        questions(IdQuiz.getIdQuiz());
     }
 
 

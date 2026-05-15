@@ -95,7 +95,12 @@ public class ImplQuestionDAO implements Repository<Question, Integer> {
     @Override
     public void update(Integer id, Question entity) {
         throw new UnsupportedOperationException("Not supported yet.");
+
     }
+
+
+
+    
     public List <Question> recuperationQuestionsByIdQuiz(Integer id){
         
         String sql = " SELECT Q.id_questions, Q.enonce, Q.delai_max, Q.id_capacite FROM questions Q JOIN question_quiz QZ ON Q.id_questions = QZ.id_questions WHERE QZ.id_quiz = ? ";

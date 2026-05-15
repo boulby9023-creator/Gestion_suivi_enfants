@@ -8,6 +8,7 @@ import main.java.Modele.Enfant;
 import main.java.Modele.Quiz;
 import main.java.Service.interfaces.QuizService;
 import main.java.variableGlobeaux.VariableIdEnfant;
+import main.java.variableGlobeaux.VariableQuiz;
 
 public class OptionQuiz {
     private final Scanner scanner = new Scanner(System.in);
@@ -17,6 +18,7 @@ public class OptionQuiz {
     private final ListQuestionsParQuiz listQuestionsParQuiz = new ListQuestionsParQuiz();
     boolean runing = true;
     
+    private final VariableQuiz Idquiz = VariableQuiz.getInstance();
 
     public void  menu(){
         while (runing) {
@@ -36,10 +38,13 @@ public class OptionQuiz {
                 System.out.println("Choissez un quiz par son ID pour le faire");
                 int choix = scanner.nextInt();
 
+
+
                 Quiz selectedQuiz = quizService.findById(choix);
+
                 if (selectedQuiz != null) {
+                    Idquiz.setIdQuiz(selectedQuiz.getIdQuiz());
                     listQuestionsParQuiz.menu();
-                    
                 }
                 
             }

@@ -25,8 +25,11 @@ public class ListeEnfants {
                 System.out.println("Aucun enfant trouvé.");
                 return;
             }else{
-            System.out.println("Choissez un enfant par son ID pour voir son profile");
+            System.out.println("Choissez un enfant par son ID pour voir son profile OU 0 Pour retourner");
             int choix = scanner.nextInt();
+            if(choix == 0){
+                runing =  false;
+            }
             
             Enfant enfant = enfantService.findEnfantById(choix);
 
