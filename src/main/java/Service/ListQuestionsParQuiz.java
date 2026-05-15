@@ -15,12 +15,22 @@ public class ListQuestionsParQuiz {
     private final VariableQuestion variableQuestion = VariableQuestion.getInstance();
     private  final ImplOptionDao implOptionDAO = new ImplOptionDao();
     private  final Scanner sc = new Scanner(System.in);
-
+    boolean runing = true;
 
 
     public void menu() {
-        System.out.println("===== La liste des questions du quiz choisi ======");
-        questions(idquiz.getIdQuiz());
+        while (runing) {
+            System.out.println("===== Menu Questions par Quiz ======");
+            System.out.println("1 Afficher les questions du quiz");
+            System.out.println("2 Quitter");
+            int choix = sc.nextInt();
+
+            switch (choix) {
+                case 1 -> questions(idquiz.getIdQuiz());
+                case 2 -> runing = false;
+                default -> System.out.println("Vous n'avez rien choisi");
+            }
+        }
     }
 
 
