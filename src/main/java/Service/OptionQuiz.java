@@ -26,7 +26,7 @@ public class OptionQuiz {
             int ageEnfant = calculerAgeEnfant(enfant.getDate_naissance()) ;
             List<Activite> quizList = quizService.findQuizByAgeEnfant(ageEnfant);
             for (Activite quiz: quizList){
-                System.out.println("{ id : "+quiz.getIdActivite() +", titre : "+ quiz.getTitre()+" type activité : "+ quiz.getTypeActivites() +", age : "+ quiz.getAgeMin() + " - "+ quiz.getAgeMax() + " }");
+                System.out.println("{ id:"+quiz.getIdActivite() +", titre:"+ quiz.getTitre()+" type_activité:"+ quiz.getTypeActivites() +", age:"+ quiz.getAgeMin() + " - "+ quiz.getAgeMax() + " }");
             }
 
             if(quizList.isEmpty()){
