@@ -43,8 +43,10 @@ public class ListQuestionsParQuiz {
 
             if(optionChoisie != null){
                 if(optionChoisie.isEstCorrecte()){
-                    System.out.println("Bonne réponse !");
+                    question.setScore(10);
+                    System.out.println("Bonne réponse ! +10 points");
                 }else{
+                    question.setScore(0);
                     System.out.println("Mauvaise réponse !");
                 }
             }else{
