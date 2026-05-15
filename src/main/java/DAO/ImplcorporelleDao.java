@@ -23,12 +23,15 @@ public class ImplcorporelleDao implements Repository<Corporelle, Integer> {
 
                     int b =pont.executeUpdate();
                     if(b>0){
-                        System.err.println("Capacite corporelle inserer avec succès");
+                        System.out.println("Capacite corporelle inserer avec succès");
                     }
 
                     con.close();
 
         } catch (SQLException e) {
+            System.err.println("Problème d'insertion de corporelle");
+            System.err.println("Erreur sql: " + e.getSQLState());
+            System.err.println("Erreur message: " + e.getMessage());
         }
     }
 
