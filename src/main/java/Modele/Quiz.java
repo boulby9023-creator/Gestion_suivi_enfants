@@ -1,10 +1,12 @@
 package main.java.Modele;
 
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 import main.java.enumeration.TypeActivitesEnum;
 
 public class Quiz extends Activite {
+
 
     private int idQuiz;
 
@@ -90,6 +92,7 @@ public class Quiz extends Activite {
     public void setScoreMax(int scoreMax) {
         this.scoreMax = scoreMax;
     }
+
 
     // =========================
     // hashCode()

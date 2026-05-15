@@ -9,7 +9,7 @@ public class ListQuestionsParQuiz {
     private ImplQuestionDAO implQuestionDAO;
     public void menu() {
         System.out.println("===== La liste des questions du quiz choisi ======");
-        questions(0);
+        questions(2);
     }
 
 

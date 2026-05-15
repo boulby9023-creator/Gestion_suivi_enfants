@@ -13,8 +13,6 @@ public class Utilisateur {
     protected String motDePasse;
     protected RoleEnum role;
 
-
-
     //constructeur
    public Utilisateur(int id, String nom, String prenom, String tel, String mail, String motDePasse, RoleEnum role ) {
         this.id = id;
@@ -89,6 +87,7 @@ public class Utilisateur {
     public void setRole(RoleEnum role){
         this.role = role;
     }
+
 
 
 }
