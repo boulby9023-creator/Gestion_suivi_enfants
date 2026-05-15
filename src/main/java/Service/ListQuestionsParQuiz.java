@@ -10,7 +10,7 @@ import main.java.variableGlobeaux.VariableQuestion;
 import main.java.variableGlobeaux.VariableQuiz;
 
 public class ListQuestionsParQuiz {
-    VariableQuiz IdQuiz = VariableQuiz.getInstance();
+    VariableQuiz idquiz = VariableQuiz.getInstance();
     private ImplQuestionDAO implQuestionDAO = new ImplQuestionDAO();
     private final VariableQuestion variableQuestion = VariableQuestion.getInstance();
     private  final ImplOptionDao implOptionDAO = new ImplOptionDao();
@@ -20,7 +20,7 @@ public class ListQuestionsParQuiz {
 
     public void menu() {
         System.out.println("===== La liste des questions du quiz choisi ======");
-        questions(IdQuiz.getIdQuiz());
+        questions(idquiz.getIdQuiz());
     }
 
 

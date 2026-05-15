@@ -29,6 +29,11 @@ public class QuizImplService implements QuizService {
         return quizDao.findByAge(ageEnfant);
     }
 
+    @Override
+    public Activite findActiviteById(int id) {
+        return quizDao.findActiviteById(id);
+    }
+
 }  
     
 

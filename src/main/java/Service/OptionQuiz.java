@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 import main.java.Modele.Activite;
 import main.java.Modele.Enfant;
-import main.java.Modele.Quiz;
 import main.java.Service.interfaces.QuizService;
 import main.java.variableGlobeaux.VariableIdEnfant;
 import main.java.variableGlobeaux.VariableQuiz;
@@ -16,9 +15,10 @@ public class OptionQuiz {
     private final VariableIdEnfant variableIdEnfant = VariableIdEnfant.getInstance();
     private final EnfantImplService enfantService = new EnfantImplService();
     private final ListQuestionsParQuiz listQuestionsParQuiz = new ListQuestionsParQuiz();
+    
     boolean runing = true;
     
-    private final VariableQuiz Idquiz = VariableQuiz.getInstance();
+    private final VariableQuiz idquiz = VariableQuiz.getInstance();
 
     public void  menu(){
         while (runing) {
@@ -40,10 +40,13 @@ public class OptionQuiz {
 
 
 
-                Quiz selectedQuiz = quizService.findById(choix);
+                Activite selectedQuiz = quizService.findActiviteById(choix);
 
+                
                 if (selectedQuiz != null) {
-                    Idquiz.setIdQuiz(selectedQuiz.getIdQuiz());
+                    idquiz.setIdQuiz(selectedQuiz.getIdActivite()); 
+                    System.out.println("Vous avez choisi le quiz : " + selectedQuiz.getTitre());
+                    System.out.println("=============="+ idquiz.getIdQuiz() + "=============");
                     listQuestionsParQuiz.menu();
                 }
                 

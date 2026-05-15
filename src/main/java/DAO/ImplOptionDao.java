@@ -88,8 +88,22 @@ public void save(Option entity) {
 
     @Override
     public Option findById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        Connection con = ConnexionDB.getConexion();
+        String sql = "SELECT * FROM options WHERE id_options = ?";
+        try (PreparedStatement pont = con.prepareStatement(sql)) {
+            pont.setInt(1, id);
+            ResultSet rs = pont.executeQuery();
+            if (rs.next()) {
+                Option option = new Option();
+                option.setId(rs.getInt("id_options"));
+                option.setTexte(rs.getString("texte"));
+                option.setEstCorrecte(rs.getBoolean("est_correct"));
+                return option;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération de l'option : " + e.getMessage());
+        }
+        return null;
     }
 
     @Override
@@ -99,23 +113,35 @@ public void save(Option entity) {
     }
 
     public List<Option> findByIdQuestion(int id_question) {
-        Connection con = ConnexionDB.getConexion();
-        String sql = "SELECT * FROM option WHERE id_question = ?";
-        List<Option> options = new ArrayList<>();
-        try (PreparedStatement pont = con.prepareStatement(sql)) {
-            pont.setInt(1, id_question);
-            ResultSet rs = pont.executeQuery();
-            while (rs.next()) {
-                Option option = new Option();
-                option.setId(rs.getInt("id"));
-                option.setTexte(rs.getString("texte"));
-                option.setEstCorrecte(rs.getBoolean("estCorrecte"));
-                options.add(option);
-            }
-        } catch (SQLException e) {
-            System.out.println("Erreur lors de la récupération des options : " + e.getMessage());
+
+    Connection con = ConnexionDB.getConexion();
+
+    String sql = "SELECT * FROM options WHERE id_question = ?";
+
+    List<Option> options = new ArrayList<>();
+
+    try (PreparedStatement pont = con.prepareStatement(sql)) {
+
+        pont.setInt(1, id_question);
+
+        ResultSet rs = pont.executeQuery();
+
+        while (rs.next()) {
+
+            Option option = new Option();
+
+            option.setId(rs.getInt("id_options"));
+            option.setTexte(rs.getString("texte"));
+            option.setEstCorrecte(rs.getBoolean("est_correct"));
+
+            options.add(option);
         }
-        return options;
+
+    } catch (SQLException e) {
+
+        System.out.println("Erreur lors de la récupération des options : " + e.getMessage());
     }
 
+    return options;
+}
 }

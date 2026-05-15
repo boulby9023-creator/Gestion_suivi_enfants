@@ -58,6 +58,34 @@ public class ImplQuizDao implements Repository<Quiz,Integer> {
                 return null ;
         }
     }
+
+    public Activite findActiviteById(Integer id) {
+        String  sql = "SELECT * FROM Activites WHERE id_activites = ?";
+        try(PreparedStatement prepare = con.prepareStatement(sql)) {
+            prepare.setInt(1, id);
+            try(ResultSet rs = prepare.executeQuery()) {
+                
+            if (rs.next()) {
+                
+                Activite activite = new Activite();
+                activite.setIdActivite(rs.getInt("id_activites"));
+                activite.setTitre(rs.getString("titre"));
+                activite.setDescriptions(rs.getString("descriptions"));
+                activite.setAgeMin(rs.getInt("age_min"));
+                activite.setAgeMax(rs.getInt("age_max"));
+                activite.setIdCapacite(rs.getInt("id_capacite"));
+                activite.setTypeActivites(TypeActivitesEnum.valueOf(rs.getString("type_activites").toUpperCase()));
+                return activite;
+            } else {
+                System.out.println("Aucun quiz trouvé avec l'id " + id);
+                return null;
+            }
+            }
+        } catch (SQLException e) {
+               System.out.println("Erreur au niveau de SQL " + e.getMessage());
+                return null ;
+        }
+    }
     
 
     @Override

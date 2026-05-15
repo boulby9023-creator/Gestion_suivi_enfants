@@ -1,12 +1,12 @@
 package main.java.variableGlobeaux;
 
 public class VariableQuiz {
-        private static VariableQuiz instance;
+    private static VariableQuiz instance;
 
-    private int IdQuiz ;
+    private int idQuiz ;
 
        private VariableQuiz() {
-        this.IdQuiz = 0;
+        this.idQuiz = 0;
     }
 
     public static VariableQuiz getInstance() {
@@ -17,11 +17,11 @@ public class VariableQuiz {
     }
 
     public int getIdQuiz() {
-        return IdQuiz;
+        return idQuiz;
     }
 
     public void setIdQuiz(int idQuiz) {
-        IdQuiz = idQuiz;
+        this.idQuiz = idQuiz;
     }
 
 
