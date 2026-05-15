@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import main.java.BD.Connexion;
 import main.java.Modele.Quiz;
 
@@ -67,7 +66,7 @@ public class QuizDao implements Repository<Quiz,Integer> {
             ResultSet rs = prepare.executeQuery();
             while (rs.next()) {
                  Quiz quiz = new Quiz();
-                quiz.setId_quiz(rs.getInt("id_quiz"));
+                quiz.setIdQuiz(rs.getInt("id_quiz"));
                 quiz.setTempsLimitGlobal(rs.getInt("temps_limite"));
                 quiz.setScoreMax(rs.getInt("score_max"));
                 Quizs.add(quiz);

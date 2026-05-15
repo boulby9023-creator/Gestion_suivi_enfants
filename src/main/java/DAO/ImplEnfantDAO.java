@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -141,4 +142,46 @@ public class ImplEnfantDAO implements Repository<Enfant, Integer> {
         }
         return enfants;
     }
+
+
+    public Enfant saveEnfant(Enfant entity) {
+        try {
+            Connection con = ConnexionDB.getConexion();
+            String sql = "INSERT INTO enfants (nom, prenom, date_naissance, sexe, id_parent) VALUES (?, ?, ?, ?, ?)";
+            
+             PreparedStatement stm = con.prepareStatement(
+                sql,
+                Statement.RETURN_GENERATED_KEYS
+                );
+
+            stm.setString(1, entity.getNom());
+            stm.setString(2, entity.getPrenom());
+            stm.setDate(3, java.sql.Date.valueOf(entity.getDate_naissance()));
+            stm.setString(4, entity.getSexe());
+            stm.setInt(5, entity.getid_parent());
+            int row = stm.executeUpdate();
+            if (row > 0) {
+
+            // Recuperer l'id généré
+            ResultSet rs = stm.getGeneratedKeys();
+
+            if (rs.next()) {
+                int idGenere = rs.getInt(1);
+
+                // mettre l'id dans l'objet
+                entity.setId(idGenere);
+            }
+
+            System.out.println("Enfant ajouté avec succès !");
+            return entity;
+        }
+
+    } catch (SQLException e) {
+        System.err.println("Problème d'insertion d'enfant");
+        System.err.println("Erreur sql: " + e.getSQLState());
+        System.err.println("Erreur message: " + e.getMessage());
+    }
+
+    return null;
+}
 }

@@ -5,13 +5,17 @@ import java.util.List;
 import java.util.Scanner;
 import main.java.DAO.ImplEnfantDAO;
 import main.java.Modele.Enfant;
+import main.java.Service.interfaces.CorporelleService;
 import main.java.Service.interfaces.EnfantService;
 import main.java.variableGlobeaux.Variable;
+import main.java.variableGlobeaux.VariableIdEnfant;
 
 public class EnfantImplService implements EnfantService {
     private final Scanner scanner = new Scanner(System.in);
     private final ImplEnfantDAO enfantDAO = new ImplEnfantDAO();
     private final Variable variable = Variable.getInstance();
+    private final VariableIdEnfant variableIdEnfant = VariableIdEnfant.getInstance();
+    private final CorporelleService corporelleImplService = new CorporelleImplService();
     
 
 
@@ -35,7 +39,6 @@ public class EnfantImplService implements EnfantService {
 
         Enfant enfant = new Enfant();
 
-        System.out.println("========================"+ variable.getId_parent());
 
         enfant.setNom(nom);
         enfant.setPrenom(prenom);
@@ -45,7 +48,11 @@ public class EnfantImplService implements EnfantService {
         enfant.setSexe(sexe);
         enfant.setParent(variable.getId_parent());
 
-        enfantDAO.save(enfant);
+        Enfant savedEnfant = enfantDAO.saveEnfant(enfant);
+        variableIdEnfant.setId_enfant(savedEnfant.getId());
+
+
+        corporelleImplService.ajouterCorporelle();
 
 
 

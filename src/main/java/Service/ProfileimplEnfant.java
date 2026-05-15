@@ -12,6 +12,7 @@ public class ProfileimplEnfant implements ProfileEnfant {
     private final Scanner scanner = new Scanner(System.in);
     private final  EnfantService enfantService = new EnfantImplService();
     private final VariableIdEnfant variable = VariableIdEnfant.getInstance();
+    private final CorporelleImplService corporelleImplService = new CorporelleImplService();
 
     @Override
     public void menu() {
@@ -23,7 +24,8 @@ public class ProfileimplEnfant implements ProfileEnfant {
             System.out.println("3 Jeux");
             System.out.println("4 Evaluation");
             System.out.println("5 Historique");
-            System.out.println("6 retour");
+            System.out.println("6 Ajouter l'information corporelle");
+            System.out.println("7 retour");
             int choix = scanner.nextInt();
 
             switch (choix) {
@@ -40,7 +42,10 @@ public class ProfileimplEnfant implements ProfileEnfant {
                 }
                     
                 case 2 -> OptionQuiz.menu();
-                case 6 -> runing = false;
+                case 6 -> {
+                    corporelleImplService.ajouterCorporelle();
+                }
+                case 7 -> runing = false;
                 default -> System.out.println("Vous n'avez rien choisi");
 
             }
