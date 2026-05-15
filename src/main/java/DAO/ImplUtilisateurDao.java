@@ -1,5 +1,6 @@
 package main.java.DAO;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -159,6 +160,24 @@ public class ImplUtilisateurDao implements Repository<Utilisateur, Integer>{
             System.err.println("Erreur message: "+e.getMessage());
         }
         return null;
+    }
+
+    public  boolean seConnecter(String mail, String motDePasse){
+        Connection con = ConnexionDB.getConexion();
+        String sql = "SELECT * FROM utilisateurs WHERE mail = ? AND mot_de_passe = ?";
+        try {
+            PreparedStatement prepare = con.prepareStatement(sql);
+            prepare.setString(1, mail);
+            prepare.setString(2, motDePasse);
+
+             ResultSet result = prepare.executeQuery();
+            if (result.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 
 

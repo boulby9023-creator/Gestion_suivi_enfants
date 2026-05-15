@@ -1,24 +1,80 @@
 package main.java.Modele;
 
+
+import java.time.LocalDateTime;
 import java.util.Objects;
+import main.java.enumeration.TypeActivitesEnum;
+
+public class Quiz extends Activite {
 
 
-public class Quiz {
-    private int id_quiz;
-   private int tempsLimitGlobal;
-   private int scoreMax;
-   private String titre;
-   private String categorie; 
+    private int idQuiz;
+
+    private int tempsLimitGlobal;
+
+    private int scoreMax;
+
+    // =========================
+    // Constructeur vide
+    // =========================
 
     public Quiz() {
+        super();
     }
 
-    public int getId_quiz() {
-        return id_quiz;
+    // =========================
+    // Constructeur simple
+    // =========================
+
+    public Quiz(int tempsLimitGlobal, int scoreMax) {
+
+        this.tempsLimitGlobal = tempsLimitGlobal;
+        this.scoreMax = scoreMax;
     }
 
-    public void setId_quiz(int id_quiz) {
-        this.id_quiz = id_quiz;
+    // =========================
+    // Constructeur complet
+    // =========================
+
+    public Quiz(
+            int idQuiz,
+            int tempsLimitGlobal,
+            int scoreMax,
+
+            int idActivite,
+            String titre,
+            String descriptions,
+            int ageMin,
+            int ageMax,
+            LocalDateTime dateCreation,
+            int idCapacite,
+            TypeActivitesEnum typeActivites) {
+
+        super(
+                idActivite,
+                titre,
+                descriptions,
+                ageMin,
+                ageMax,
+                dateCreation,
+                idCapacite,
+                typeActivites);
+
+        this.idQuiz = idQuiz;
+        this.tempsLimitGlobal = tempsLimitGlobal;
+        this.scoreMax = scoreMax;
+    }
+
+    // =========================
+    // GETTERS & SETTERS
+    // =========================
+
+    public int getIdQuiz() {
+        return idQuiz;
+    }
+
+    public void setIdQuiz(int idQuiz) {
+        this.idQuiz = idQuiz;
     }
 
     public int getTempsLimitGlobal() {
@@ -37,69 +93,53 @@ public class Quiz {
         this.scoreMax = scoreMax;
     }
 
-    public String getTitre() {
-        return titre;
-    }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
-    public String getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
-    }
-
-    
+    // =========================
+    // hashCode()
+    // =========================
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + this.tempsLimitGlobal;
-        hash = 79 * hash + this.scoreMax;
-        hash = 79 * hash + Objects.hashCode(this.titre);
-        hash = 79 * hash + Objects.hashCode(this.categorie);
-        return hash;
+        return Objects.hash(idQuiz, tempsLimitGlobal, scoreMax);
     }
+
+    // =========================
+    // equals()
+    // =========================
 
     @Override
     public boolean equals(Object obj) {
+
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Quiz other = (Quiz) obj;
-        if (this.tempsLimitGlobal != other.tempsLimitGlobal) {
-            return false;
-        }
-        if (this.scoreMax != other.scoreMax) {
-            return false;
-        }
-        if (!Objects.equals(this.titre, other.titre)) {
-            return false;
-        }
-        return Objects.equals(this.categorie, other.categorie);
+
+        Quiz other = (Quiz) obj;
+
+        return idQuiz == other.idQuiz
+                && tempsLimitGlobal == other.tempsLimitGlobal
+                && scoreMax == other.scoreMax;
     }
+
+    // =========================
+    // toString()
+    // =========================
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Quiz{");
-        sb.append("tempsLimitGlobal=").append(tempsLimitGlobal);
-        sb.append(", scoreMax=").append(scoreMax);
-        sb.append(", titre=").append(titre);
-        sb.append(", categorie=").append(categorie);
-        sb.append('}');
-        return sb.toString();
-    }
 
-    
+        return "Quiz{" +
+                "idQuiz=" + idQuiz +
+                ", titre='" + getTitre() + '\'' +
+                ", tempsLimitGlobal=" + tempsLimitGlobal +
+                ", scoreMax=" + scoreMax +
+                ", ageMin=" + getAgeMin() +
+                ", ageMax=" + getAgeMax() +
+                ", typeActivites=" + getTypeActivites() +
+                '}';
+    }
 }

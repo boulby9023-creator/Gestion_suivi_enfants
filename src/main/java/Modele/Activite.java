@@ -1,28 +1,64 @@
 package main.java.Modele;
 
+import java.time.LocalDateTime;
+import main.java.enumeration.TypeActivitesEnum;
 
-public class Activite{
-    protected int id;
-    protected String titre;
-    protected String description;
-    protected int ageCible;
-    protected int id_capacite;
+public class Activite {
 
-    //constructeur//
-   public Activite(int id, String titre, String description, int ageCible, int id_capacite) {
-        this.id = id;
+    private int idActivite;
+    private String titre;
+    private String descriptions;
+
+    private int ageMin;
+    private int ageMax;
+
+    private LocalDateTime dateCreation;
+
+    private int idCapacite;
+
+    private TypeActivitesEnum typeActivites;
+
+    // =========================
+    // Constructeur vide
+    // =========================
+
+    public Activite() {
+    }
+
+    // =========================
+    // Constructeur avec paramètres
+    // =========================
+
+    public Activite(
+            int idActivite,
+            String titre,
+            String descriptions,
+            int ageMin,
+            int ageMax,
+            LocalDateTime dateCreation,
+            int idCapacite,
+            TypeActivitesEnum typeActivites) {
+
+        this.idActivite = idActivite;
         this.titre = titre;
-        this.description = description;
-        this.ageCible = ageCible;
-        this.id_capacite = id_capacite;
+        this.descriptions = descriptions;
+        this.ageMin = ageMin;
+        this.ageMax = ageMax;
+        this.dateCreation = dateCreation;
+        this.idCapacite = idCapacite;
+        this.typeActivites = typeActivites;
     }
 
-    public int getId() {
-        return id;
+    // =========================
+    // GETTERS & SETTERS
+    // =========================
+
+    public int getIdActivite() {
+        return idActivite;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdActivite(int idActivite) {
+        this.idActivite = idActivite;
     }
 
     public String getTitre() {
@@ -33,36 +69,70 @@ public class Activite{
         this.titre = titre;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptions() {
+        return descriptions;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptions(String descriptions) {
+        this.descriptions = descriptions;
     }
 
-    public int getAgeCible() {
-        return ageCible;
+    public int getAgeMin() {
+        return ageMin;
     }
 
-    public void setAgeCible(int ageCible) {
-        this.ageCible = ageCible;
+    public void setAgeMin(int ageMin) {
+        this.ageMin = ageMin;
     }
 
-    public int getId_capacite() {
-        return id_capacite;
+    public int getAgeMax() {
+        return ageMax;
     }
 
-    public void setId_capacite(int id_capacite) {
-        this.id_capacite = id_capacite;
+    public void setAgeMax(int ageMax) {
+        this.ageMax = ageMax;
     }
+
+    public LocalDateTime getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(LocalDateTime dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public int getIdCapacite() {
+        return idCapacite;
+    }
+
+    public void setIdCapacite(int idCapacite) {
+        this.idCapacite = idCapacite;
+    }
+
+    public TypeActivitesEnum getTypeActivites() {
+        return typeActivites;
+    }
+
+    public void setTypeActivites(TypeActivitesEnum typeActivites) {
+        this.typeActivites = typeActivites;
+    }
+
+    // =========================
+    // toString()
+    // =========================
 
     @Override
     public String toString() {
-        return "Activite {id=" + id + ", titre=" + titre + ", description=" + description + ", ageCible=" + ageCible
-                + ", id_capacite=" + id_capacite + "}";
+
+        return "Activite{" +
+                "idActivite=" + idActivite +
+                ", titre='" + titre + '\'' +
+                ", descriptions='" + descriptions + '\'' +
+                ", ageMin=" + ageMin +
+                ", ageMax=" + ageMax +
+                ", dateCreation=" + dateCreation +
+                ", idCapacite=" + idCapacite +
+                ", typeActivites=" + typeActivites +
+                '}';
     }
-
-
-    
 }

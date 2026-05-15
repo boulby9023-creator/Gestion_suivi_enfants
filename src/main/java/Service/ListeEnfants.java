@@ -21,8 +21,15 @@ public class ListeEnfants {
             for (Enfant enfant : enfants) {
                 System.out.println(enfant.getId() +" "+ enfant.getPrenom() );
             }
-            System.out.println("Choissez un enfant par son ID pour voir son profile");
+            if(enfants.isEmpty()){
+                System.out.println("Aucun enfant trouvé.");
+                return;
+            }else{
+            System.out.println("Choissez un enfant par son ID pour voir son profile OU 0 Pour retourner");
             int choix = scanner.nextInt();
+            if(choix == 0){
+                runing =  false;
+            }
             
             Enfant enfant = enfantService.findEnfantById(choix);
 
@@ -32,7 +39,7 @@ public class ListeEnfants {
             }else{
                 System.out.println("Aucun enfant trouvé avec cet ID.");
             }
-
+        }
 
 
     }

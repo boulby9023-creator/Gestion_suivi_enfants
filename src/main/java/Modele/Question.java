@@ -7,16 +7,18 @@ public class Question {
     private int id_questions   ;
     private String enonce;
     private int delai_max;
+    private int score;
     private int id_capacite;    
 
 
     public Question() {
     }
 
-    public Question(String enonce, int id_questions, int delai_max, int id_capacite) {
+    public Question(String enonce, int id_questions, int delai_max, int score, int id_capacite) {
         this.enonce = enonce;
         this.id_questions = id_questions;
         this.delai_max = delai_max;
+        this.score = score;
         this.id_capacite = id_capacite;
     }
 
@@ -52,6 +54,14 @@ public class Question {
         this.id_capacite = id_capacite;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -59,7 +69,8 @@ public class Question {
         result = prime * result + id_questions;
         result = prime * result + ((enonce == null) ? 0 : enonce.hashCode());
         result = prime * result + delai_max;
-
+        result = prime * result + score;
+        result = prime * result + id_capacite;
         return result;
     }
 
@@ -91,6 +102,8 @@ public class Question {
         sb.append("id_questions=").append(id_questions);
         sb.append(", enonce=").append(enonce);
         sb.append(", delai_max=").append(delai_max);
+        sb.append(", score=").append(score);
+        sb.append(", id_capacite=").append(id_capacite);
         return sb.toString();
     }
     

@@ -50,10 +50,6 @@ public class ImplAdmin implements Repository <Admins , Integer> {
 
     @Override
     public void update(Integer id, Admins entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
- 
-    
+        throw new UnsupportedOperationException("Not supported yet.");
+    }   
 }
