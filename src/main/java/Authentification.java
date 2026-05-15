@@ -18,6 +18,7 @@ public class Authentification {
             System.out.println("===== Authentification ======");
             System.out.println("1 Inscription");
             System.out.println("2 connexion");
+
             System.out.println("3 connexion en tant que admin");
             int choix = scanner.nextInt();
 
