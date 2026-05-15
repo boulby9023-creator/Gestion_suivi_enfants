@@ -1,7 +1,9 @@
 package main.java.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import main.java.BD.ConnexionDB;
 import main.java.Modele.Option;
@@ -94,6 +96,26 @@ public void save(Option entity) {
     public List<Option> findAll() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    }
+
+    public List<Option> findByIdQuestion(int id_question) {
+        Connection con = ConnexionDB.getConexion();
+        String sql = "SELECT * FROM option WHERE id_question = ?";
+        List<Option> options = new ArrayList<>();
+        try (PreparedStatement pont = con.prepareStatement(sql)) {
+            pont.setInt(1, id_question);
+            ResultSet rs = pont.executeQuery();
+            while (rs.next()) {
+                Option option = new Option();
+                option.setId(rs.getInt("id"));
+                option.setTexte(rs.getString("texte"));
+                option.setEstCorrecte(rs.getBoolean("estCorrecte"));
+                options.add(option);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des options : " + e.getMessage());
+        }
+        return options;
     }
 
 }
