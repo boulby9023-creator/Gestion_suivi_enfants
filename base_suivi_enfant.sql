@@ -165,3 +165,13 @@ CREATE TABLE reponses_enfants (
 );
 
 ALTER TABLE activites ADD type_activites ENUM("Cognitif", "Intellectuel") NOT NULL;
+
+CREATE TABLE historique(
+    id_historique INT AUTO_INCREMENT PRIMARY KEY,
+    action VARCHAR(100),
+    details TEXT,
+    dateAction DATETIME DEFAULT CURRENT_TIMESTAMP,
+    id_enfants INT,
+    FOREIGN KEY(id_enfants)
+    REFERENCES enfants(id_enfants)
+);
